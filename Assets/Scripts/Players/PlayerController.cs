@@ -16,9 +16,14 @@ public class PlayerController : MonoBehaviour
 
     public Transform cameraHolder;
 
+    private void OnConnectedToServer()
+    {
+        Debug.Log("connected to server");
+    }
+
     public void onJump(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             Debug.Log("Jump ");
         }
@@ -28,27 +33,25 @@ public class PlayerController : MonoBehaviour
     {
         //x - horizontal // y-vertical
         Vector2 movement = context.ReadValue<Vector2>();
-
-        Debug.Log(movement);
-
         lastMovement = movement;
     }
 
     public void onRotate(InputAction.CallbackContext context)
     {
-        if(context.performed)
+
+        if (context.performed)
         {
             Vector2 seeMovement = context.ReadValue<Vector2>();
             //Debug.Log(seeMovement);
 
             rotation += seeMovement * speed * Time.deltaTime;
 
-            if(rotationHorizontalClamps.sqrMagnitude != 0)
+            if (rotationHorizontalClamps.sqrMagnitude != 0)
             {
                 rotation.x = Mathf.Clamp(rotation.x, rotationHorizontalClamps.x, rotationHorizontalClamps.y);
             }
 
-            if(rotationVerticalClamps.sqrMagnitude != 0)
+            if (rotationVerticalClamps.sqrMagnitude != 0)
             {
                 rotation.y = Mathf.Clamp(rotation.y, rotationVerticalClamps.x, rotationVerticalClamps.y);
             }
