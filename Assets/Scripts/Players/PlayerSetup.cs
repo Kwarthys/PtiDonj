@@ -24,6 +24,8 @@ public class PlayerSetup : NetworkBehaviour
             theCamera.SetParent(playerCameraHolder);
             theCamera.localRotation = Quaternion.identity;
             theCamera.localPosition = Vector3.zero;
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }
