@@ -47,12 +47,12 @@ public class CharacterStats : NetworkBehaviour
         lifeText.text = life.ToString();
     }
 
-    /***
-     * Temporary test
-     */
-    public void Update()
+    public void updateStats()
     {
         updateEffects();
+
+        //Update UI
+        lifeText.transform.rotation = Quaternion.LookRotation(lifeText.transform.position - GameManager.instance.localPlayerTransform.position);
     }
 
     public void updateEffects()

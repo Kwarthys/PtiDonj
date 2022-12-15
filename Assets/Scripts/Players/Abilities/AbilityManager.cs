@@ -18,7 +18,7 @@ public class AbilityManager : NetworkBehaviour
         {
             //basicAbility.tryCastAbility();
             CmdCastBasicAbility();
-            Debug.Log("Cast");
+            //Debug.Log("Cast");
         }
     }
 

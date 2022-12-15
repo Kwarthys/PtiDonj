@@ -26,6 +26,8 @@ public class PlayerSetup : NetworkBehaviour
             theCamera.localPosition = Vector3.zero;
 
             Cursor.lockState = CursorLockMode.Locked;
+
+            GameManager.instance.localPlayerTransform = transform;
         }
     }
 }

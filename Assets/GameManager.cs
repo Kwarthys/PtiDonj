@@ -9,9 +9,19 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    public Transform localPlayerTransform;
+
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Update()
+    {
+        foreach(KeyValuePair<uint, CharacterStats> pair in charaters)
+        {
+            pair.Value.updateStats();
+        }
     }
 
     public void registerCharacter(uint netId, CharacterStats character)
