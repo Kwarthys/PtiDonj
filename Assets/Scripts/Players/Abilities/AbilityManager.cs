@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Mirror;
 
-public class AbilityManager : MonoBehaviour
+public class AbilityManager : NetworkBehaviour
 {
     public Ability basicAbility;
 
@@ -15,9 +16,22 @@ public class AbilityManager : MonoBehaviour
     {
         if(context.performed)
         {
-            basicAbility.tryCastAbility();
+            //basicAbility.tryCastAbility();
+            CmdCastBasicAbility();
             Debug.Log("Cast");
         }
+    }
+
+    [Command]
+    public void CmdCastBasicAbility()
+    {
+        RpcCastBasicAbility();
+    }
+
+    [ClientRpc]
+    public void RpcCastBasicAbility()
+    {
+        basicAbility.tryCastAbility();
     }
 
     public AbilityTargetingResult tryGetTarget(LayerMask mask)
@@ -37,6 +51,20 @@ public class AbilityManager : MonoBehaviour
 
         return result;
     }
+
+    /*
+    public void askApplyEffectTo(CharacterStats target)//, Effect effect)
+    {
+        CmdApplyEffectsTo(target.networkIdentity.netId);//, effect);
+    }
+
+    [Command]
+    public void CmdApplyEffectsTo(uint netId)//, Effect effect)
+    {
+        //GameManager.instance.getCharacter(netId).addEffect(effect);
+        Debug.Log("Added effect to " + netId);
+    }
+    */
 }
 
 public class AbilityTargetingResult

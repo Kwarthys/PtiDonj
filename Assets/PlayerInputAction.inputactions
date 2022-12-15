@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "BasicAttack",
+                    "type": "Button",
+                    "id": "0a7f44c7-09c1-4d5c-aa67-ded938f7401c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -110,27 +119,10 @@
                     "action": "See",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Abilities",
-            "id": "e10535e9-6f4a-4c05-8158-cb7cec90024e",
-            "actions": [
-                {
-                    "name": "BasicAttack",
-                    "type": "Button",
-                    "id": "1abca5a2-b640-4c02-94ff-7cfaf24b68eb",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "1379f9ab-00a9-4014-82f0-c850e7295b02",
+                    "id": "64508b6c-b61b-4de7-bad7-81f8909b07d6",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",

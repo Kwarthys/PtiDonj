@@ -35,36 +35,56 @@ public class Ability : MonoBehaviour
             lastCast = Time.realtimeSinceStartup;
 
             AbilityTargetingResult targeting = manager.tryGetTarget(targetLayer);
-
-            for (int i = 0; i < selfEffects.Length; ++i)
-            {
-                if(!selfOnlyIfTarget || targeting.charHit != null) //only apply if we don't need a target to do so, or if we do have a target
-                {
-                    manager.selfStats.addEffect(selfEffects[i]);
-                }
-            }
-
-            if(targeting.charHit != null)
-            {
-                for (int i = 0; i < targetEffects.Length; ++i)
-                {
-                    targeting.charHit.addEffect(targetEffects[i]);
-                }
-            }
-
-            /*
-            for (int i = 0; i < groundEffects.Length; ++i)
-            {
-                //add groundEffects[i] to ground
-                // not sure yet on how to do that, spawner effect called here ?
-            }
-            */
+            applyAbility(targeting);
 
             //for additional effect such as dash or complex logic
             onCast();
         }
 
         return casted;
+    }
+
+    private void applyAbility(AbilityTargetingResult targeting)
+    {
+        if (!selfOnlyIfTarget || targeting.charHit != null) //only apply if we don't need a target to do so, or if we do have a target
+        {
+            applyAbilitySelf();
+        }
+
+        if (targeting.charHit != null)
+        {
+            applyAbilityTarget(targeting.charHit);
+        }
+
+        applyAbilityGround(targeting.pointHit);
+    }
+
+    private void applyAbilityTarget(CharacterStats target)
+    {
+        for (int i = 0; i < targetEffects.Length; ++i)
+        {
+            target.addEffect(targetEffects[i]);
+        }
+    }
+
+    private void applyAbilitySelf()
+    {
+        for (int i = 0; i < selfEffects.Length; ++i)
+        {
+            manager.selfStats.addEffect(selfEffects[i]);
+        }
+    }
+
+    private void applyAbilityGround(Vector3 posOnGround)
+    {
+
+        /*
+        for (int i = 0; i < groundEffects.Length; ++i)
+        {
+            //add groundEffects[i] to ground
+            // not sure yet on how to do that, spawner effect called here ?
+        }
+        */
     }
 
 
