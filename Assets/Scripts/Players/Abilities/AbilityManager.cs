@@ -12,6 +12,8 @@ public class AbilityManager : NetworkBehaviour
 
     public CharacterStats selfStats;
 
+    public LayerMask groundLayer;
+
     public void castBasicAttack(InputAction.CallbackContext context)
     {
         if(context.performed)
@@ -42,11 +44,24 @@ public class AbilityManager : NetworkBehaviour
 
         Debug.DrawRay(visor.position, visor.forward * 10, Color.black, 3);
 
-        if (Physics.Raycast(visor.position, visor.forward, out RaycastHit hit, 250, mask))
+        if (Physics.Raycast(visor.position, visor.forward, out RaycastHit hit, 250, mask | groundLayer))
         {
             result.didHit = true;
-            result.pointHit = hit.point;
             result.charHit = hit.transform.GetComponent<CharacterStats>();
+            result.pointHit = new Vector3(0, 0, 0); //this should always be updated, if didHit is true
+
+            drawDebugCrossAtPoint(hit.point);
+
+            if (Physics.Raycast(hit.point + Vector3.up, Vector3.down, out RaycastHit floorhit, 100, groundLayer)) //looking for floor
+            {
+                result.pointHit = floorhit.point;
+            }
+            else
+            {
+                Debug.LogWarning("Did not find floor"); //not sure if this case will ever occur, tracking it just in case
+            }
+
+            //drawDebugCrossAtPoint(result.pointHit);
         }
 
         return result;
@@ -65,6 +80,17 @@ public class AbilityManager : NetworkBehaviour
         Debug.Log("Added effect to " + netId);
     }
     */
+
+
+    /***
+     * DEBUG 
+     */
+    private void drawDebugCrossAtPoint(Vector3 worldPoint)
+    {
+        Debug.DrawLine(worldPoint + Vector3.left, worldPoint + Vector3.right * 2, Color.red, 5);
+        Debug.DrawLine(worldPoint + Vector3.forward, worldPoint + Vector3.back * 2, Color.blue, 5);
+        Debug.DrawLine(worldPoint + Vector3.up, worldPoint + Vector3.down * 2, Color.yellow, 5);
+    }
 }
 
 public class AbilityTargetingResult

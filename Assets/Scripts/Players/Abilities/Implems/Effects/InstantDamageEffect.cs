@@ -10,4 +10,9 @@ public class InstantDamageEffect : Effect
     {
         owner.takeDamage(damage);
     }
+
+    public InstantDamageEffect(float damage)
+    {
+        this.damage = damage;
+    }
 }

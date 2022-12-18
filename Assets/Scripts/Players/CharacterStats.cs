@@ -57,32 +57,7 @@ public class CharacterStats : NetworkBehaviour
 
     public void updateEffects()
     {
-        List<Effect> toRemove = null; //will stay unused the vast majority of calls, so keeping it null by default
-
-        for (int i = 0; i < effects.Count; i++)
-        {
-            bool keepEffect = effects[i].onTick();
-
-            if(!keepEffect)
-            {
-                effects[i].onEnd();
-
-                if (toRemove == null)
-                {
-                    toRemove = new List<Effect>();
-                }
-
-                toRemove.Add(effects[i]);
-            }
-        }
-
-        if(toRemove != null)
-        {
-            for (int i = 0; i < toRemove.Count; ++i)
-            {
-                effects.Remove(toRemove[i]);
-            }
-        }
+        Effect.updateEffects(effects);
     }
 
 

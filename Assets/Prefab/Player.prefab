@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1005315451}
   - component: {fileID: 1005315449}
-  - component: {fileID: 1005315450}
-  - component: {fileID: 8312657787353665633}
+  - component: {fileID: 2014645476561706089}
   m_Layer: 6
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -52,12 +51,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   selfOnlyIfTarget: 0
-  targetEffects:
-  - {fileID: 1005315450}
-  - {fileID: 8312657787353665633}
+  targetEffects: []
   selfEffects: []
-  groundEffects: []
---- !u!114 &1005315450
+  groundEffects:
+  - {fileID: 2014645476561706089}
+--- !u!114 &2014645476561706089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,32 +64,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005315448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 095b584fd180f1d459d244413f2454f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
   effectOnDuration: 0
-  owner: {fileID: 0}
-  damage: 10
---- !u!114 &8312657787353665633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005315448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4456748ec0e75184780a8a98974b35e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectName: Effect
-  effectOnDuration: 1
-  owner: {fileID: 0}
-  tickDamage: 0.5
-  effectDuration: 2
-  effectTickCooldown: 0.1
-  tickOnStart: 0
+  groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
+    type: 3}
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +674,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   life: 100
-  effects: []
   networkIdentity: {fileID: 3454651033889386043}
   lifeText: {fileID: 8761529659090669391}
 --- !u!114 &4395670705419160430
@@ -716,6 +694,9 @@ MonoBehaviour:
   basicAbility: {fileID: 1005315449}
   visor: {fileID: 3852378757287495124}
   selfStats: {fileID: 1620960983934713654}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &8292359608230592641
 MonoBehaviour:
   m_ObjectHideFlags: 0

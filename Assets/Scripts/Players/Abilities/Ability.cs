@@ -14,9 +14,9 @@ public class Ability : MonoBehaviour
 
     public bool selfOnlyIfTarget = false;
 
-    public Effect[] targetEffects;
-    public Effect[] selfEffects;
-    public Effect[] groundEffects;
+    public EffectDescriptor[] targetEffects;
+    public EffectDescriptor[] selfEffects;
+    public EffectDescriptor[] groundEffects;
 
     private AbilityManager manager;
 
@@ -63,7 +63,7 @@ public class Ability : MonoBehaviour
     {
         for (int i = 0; i < targetEffects.Length; ++i)
         {
-            target.addEffect(targetEffects[i]);
+            target.addEffect(targetEffects[i].getNewEffect());
         }
     }
 
@@ -71,20 +71,18 @@ public class Ability : MonoBehaviour
     {
         for (int i = 0; i < selfEffects.Length; ++i)
         {
-            manager.selfStats.addEffect(selfEffects[i]);
+            manager.selfStats.addEffect(selfEffects[i].getNewEffect());
         }
     }
 
     private void applyAbilityGround(Vector3 posOnGround)
     {
-
-        /*
         for (int i = 0; i < groundEffects.Length; ++i)
         {
-            //add groundEffects[i] to ground
-            // not sure yet on how to do that, spawner effect called here ?
+            Effect e = groundEffects[i].getNewEffect();
+            e.effectWorldPos = posOnGround;
+            GameManager.instance.addGroundEffect(e);
         }
-        */
     }
 
 

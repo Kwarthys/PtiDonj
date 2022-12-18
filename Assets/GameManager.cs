@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Dictionary<uint, CharacterStats> charaters = new Dictionary<uint, CharacterStats>();
 
+    [SerializeField]
+    private List<Effect> groundEffects = new List<Effect>();
+
     public static GameManager instance;
 
     public Transform localPlayerTransform;
@@ -24,6 +27,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Effect.updateEffects(groundEffects);
+    }
+
     public void registerCharacter(uint netId, CharacterStats character)
     {
         charaters.Add(netId, character);
@@ -37,5 +45,24 @@ public class GameManager : MonoBehaviour
     public CharacterStats getCharacter(uint netId)
     {
         return charaters[netId];
+    }
+    public void removeGroundEffect(Effect effect)
+    {
+        groundEffects.Remove(effect);
+    }
+
+    public void addGroundEffect(Effect effect)
+    {
+        effect.onStart();
+
+        if (effect.effectOnDuration)
+        {
+            groundEffects.Add(effect);
+        }
+    }
+
+    public GameObject spawnPrefab(GameObject prefab, Vector3 pos)
+    {
+        return Instantiate(prefab, pos, Quaternion.identity);
     }
 }
