@@ -286,7 +286,6 @@ GameObject:
   - component: {fileID: 3852378756998237363}
   - component: {fileID: 3852378756998237360}
   - component: {fileID: 3852378756998237361}
-  - component: {fileID: 3852378756998237362}
   m_Layer: 6
   m_Name: Staff
   m_TagString: Untagged
@@ -359,20 +358,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3852378756998237362
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3852378756998237364}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1 &3852378757287495125
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +505,7 @@ GameObject:
   - component: {fileID: 3454651033889386043}
   - component: {fileID: 8302433708162250045}
   - component: {fileID: 6938863747423999143}
+  - component: {fileID: -9084070992914840124}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -789,3 +775,19 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!54 &-9084070992914840124
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3852378758719500949}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

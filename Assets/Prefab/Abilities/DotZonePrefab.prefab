@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 1016581864415817136}
   - component: {fileID: -8687278207734951513}
   - component: {fileID: -5006491814831862156}
+  - component: {fileID: 8134890395751309858}
   m_Layer: 0
   m_Name: DotZonePrefab
   m_TagString: Untagged
@@ -144,7 +145,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1016581864415817136
 MonoBehaviour:
@@ -179,7 +180,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   effectDuration: 60
-  effectTickCooldown: 0
+  effectTickCooldown: 1
+  colliderTriggers: {fileID: 8134890395751309858}
 --- !u!114 &-5006491814831862156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,3 +197,15 @@ MonoBehaviour:
   effectName: Effect
   effectOnDuration: 0
   damage: 1
+--- !u!114 &8134890395751309858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6273722514160757825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89efd26c896e4ce429a6c80cde7e27df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

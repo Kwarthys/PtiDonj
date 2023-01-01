@@ -12,6 +12,8 @@ public class ApplyEffectOnColliderDescriptor : EffectDescriptor
 
     public float effectTickCooldown;
 
+    public EffectColliderTrigger colliderTriggers;
+
     public override Effect getNewEffect()
     {
         ApplyEffectOnColliderEffect effect = new ApplyEffectOnColliderEffect();
@@ -20,8 +22,10 @@ public class ApplyEffectOnColliderDescriptor : EffectDescriptor
         effect.effectOnDuration = true;
         effect.effectTickCooldown = this.effectTickCooldown;
         effect.targetsLayer = this.targetsLayer;
+        
+        effect.registerColliderTriggers(this.colliderTriggers);
 
-        //effect.effectsToApply = this.effectsToApply;
+        effect.effectsToApply = this.effectsToApply;
 
         return effect;
     }

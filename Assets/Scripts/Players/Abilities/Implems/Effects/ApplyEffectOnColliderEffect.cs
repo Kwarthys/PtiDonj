@@ -6,7 +6,7 @@ public class ApplyEffectOnColliderEffect : Effect
 {
     public Collider areaOfEffect;
 
-    public Effect[] effectsToApply;
+    public EffectDescriptor[] effectsToApply;
 
     public LayerMask targetsLayer;
 
@@ -16,15 +16,11 @@ public class ApplyEffectOnColliderEffect : Effect
     public float effectTickCooldown;
     private float effectLastTick = -1;
 
-    private bool registeringEnters = false;
-
     private List<CharacterStats> targetInside;
 
     public override void onStart()
     {
         effectStart = Time.realtimeSinceStartup;
-
-        registeringEnters = true;
 
         targetInside = new List<CharacterStats>();
     }
@@ -42,9 +38,7 @@ public class ApplyEffectOnColliderEffect : Effect
                     applyEffectsTo(targetInside[i]);
                 }
             }
-        }
-
-        
+        }        
 
         return Time.realtimeSinceStartup - effectStart < effectDuration + effectTickCooldown / 2; //making sure last tick will always proc   
     }
@@ -53,39 +47,37 @@ public class ApplyEffectOnColliderEffect : Effect
     {
         for (int i = 0; i < effectsToApply.Length; i++)
         {
-            target.addEffect(effectsToApply[i]);
+            target.addEffect(effectsToApply[i].getNewEffect());
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void onCharacterEnter(CharacterStats character)
     {
-        if (!registeringEnters) return;
-
-        CharacterStats character = other.GetComponent<CharacterStats>();
-
         if(character != null)
         {
             if(!targetInside.Contains(character))
             {
                 targetInside.Add(character);
+                Debug.Log(targetInside.Count + " chars inside.");
             }
         }
-
-        Debug.Log($"{other.transform.name} just entered.");
     }
 
-    private void OnTriggerExit(Collider other)
+    private void onCharacterExit(CharacterStats character)
     {
-        CharacterStats character = other.GetComponent<CharacterStats>();
-
         if (character != null)
         {
             if (targetInside.Contains(character))
             {
                 targetInside.Remove(character);
+                Debug.Log(targetInside.Count + " chars inside.");
             }
         }
+    }
 
-        Debug.Log($"{other.transform.name} just exited.");
+    public void registerColliderTriggers(EffectColliderTrigger colliderTriggers)
+    {
+        colliderTriggers.onTriggerEnterCallback = onCharacterEnter;
+        colliderTriggers.onTriggerExitCallback = onCharacterExit;
     }
 }
