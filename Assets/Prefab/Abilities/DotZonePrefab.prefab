@@ -165,7 +165,7 @@ MonoBehaviour:
   targetsLayer:
     serializedVersion: 2
     m_Bits: 192
-  effectDuration: 60
+  effectDuration: 5
   effectTickCooldown: 1
   colliderTriggers: {fileID: 8134890395751309858}
 --- !u!114 &-5006491814831862156

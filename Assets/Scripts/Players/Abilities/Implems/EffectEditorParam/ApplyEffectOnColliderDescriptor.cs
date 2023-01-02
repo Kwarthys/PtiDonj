@@ -27,6 +27,8 @@ public class ApplyEffectOnColliderDescriptor : EffectDescriptor
 
         effect.effectsToApply = this.effectsToApply;
 
+        effect.associatedGameObject = gameObject;
+
         return effect;
     }
 }

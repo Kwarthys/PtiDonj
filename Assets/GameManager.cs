@@ -29,7 +29,21 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Effect.updateEffects(groundEffects);
+        List<Effect> removedEffects = Effect.updateEffects(groundEffects);
+        if(removedEffects != null)
+        {
+            for (int i = 0; i < removedEffects.Count; i++)
+            {
+                if(removedEffects[i].associatedGameObject != null)
+                {
+                    Destroy(removedEffects[i].associatedGameObject);
+                }
+                else
+                {
+                    Debug.LogWarning("GroundEffect " + removedEffects[i].effectName + " has no associated GameObject");
+                }
+            }
+        }
     }
 
     public void registerCharacter(uint netId, CharacterStats character)

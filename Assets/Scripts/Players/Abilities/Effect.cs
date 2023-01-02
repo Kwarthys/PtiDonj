@@ -9,6 +9,8 @@ public abstract class Effect
 
     public bool effectOnDuration = false;
 
+    public GameObject associatedGameObject;
+
     //public Sprite effectSprite;
 
     [HideInInspector]
@@ -20,8 +22,10 @@ public abstract class Effect
     public virtual bool onTick() { return false; } //returns wether the effect must be kept alive, or removed
     public virtual void onEnd() { }
 
-
-    public static void updateEffects(List<Effect> effects)
+    /***
+     * Returns the removed effects for complete deletion if needed
+     */
+    public static List<Effect> updateEffects(List<Effect> effects)
     {
         List<Effect> toRemove = null; //will stay unused the vast majority of calls, so keeping it null by default
 
@@ -49,5 +53,7 @@ public abstract class Effect
                 effects.Remove(toRemove[i]);
             }
         }
+
+        return toRemove;
     }
 }
