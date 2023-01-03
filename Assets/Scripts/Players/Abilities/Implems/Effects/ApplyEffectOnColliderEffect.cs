@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApplyEffectOnColliderEffect : Effect
+public class ApplyEffectOnColliderEffect : TickingEffect
 {
     public Collider areaOfEffect;
 
@@ -10,37 +10,19 @@ public class ApplyEffectOnColliderEffect : Effect
 
     public LayerMask targetsLayer;
 
-    public float effectDuration;
-    private float effectStart = -1;
-
-    public float effectTickCooldown;
-    private float effectLastTick = -1;
-
     private List<CharacterStats> targetInside;
 
-    public override void onStart()
+    public ApplyEffectOnColliderEffect()
     {
-        effectStart = Time.realtimeSinceStartup;
-
         targetInside = new List<CharacterStats>();
     }
 
-    public override bool onTick()
+    public override void onTick()
     {
-        if (targetInside.Count > 0)
+        for (int i = 0; i < targetInside.Count; i++)
         {
-            if (Time.realtimeSinceStartup - effectLastTick > effectTickCooldown)
-            {
-                effectLastTick = Time.realtimeSinceStartup;
-
-                for (int i = 0; i < targetInside.Count; i++)
-                {
-                    applyEffectsTo(targetInside[i]);
-                }
-            }
-        }        
-
-        return Time.realtimeSinceStartup - effectStart < effectDuration + effectTickCooldown / 2; //making sure last tick will always proc   
+            applyEffectsTo(targetInside[i]);
+        }
     }
 
     private void applyEffectsTo(CharacterStats target)
