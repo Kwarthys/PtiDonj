@@ -7,6 +7,7 @@ using Mirror;
 public class AbilityManager : NetworkBehaviour
 {
     public Ability basicAbility;
+    public Ability secondBasicAbility;
 
     public Transform visor;
 
@@ -16,7 +17,7 @@ public class AbilityManager : NetworkBehaviour
 
     public void castBasicAttack(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             //basicAbility.tryCastAbility();
             CmdCastBasicAbility();
@@ -34,6 +35,28 @@ public class AbilityManager : NetworkBehaviour
     public void RpcCastBasicAbility()
     {
         basicAbility.tryCastAbility();
+    }
+
+    public void castSecondBasicAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            //basicAbility.tryCastAbility();
+            CmdCastSecondBasicAbility();
+            //Debug.Log("Cast");
+        }
+    }
+
+    [Command]
+    public void CmdCastSecondBasicAbility()
+    {
+        RpcCastSecondBasicAbility();
+    }
+
+    [ClientRpc]
+    public void RpcCastSecondBasicAbility()
+    {
+        secondBasicAbility.tryCastAbility();
     }
 
     public AbilityTargetingResult tryGetTarget(LayerMask mask)

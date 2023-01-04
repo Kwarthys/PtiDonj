@@ -101,9 +101,81 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1005315451}
+  - {fileID: 5480432696447524988}
   m_Father: {fileID: 3852378758719500948}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1073555622785391330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5480432696447524988}
+  - component: {fileID: 9020783451331779710}
+  - component: {fileID: 5927845191951810014}
+  m_Layer: 6
+  m_Name: BasicSecondAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5480432696447524988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073555622785391330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1049237760}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9020783451331779710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073555622785391330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1
+  type: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  selfOnlyIfTarget: 0
+  targetEffects: []
+  selfEffects: []
+  groundEffects:
+  - {fileID: 5927845191951810014}
+--- !u!114 &5927845191951810014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073555622785391330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: Effect
+  effectOnDuration: 0
+  groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
+    type: 3}
 --- !u!1 &1151286358214906321
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +712,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0a7f44c7-09c1-4d5c-aa67-ded938f7401c
     m_ActionName: Player/BasicAttack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4395670705419160430}
+        m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
+        m_MethodName: castSecondBasicAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4fa416a7-3547-47c1-9fe8-abc2f7460790
+    m_ActionName: Player/SecondBasicAttack[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -679,6 +767,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   basicAbility: {fileID: 1005315449}
+  secondBasicAbility: {fileID: 9020783451331779710}
   visor: {fileID: 3852378757287495124}
   selfStats: {fileID: 1620960983934713654}
   groundLayer:
