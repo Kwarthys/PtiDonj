@@ -40,7 +40,6 @@ public class ApplyEffectOnColliderEffect : TickingEffect
             if(!targetInside.Contains(character))
             {
                 targetInside.Add(character);
-                Debug.Log(targetInside.Count + " chars inside.");
             }
         }
     }
@@ -52,7 +51,6 @@ public class ApplyEffectOnColliderEffect : TickingEffect
             if (targetInside.Contains(character))
             {
                 targetInside.Remove(character);
-                Debug.Log(targetInside.Count + " chars inside.");
             }
         }
     }

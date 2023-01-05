@@ -14,8 +14,6 @@ public class EffectColliderTrigger : MonoBehaviour
         CharacterStats character = other.GetComponentInParent<CharacterStats>();
 
         onTriggerEnterCallback?.Invoke(character);
-
-        Debug.Log($"{other.transform.name} just entered.");
     }
 
     private void OnTriggerExit(Collider other)
@@ -23,7 +21,5 @@ public class EffectColliderTrigger : MonoBehaviour
         CharacterStats character = other.GetComponentInParent<CharacterStats>();
 
         onTriggerExitCallback?.Invoke(character);
-
-        Debug.Log($"{other.transform.name} just exited.");
     }
 }

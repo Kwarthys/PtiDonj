@@ -7,7 +7,7 @@ using TMPro;
 public class CharacterStats : NetworkBehaviour
 {
     [SerializeField]
-    [SyncVar]
+    [SyncVar(hook = nameof(updateLifeDisplay))]
     private float life = 100;
 
     [SerializeField]
@@ -20,9 +20,11 @@ public class CharacterStats : NetworkBehaviour
     public void takeDamage(float amount)
     {
         life -= amount;
+    }
 
-        //Debug.Log("Took " + amount + " damage.");
-
+    private void updateLifeDisplay(float oldLife, float newLife)
+    {
+        life = newLife;
         lifeText.text = life.ToString();
     }
 

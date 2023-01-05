@@ -19,20 +19,12 @@ public class AbilityManager : NetworkBehaviour
     {
         if (context.performed)
         {
-            //basicAbility.tryCastAbility();
             CmdCastBasicAbility();
-            //Debug.Log("Cast");
         }
     }
 
     [Command]
     public void CmdCastBasicAbility()
-    {
-        RpcCastBasicAbility();
-    }
-
-    [ClientRpc]
-    public void RpcCastBasicAbility()
     {
         basicAbility.tryCastAbility();
     }
@@ -41,20 +33,12 @@ public class AbilityManager : NetworkBehaviour
     {
         if (context.performed)
         {
-            //basicAbility.tryCastAbility();
             CmdCastSecondBasicAbility();
-            //Debug.Log("Cast");
         }
     }
 
     [Command]
     public void CmdCastSecondBasicAbility()
-    {
-        RpcCastSecondBasicAbility();
-    }
-
-    [ClientRpc]
-    public void RpcCastSecondBasicAbility()
     {
         secondBasicAbility.tryCastAbility();
     }

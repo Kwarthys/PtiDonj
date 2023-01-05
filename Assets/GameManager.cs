@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     [SerializeField]
     private Dictionary<uint, CharacterStats> charaters = new Dictionary<uint, CharacterStats>();
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
             {
                 if(removedEffects[i].associatedGameObject != null)
                 {
-                    Destroy(removedEffects[i].associatedGameObject);
+                    NetworkServer.Destroy(removedEffects[i].associatedGameObject);
                 }
                 else
                 {
@@ -77,6 +78,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject spawnPrefab(GameObject prefab, Vector3 pos)
     {
-        return Instantiate(prefab, pos, Quaternion.identity);
+        GameObject go = Instantiate(prefab, pos, Quaternion.identity);
+
+        NetworkServer.Spawn(go);
+
+        return go;
     }
 }
