@@ -7,13 +7,11 @@ using TMPro;
 public class CharacterStats : NetworkBehaviour
 {
     [SerializeField]
-    [SyncVar(hook = nameof(updateLifeDisplay))]
+    [SyncVar(hook = nameof(updateLifeDisplayHook))]
     private float life = 100;
 
     [SerializeField]
     private List<Effect> effects = new List<Effect>();
-
-    public NetworkIdentity networkIdentity;
 
     public TextMeshPro lifeText;
 
@@ -22,7 +20,7 @@ public class CharacterStats : NetworkBehaviour
         life -= amount;
     }
 
-    private void updateLifeDisplay(float oldLife, float newLife)
+    private void updateLifeDisplayHook(float oldLife, float newLife)
     {
         life = newLife;
         lifeText.text = life.ToString();
@@ -57,23 +55,8 @@ public class CharacterStats : NetworkBehaviour
         lifeText.transform.rotation = Quaternion.LookRotation(lifeText.transform.position - GameManager.instance.localPlayerTransform.position);
     }
 
-    public void updateEffects()
+    private void updateEffects()
     {
         Effect.updateEffects(effects);
-    }
-
-
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-
-        GameManager.instance.registerCharacter(networkIdentity.netId, this);
-    }
-
-    public override void OnStopClient()
-    {
-        base.OnStopClient();
-
-        GameManager.instance.removeCharacter(networkIdentity.netId);
     }
 }

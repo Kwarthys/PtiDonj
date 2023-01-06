@@ -6,7 +6,10 @@ using Mirror;
 public class GameManager : NetworkBehaviour
 {
     [SerializeField]
-    private Dictionary<uint, CharacterStats> charaters = new Dictionary<uint, CharacterStats>();
+    private Dictionary<uint, CharacterStats> characters = new Dictionary<uint, CharacterStats>();
+
+    [SerializeField]
+    public List<MonsterController> monstersList = new List<MonsterController>(); //for now public and filled from editor, but will be filled automatically in the future
 
     [SerializeField]
     private List<Effect> groundEffects = new List<Effect>();
@@ -20,11 +23,17 @@ public class GameManager : NetworkBehaviour
         instance = this;
     }
 
+
     private void Update()
     {
-        foreach(KeyValuePair<uint, CharacterStats> pair in charaters)
+        foreach (KeyValuePair<uint, CharacterStats> pair in characters)
         {
             pair.Value.updateStats();
+        }
+
+        for (int i = 0; i < monstersList.Count; i++)
+        {
+            monstersList[i].updateMonster();
         }
     }
 
@@ -49,18 +58,34 @@ public class GameManager : NetworkBehaviour
 
     public void registerCharacter(uint netId, CharacterStats character)
     {
-        charaters.Add(netId, character);
+        characters.Add(netId, character);
     }
 
     public void removeCharacter(uint netId)
     {
-        charaters.Remove(netId);
+        characters.Remove(netId);
     }
 
     public CharacterStats getCharacter(uint netId)
     {
-        return charaters[netId];
+        return characters[netId];
     }
+
+    public CharacterStats getRandomCharacter()
+    {
+        List<CharacterStats> charList = new List<CharacterStats>();
+
+        foreach(KeyValuePair<uint, CharacterStats> entry in characters)
+        {
+            charList.Add(entry.Value);
+        }
+
+        int r = (int)(Random.value * charList.Count);
+
+        return charList[r];
+    }
+    
+
     public void removeGroundEffect(Effect effect)
     {
         groundEffects.Remove(effect);

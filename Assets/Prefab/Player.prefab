@@ -749,7 +749,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   life: 100
-  networkIdentity: {fileID: 3454651033889386043}
   lifeText: {fileID: 8761529659090669391}
 --- !u!114 &4395670705419160430
 MonoBehaviour:
@@ -792,6 +791,8 @@ MonoBehaviour:
   - {fileID: 3852378758719500947}
   - {fileID: 3852378758719500946}
   playerCameraHolder: {fileID: 3852378757287495124}
+  playerStats: {fileID: 1620960983934713654}
+  networkIdentity: {fileID: 3454651033889386043}
 --- !u!114 &3454651033889386043
 MonoBehaviour:
   m_ObjectHideFlags: 0

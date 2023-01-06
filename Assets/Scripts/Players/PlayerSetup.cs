@@ -9,11 +9,14 @@ public class PlayerSetup : NetworkBehaviour
 
     public Transform playerCameraHolder;
 
+    public CharacterStats playerStats;
+    public NetworkIdentity networkIdentity;
+
     private void Start()
     {
-        if(!isLocalPlayer)
+        if (!isLocalPlayer)
         {
-            for(int i = 0; i < toDisable.Length; ++i)
+            for (int i = 0; i < toDisable.Length; ++i)
             {
                 toDisable[i].enabled = false;
             }
@@ -29,5 +32,19 @@ public class PlayerSetup : NetworkBehaviour
 
             GameManager.instance.localPlayerTransform = transform;
         }
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        GameManager.instance.registerCharacter(networkIdentity.netId, playerStats);
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+
+        GameManager.instance.removeCharacter(networkIdentity.netId);
     }
 }
