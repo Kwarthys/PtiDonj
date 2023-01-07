@@ -10,6 +10,8 @@ public class MonsterController : MonoBehaviour
 
     public CharacterStats monsterStats;
 
+    public MonsterAbilityManager abilityManager;
+
     public void updateMonster()
     {
         monsterStats.updateStats();
@@ -33,6 +35,8 @@ public class MonsterController : MonoBehaviour
         if(Random.value > 0.995f)
         {
             target = null;
+
+            abilityManager.castAbilityOnRandomPlayer(0);
         }
     }
 
