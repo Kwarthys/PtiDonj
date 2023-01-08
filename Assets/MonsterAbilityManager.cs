@@ -24,6 +24,13 @@ public class MonsterAbilityManager : MonoBehaviour
     private AbilityTargetingResult targetPlayer(CharacterStats player)
     {
         AbilityTargetingResult targeting = new AbilityTargetingResult();
+
+        if(player == null)
+        {
+            targeting.didHit = false;
+            return targeting;
+        }
+
         targeting.didHit = true;
         targeting.charHit = player;
 

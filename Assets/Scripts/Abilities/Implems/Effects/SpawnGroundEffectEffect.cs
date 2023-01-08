@@ -16,7 +16,5 @@ public class SpawnGroundEffectEffect : Effect
         GroundEffectSetup setup = GameManager.instance.spawnPrefab(groundEffectPrefab, effectWorldPos).GetComponent<GroundEffectSetup>();
 
         GameManager.instance.addGroundEffect(setup.mainEffect.getNewEffect());
-
-        Debug.Log("Instantiate");
     }
 }

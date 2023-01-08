@@ -8,12 +8,15 @@ public class CharacterStats : NetworkBehaviour
 {
     [SerializeField]
     [SyncVar(hook = nameof(updateLifeDisplayHook))]
-    private float life = 100;
+    private float life = 0.1f;
+
+    [SerializeField]
+    private float maxLife = 100;
 
     [SerializeField]
     private List<Effect> effects = new List<Effect>();
 
-    public TextMeshPro lifeText;
+    public StatsDisplayManager displayManager;
 
     public void takeDamage(float amount)
     {
@@ -23,7 +26,7 @@ public class CharacterStats : NetworkBehaviour
     private void updateLifeDisplayHook(float oldLife, float newLife)
     {
         life = newLife;
-        lifeText.text = life.ToString();
+        displayManager.updateLifeDisplay(life / maxLife, life);
     }
 
     public void removeEffect(Effect effect)
@@ -44,7 +47,8 @@ public class CharacterStats : NetworkBehaviour
 
     private void Start()
     {
-        lifeText.text = life.ToString();
+        //forcing an update
+        updateLifeDisplayHook(0, maxLife);
     }
 
     public void updateStats()
@@ -52,7 +56,7 @@ public class CharacterStats : NetworkBehaviour
         updateEffects();
 
         //Update UI
-        lifeText.transform.rotation = Quaternion.LookRotation(lifeText.transform.position - GameManager.instance.localPlayerTransform.position);
+        displayManager.updateDisplayOrientation();
     }
 
     private void updateEffects()

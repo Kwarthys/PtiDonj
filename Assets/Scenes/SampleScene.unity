@@ -1152,6 +1152,16 @@ PrefabInstance:
       propertyPath: sceneId
       value: 1417571693
       objectReference: {fileID: 0}
+    - target: {fileID: 5825245318181456642, guid: 88cd870e6712b024e8c3fe877377054a,
+        type: 3}
+      propertyPath: life
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825245318181456642, guid: 88cd870e6712b024e8c3fe877377054a,
+        type: 3}
+      propertyPath: maxLife
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5825245318181456643, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}
       propertyPath: m_RootOrder

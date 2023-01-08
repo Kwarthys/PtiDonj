@@ -19,28 +19,40 @@ public class MonsterController : MonoBehaviour
         if(target == null)
         {
             target = choseNewTarget();
-            Debug.Log("Found new target : " + target.name);
         }
 
-        //move towards target
-        float distanceToTarget = Vector3.Distance(transform.position, target.position);
-        float step = speed * Time.deltaTime; //delta time may have to change, as it's computed only on the server
-
-        if(step < distanceToTarget)
+        if(target != null) //if chose new target failed
         {
-            transform.position += (target.position - transform.position).normalized * step;
+            //move towards target
+            float distanceToTarget = Vector3.Distance(transform.position, target.position);
+            float step = speed * Time.deltaTime; //delta time may have to change, as it's computed only on the server
+
+            if (step < distanceToTarget)
+            {
+                // please stop moving for debug
+                //transform.position += (target.position - transform.position).normalized * step;
+            }
         }
+        
 
         if(Random.value > 0.995f)
         {
             target = null;
 
-            abilityManager.castAbilityOnRandomPlayer(0);
+            //abilityManager.castAbilityOnRandomPlayer(0);
         }
     }
 
     private Transform choseNewTarget()
     {
-        return GameManager.instance.getRandomCharacter().transform;
+        CharacterStats player = GameManager.instance.getRandomCharacter();
+        if(player == null)
+        {
+            return null;
+        }
+        else
+        {
+            return player.transform;
+        }
     }
 }

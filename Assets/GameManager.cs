@@ -16,6 +16,7 @@ public class GameManager : NetworkBehaviour
 
     public static GameManager instance;
 
+    [HideInInspector]
     public Transform localPlayerTransform;
 
     private void Awake()
@@ -73,6 +74,8 @@ public class GameManager : NetworkBehaviour
 
     public CharacterStats getRandomCharacter()
     {
+        if (characters.Count == 0) return null;
+
         List<CharacterStats> charList = new List<CharacterStats>();
 
         foreach(KeyValuePair<uint, CharacterStats> entry in characters)
