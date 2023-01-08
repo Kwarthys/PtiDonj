@@ -16,7 +16,6 @@ public class MonsterController : MonoBehaviour
     {
         monsterStats.updateStats();
 
-
         if(target == null)
         {
             target = choseNewTarget();

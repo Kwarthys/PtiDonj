@@ -26,7 +26,11 @@ public class AbilityManager : NetworkBehaviour
     [Command]
     public void CmdCastBasicAbility()
     {
-        basicAbility.tryCastAbility();
+        if(basicAbility.canCast())
+        {
+            AbilityTargetingResult targeting = tryGetTarget(basicAbility.targetLayer);
+            basicAbility.tryCastAbility(targeting);
+        }
     }
 
     public void castSecondBasicAttack(InputAction.CallbackContext context)
@@ -40,7 +44,11 @@ public class AbilityManager : NetworkBehaviour
     [Command]
     public void CmdCastSecondBasicAbility()
     {
-        secondBasicAbility.tryCastAbility();
+        if(secondBasicAbility.canCast())
+        {
+            AbilityTargetingResult targeting = tryGetTarget(secondBasicAbility.targetLayer);
+            secondBasicAbility.tryCastAbility(targeting);
+        }
     }
 
     public AbilityTargetingResult tryGetTarget(LayerMask mask)

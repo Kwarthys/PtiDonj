@@ -6,19 +6,36 @@ public class MonsterAbilityManager : MonoBehaviour
 {
     public List<Ability> abilities;
 
+    public LayerMask groundLayer;
+
     public void castAbilityOnRandomPlayer(int abilityIndex)
     {
+        if(abilities[abilityIndex].canCast())
+        {
+            AbilityTargetingResult targeting = targetPlayer(GameManager.instance.getRandomCharacter());
+
+            if(targeting.didHit)
+            {
+                abilities[abilityIndex].tryCastAbility(targeting);
+            }
+        }
+    }
+
+    private AbilityTargetingResult targetPlayer(CharacterStats player)
+    {
         AbilityTargetingResult targeting = new AbilityTargetingResult();
-        CharacterStats target = GameManager.instance.getRandomCharacter();
-
         targeting.didHit = true;
-        targeting.charHit = target;
-        targeting.pointHit = target.transform.position;
+        targeting.charHit = player;
 
-        //cast ability with this targeting stuff, this should be in the ability // monster ability classes
+        if (Physics.Raycast(player.transform.position + Vector3.up, Vector3.down, out RaycastHit floorhit, 100, groundLayer)) //looking for floor
+        {
+            targeting.pointHit = floorhit.point;
+        }
+        else
+        {
+            targeting.didHit = false;
+        }
 
-        //abilities[abilityIndex].tryCastAbility();   won't work
-        //looks like Ability needs to be derived into PlayerAbility and MonsterAbility to account for different triggering and targeting :
-        //a monster pre-computes it's targeting; player triggers it
+        return targeting;
     }
 }

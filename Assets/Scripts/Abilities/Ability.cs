@@ -25,11 +25,35 @@ public class Ability : MonoBehaviour
         manager = GetComponentInParent<AbilityManager>();
     }
 
+    public bool canCast()
+    {
+        return Time.realtimeSinceStartup - lastCast > cooldown;
+    }
+
+    public bool tryCastAbility(AbilityTargetingResult targeting)
+    {
+        bool casted = false;
+
+        if (canCast())
+        {
+            casted = true;
+            lastCast = Time.realtimeSinceStartup;
+
+            applyAbility(targeting);
+
+            //for additional effect such as dash or complex logic
+            onCast();
+        }
+
+        return casted;
+    }
+
+    /*
     public bool tryCastAbility()
     {
         bool casted = false;
 
-        if(Time.realtimeSinceStartup - lastCast > cooldown)
+        if (Time.realtimeSinceStartup - lastCast > cooldown)
         {
             casted = true;
             lastCast = Time.realtimeSinceStartup;
@@ -43,6 +67,7 @@ public class Ability : MonoBehaviour
 
         return casted;
     }
+    */
 
     private void applyAbility(AbilityTargetingResult targeting)
     {
