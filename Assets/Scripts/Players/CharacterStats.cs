@@ -26,7 +26,7 @@ public class CharacterStats : NetworkBehaviour
     private void updateLifeDisplayHook(float oldLife, float newLife)
     {
         life = newLife;
-        displayManager.updateLifeDisplay(life / maxLife, life);
+        displayManager.updateLifeDisplay(life / maxLife, life, oldLife==-1);
     }
 
     public void removeEffect(Effect effect)
@@ -48,7 +48,7 @@ public class CharacterStats : NetworkBehaviour
     private void Start()
     {
         //forcing an update
-        updateLifeDisplayHook(0, maxLife);
+        updateLifeDisplayHook(-1, maxLife);
     }
 
     public void updateStats()
