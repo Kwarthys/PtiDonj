@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2571033677096063429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fd457a469d865642ae9ce0ff4093d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 5
@@ -256,9 +256,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities:
   - {fileID: 8168085091699374511}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &5825245318181456640
 MonoBehaviour:
   m_ObjectHideFlags: 0

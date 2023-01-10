@@ -51,8 +51,6 @@ public class LifeDisplayController : MonoBehaviour
         animationAbsoluteLifeTarget = lifeReal;
 
         needsUpdate = true;
-
-        Debug.Log("From " + animationRelativeLifeStart + " to " + animationRelativeLifeTarget);
     }
 
     public void updateDisplayAnimation()

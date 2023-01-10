@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005315448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f1ffb433fa28e541a105e1f20b2980e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
@@ -147,14 +147,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073555622785391330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f1ffb433fa28e541a105e1f20b2980e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
   type: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   selfOnlyIfTarget: 0
   targetEffects: []
   selfEffects: []

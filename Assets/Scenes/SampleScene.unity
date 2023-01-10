@@ -1277,6 +1277,9 @@ MonoBehaviour:
   monstersList:
   - {fileID: 1357723484}
   localPlayerTransform: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!4 &1490378061
 Transform:
   m_ObjectHideFlags: 0

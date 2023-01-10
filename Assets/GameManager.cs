@@ -19,6 +19,8 @@ public class GameManager : NetworkBehaviour
     [HideInInspector]
     public Transform localPlayerTransform;
 
+    public LayerMask groundLayer;
+
     private void Awake()
     {
         instance = this;

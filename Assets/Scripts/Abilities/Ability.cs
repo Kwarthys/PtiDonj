@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ability : MonoBehaviour
+public abstract class Ability : MonoBehaviour
 {
     public float cooldown = 1;
     private float lastCast = -1;
@@ -18,7 +18,7 @@ public class Ability : MonoBehaviour
     public EffectDescriptor[] selfEffects;
     public EffectDescriptor[] groundEffects;
 
-    private AbilityManager manager;
+    protected AbilityManager manager;
 
     private void Start()
     {
@@ -30,12 +30,14 @@ public class Ability : MonoBehaviour
         return Time.realtimeSinceStartup - lastCast > cooldown;
     }
 
-    public bool tryCastAbility(AbilityTargetingResult targeting)
+    public bool tryCastAbility()
     {
         bool casted = false;
 
         if (canCast())
         {
+            AbilityTargetingData targeting = computeTargeting();
+
             casted = true;
             lastCast = Time.realtimeSinceStartup;
 
@@ -48,28 +50,9 @@ public class Ability : MonoBehaviour
         return casted;
     }
 
-    /*
-    public bool tryCastAbility()
-    {
-        bool casted = false;
+    protected abstract AbilityTargetingData computeTargeting();
 
-        if (Time.realtimeSinceStartup - lastCast > cooldown)
-        {
-            casted = true;
-            lastCast = Time.realtimeSinceStartup;
-
-            AbilityTargetingResult targeting = manager.tryGetTarget(targetLayer);
-            applyAbility(targeting);
-
-            //for additional effect such as dash or complex logic
-            onCast();
-        }
-
-        return casted;
-    }
-    */
-
-    private void applyAbility(AbilityTargetingResult targeting)
+    private void applyAbility(AbilityTargetingData targeting)
     {
         if (!selfOnlyIfTarget || targeting.charHit != null) //only apply if we don't need a target to do so, or if we do have a target
         {
@@ -109,7 +92,11 @@ public class Ability : MonoBehaviour
             GameManager.instance.addGroundEffect(e);
         }
     }
-
-
     protected virtual void onCast() { }
+    public void drawDebugCrossAtPoint(Vector3 worldPoint)
+    {
+        Debug.DrawLine(worldPoint + Vector3.left, worldPoint + Vector3.right * 2, Color.red, 5);
+        Debug.DrawLine(worldPoint + Vector3.forward, worldPoint + Vector3.back * 2, Color.blue, 5);
+        Debug.DrawLine(worldPoint + Vector3.up, worldPoint + Vector3.down * 2, Color.yellow, 5);
+    }
 }
