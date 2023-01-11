@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class TickingEffect : Effect
+public abstract class TickingEffect : OnTimeEffect
 {
-    public float effectDuration;
-    private float effectStart = -1;
 
     public float effectTickCooldown;
-    private float effectLastTick = -1;
+    protected float effectLastTick = -1;
 
     public bool tickOnStart = false;
 
@@ -22,7 +20,8 @@ public abstract class TickingEffect : Effect
 
         if (Time.realtimeSinceStartup - effectStart > effectDuration + effectTickCooldown / 2) //making sure last tick will always trigger
         {
-            return false; //effect ends, returning false will remove it from the active effects of the owner (and call onEnd())
+            onEnd();
+            return false; //effect ends, returning false will remove it from the active effects of the owner
         }
 
         return true;

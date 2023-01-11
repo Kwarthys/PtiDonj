@@ -76,5 +76,10 @@ public class LifeDisplayController : MonoBehaviour
 
         healthText.text = Mathf.RoundToInt(absolute).ToString();
     }
+
+    private void Awake()
+    {
+        image.material = new Material(image.material);
+    }
 }
     

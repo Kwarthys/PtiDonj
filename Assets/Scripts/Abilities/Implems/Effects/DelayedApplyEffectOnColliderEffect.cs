@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApplyEffectOnColliderEffect : TickingEffect
+public class DelayedApplyEffectOnColliderEffect : OnTimeEffect
 {
-    public Collider areaOfEffect;
+    public LayerMask targetsLayer;
 
     public EffectDescriptor[] effectsToApply;
 
-    public LayerMask targetsLayer;
-
     public ColliderTriggerHandler colliderTriggers;
 
-    public override void onTick()
+    public override void onEnd()
     {
-        List<CharacterStats> targetsInside = colliderTriggers.getTargetsInside(targetsLayer);
+        List<CharacterStats> characters = colliderTriggers.getTargetsInside(targetsLayer);
 
-        for (int i = 0; i < targetsInside.Count; i++)
+        for (int i = 0; i < characters.Count; i++)
         {
-            applyEffectsTo(targetsInside[i]);
+            applyEffectsTo(characters[i]);
         }
     }
 

@@ -36,6 +36,8 @@ public abstract class Effect
 
             if (!keepEffect)
             {
+                effects[i].onEnd();
+
                 if (toRemove == null)
                 {
                     toRemove = new List<Effect>();
