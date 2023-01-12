@@ -14,12 +14,17 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     private List<Effect> groundEffects = new List<Effect>();
 
+    private List<IMyAnimator> animatedObjects = new List<IMyAnimator>();
+
     public static GameManager instance;
 
     [HideInInspector]
     public Transform localPlayerTransform;
 
     public LayerMask groundLayer;
+
+    public GameObject floatingTextPrefab;
+    public Transform floatingTextHolder;
 
     private void Awake()
     {
@@ -37,6 +42,16 @@ public class GameManager : NetworkBehaviour
         for (int i = 0; i < monstersList.Count; i++)
         {
             monstersList[i].updateMonster();
+        }
+
+        for (int i = 0; i < animatedObjects.Count; i++)
+        {
+            if(!animatedObjects[i].updateAnimation())
+            {
+                animatedObjects[i].destroy();
+                animatedObjects.RemoveAt(i);
+                i--;
+            }
         }
     }
 
@@ -113,5 +128,19 @@ public class GameManager : NetworkBehaviour
         NetworkServer.Spawn(go);
 
         return go;
+    }
+
+    public void spawnFloatingText(Vector3 pos, string text)
+    {
+        GameObject go = Instantiate(floatingTextPrefab, pos + (localPlayerTransform.position - pos).normalized * 2f, Quaternion.identity, floatingTextHolder);
+
+        FloatingTextController controller = go.GetComponent<FloatingTextController>();
+        controller?.setText(text);
+
+        FloatingTextAnimator animator = go.GetComponent<FloatingTextAnimator>();
+        animator.setupAnimator(localPlayerTransform);
+        animatedObjects.Add(animator);
+
+        NetworkServer.Spawn(go);
     }
 }
