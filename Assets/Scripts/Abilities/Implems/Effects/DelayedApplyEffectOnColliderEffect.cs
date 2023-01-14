@@ -16,15 +16,7 @@ public class DelayedApplyEffectOnColliderEffect : OnTimeEffect
 
         for (int i = 0; i < characters.Count; i++)
         {
-            applyEffectsTo(characters[i]);
-        }
-    }
-
-    private void applyEffectsTo(CharacterStats target)
-    {
-        for (int i = 0; i < effectsToApply.Length; i++)
-        {
-            target.addEffect(effectsToApply[i].getNewEffect());
+            applyEffectsTo(characters[i], effectsToApply);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public abstract class Ability : MonoBehaviour
 {
@@ -19,10 +20,12 @@ public abstract class Ability : MonoBehaviour
     public EffectDescriptor[] groundEffects;
 
     protected AbilityManager manager;
+    protected CharacterStats ownerStats;
 
     private void Start()
     {
         manager = GetComponentInParent<AbilityManager>();
+        ownerStats = GetComponentInParent<CharacterStats>();
     }
 
     public bool canCast()
@@ -71,7 +74,9 @@ public abstract class Ability : MonoBehaviour
     {
         for (int i = 0; i < targetEffects.Length; ++i)
         {
-            target.addEffect(targetEffects[i].getNewEffect());
+            Effect effect = targetEffects[i].getNewEffect();
+            effect.caster = ownerStats;
+            target.addEffect(effect);
         }
     }
 
@@ -79,7 +84,9 @@ public abstract class Ability : MonoBehaviour
     {
         for (int i = 0; i < selfEffects.Length; ++i)
         {
-            manager.selfStats.addEffect(selfEffects[i].getNewEffect());
+            Effect effect = selfEffects[i].getNewEffect();
+            effect.caster = ownerStats;
+            manager.selfStats.addEffect(effect);
         }
     }
 
@@ -87,9 +94,10 @@ public abstract class Ability : MonoBehaviour
     {
         for (int i = 0; i < groundEffects.Length; ++i)
         {
-            Effect e = groundEffects[i].getNewEffect();
-            e.effectWorldPos = posOnGround;
-            GameManager.instance.addGroundEffect(e);
+            Effect effect = groundEffects[i].getNewEffect();
+            effect.effectWorldPos = posOnGround;
+            effect.caster = ownerStats;
+            GameManager.instance.addGroundEffect(effect);
         }
     }
     protected virtual void onCast() { }

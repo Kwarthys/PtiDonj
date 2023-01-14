@@ -18,12 +18,13 @@ public class CharacterStats : NetworkBehaviour
 
     public StatsDisplayManager displayManager;
 
-    public void takeDamage(float amount)
+    public NetworkIdentity networkIdentity;
+
+    public void takeDamage(float amount, NetworkIdentity attacker, NetworkIdentity damaged)
     {
         life -= amount;
 
-        Vector2 randomVector = Random.insideUnitCircle * 2;
-        GameManager.instance.spawnFloatingText(transform.position + new Vector3(randomVector.x, 1 + randomVector.y, 0), Mathf.RoundToInt(amount).ToString());
+        GameManager.instance.spawnFloatingTextFor(transform.position, Mathf.RoundToInt(amount).ToString(), attacker, damaged);
     }
 
     private void updateLifeDisplayHook(float oldLife, float newLife)

@@ -17,6 +17,6 @@ public class DotDamageEffect : TickingEffect
 
     public override void onTick()
     {
-        owner.takeDamage(tickDamage);
+        inflictDamage(tickDamage);
     }
 }

@@ -8,7 +8,7 @@ public class InstantDamageEffect : Effect
 
     public override void onStart()
     {
-        owner.takeDamage(damage);
+        inflictDamage(damage);
     }
 
     public InstantDamageEffect(float damage)

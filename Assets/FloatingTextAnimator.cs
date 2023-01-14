@@ -11,6 +11,8 @@ public class FloatingTextAnimator : MonoBehaviour, IMyAnimator
 
     public float animationCompletion = 0;
 
+    public float animationTextGravity = 0.01f;
+
     public Vector3 animationDirection = new Vector3(0, 1, 0);
 
     public bool animate = true;
@@ -21,9 +23,6 @@ public class FloatingTextAnimator : MonoBehaviour, IMyAnimator
     {
         this.toLookAt = toLookAt;
         animationStart = Time.realtimeSinceStartup;
-
-        Vector2 randomVector = Random.insideUnitCircle;
-        animationDirection = new Vector3(randomVector.x, Mathf.Abs(randomVector.y), 0);
     }
 
     public bool updateAnimation()
@@ -35,6 +34,9 @@ public class FloatingTextAnimator : MonoBehaviour, IMyAnimator
         animationCompletion = (Time.realtimeSinceStartup - animationStart) / animationTime;
 
         transform.rotation = Quaternion.LookRotation(toLookAt.position - transform.position);
+
+        animationDirection.y -= animationTextGravity;
+        //animationDirection.Normalize(); trying with a change of speed
 
         if (animationCompletion > 1)
         {

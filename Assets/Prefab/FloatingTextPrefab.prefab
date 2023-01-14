@@ -234,12 +234,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTime: 0.5
-  animationStart: -1
-  animationMovementSpeed: 3
+  animationMovementSpeed: 2
   animationCompletion: 0
+  animationTextGravity: 0.015
   animationDirection: {x: 0, y: 1, z: 0}
   animate: 1
-  toLookAt: {fileID: 0}
 --- !u!114 &6058914005256199862
 MonoBehaviour:
   m_ObjectHideFlags: 0

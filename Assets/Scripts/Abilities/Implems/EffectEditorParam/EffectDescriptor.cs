@@ -6,4 +6,5 @@ public abstract class EffectDescriptor : MonoBehaviour
 {
     public string effectName = "Effect";
     public abstract Effect getNewEffect();
+
 }

@@ -39,7 +39,7 @@ public class MonsterController : MonoBehaviour
         {
             target = null;
 
-            abilityManager.castAbility(0);
+            //abilityManager.castAbility(0);
         }
     }
 

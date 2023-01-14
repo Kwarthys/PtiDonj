@@ -65,4 +65,24 @@ public abstract class Effect
     {
         return false;
     }
+
+    protected void inflictDamage(float amount)
+    {
+        owner.takeDamage(amount, caster.networkIdentity, owner.networkIdentity);
+    }
+
+    protected void applyEffectTo(CharacterStats target, EffectDescriptor toApply)
+    {
+        Effect e = toApply.getNewEffect();
+        e.caster = caster;
+        target.addEffect(e);
+    }
+
+    protected void applyEffectsTo(CharacterStats target, EffectDescriptor[] toApply)
+    {
+        for (int i = 0; i < toApply.Length; i++)
+        {
+            applyEffectTo(target, toApply[i]);
+        }        
+    }
 }

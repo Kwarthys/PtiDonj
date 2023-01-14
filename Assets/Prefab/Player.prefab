@@ -68,10 +68,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  effectOnDuration: 1
-  tickDamage: 3
+  tickDamage: 1
   effectDuration: 5
-  effectTickCooldown: 0.25
+  effectTickCooldown: 0.5
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  effectOnDuration: 0
   groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
     type: 3}
 --- !u!1 &3852378756998237364
@@ -579,6 +577,7 @@ MonoBehaviour:
   life: 100
   maxLife: 100
   displayManager: {fileID: 88038857143686158}
+  networkIdentity: {fileID: 3454651033889386043}
 --- !u!114 &4395670705419160430
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -226,6 +226,7 @@ MonoBehaviour:
   life: 1000
   maxLife: 1000
   displayManager: {fileID: 7826102989446278344}
+  networkIdentity: {fileID: 5825245318181456640}
 --- !u!114 &5825245318181456655
 MonoBehaviour:
   m_ObjectHideFlags: 0

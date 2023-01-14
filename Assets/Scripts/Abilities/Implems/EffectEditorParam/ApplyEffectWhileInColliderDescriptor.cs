@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApplyEffectOnColliderDescriptor : EffectDescriptor
+public class ApplyEffectWhileInColliderDescriptor : EffectDescriptor
 {
     public EffectDescriptor[] effectsToApply;
 
@@ -16,7 +16,7 @@ public class ApplyEffectOnColliderDescriptor : EffectDescriptor
 
     public override Effect getNewEffect()
     {
-        ApplyEffectOnColliderEffect effect = new ApplyEffectOnColliderEffect();
+        ApplyEffectWhileInColliderEffect effect = new ApplyEffectWhileInColliderEffect();
 
         effect.effectDuration = this.effectDuration;
         effect.effectOnDuration = true;

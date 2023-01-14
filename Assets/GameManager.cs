@@ -130,17 +130,49 @@ public class GameManager : NetworkBehaviour
         return go;
     }
 
-    public void spawnFloatingText(Vector3 pos, string text)
+    public void spawnFloatingTextFor(Vector3 pos, string text, NetworkIdentity attacker, NetworkIdentity damaged)
     {
-        GameObject go = Instantiate(floatingTextPrefab, pos + (localPlayerTransform.position - pos).normalized * 2f, Quaternion.identity, floatingTextHolder);
+        if(attacker != null)
+        {
+            if(characters.ContainsKey(attacker.netId))
+            {
+                //Attacker is a player, we need to show him his damages
+                TargetRpcSpawnFloatingTextFor(attacker.connectionToClient, pos, text);
+            }
+        }
+
+        if(damaged != null)
+        {
+            if(characters.ContainsKey(damaged.netId))
+            {
+                //Damaged character is a player, we need to show him the damaged taken
+                //still unsure on how to display that, if if needs to be displayed at all
+            }
+        }
+    }
+
+    [TargetRpc]
+    public void TargetRpcSpawnFloatingTextFor(NetworkConnection target, Vector3 pos, string text)
+    {
+        Vector2 randomVector = Random.insideUnitCircle.normalized;
+        Vector3 randomVector3D = new Vector3(randomVector.x, Mathf.Abs(randomVector.y), 0);
+
+        randomVector3D = localPlayerTransform.localToWorldMatrix * randomVector3D;
+
+        Vector3 monsterToPlayerDirection = (localPlayerTransform.position - pos).normalized;
+
+        Vector3 spawnPos = pos + monsterToPlayerDirection * 2.0f;
+        spawnPos += new Vector3(0, 1.5f, 0);
+        spawnPos += randomVector3D * 3f;
+
+        GameObject go = Instantiate(floatingTextPrefab, spawnPos, Quaternion.identity, floatingTextHolder);
 
         FloatingTextController controller = go.GetComponent<FloatingTextController>();
-        controller?.setText(text);
+        controller.setText(text);
 
         FloatingTextAnimator animator = go.GetComponent<FloatingTextAnimator>();
         animator.setupAnimator(localPlayerTransform);
+        animator.animationDirection = randomVector3D;
         animatedObjects.Add(animator);
-
-        NetworkServer.Spawn(go);
     }
 }

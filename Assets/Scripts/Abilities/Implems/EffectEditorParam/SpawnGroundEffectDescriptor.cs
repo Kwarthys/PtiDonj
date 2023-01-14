@@ -8,6 +8,8 @@ public class SpawnGroundEffectDescriptor : EffectDescriptor
 
     public override Effect getNewEffect()
     {
-        return new SpawnGroundEffectEffect(groundEffectPrefab);
+        SpawnGroundEffectEffect effect = new SpawnGroundEffectEffect(groundEffectPrefab);
+
+        return effect;
     }
 }
