@@ -19,10 +19,15 @@ public class FloatingTextAnimator : MonoBehaviour, IMyAnimator
 
     private Transform toLookAt;
 
-    public void setupAnimator(Transform toLookAt)
+    private float textDesiredSize = 10;
+
+    public FloatingTextController controller;
+
+    public void setupAnimator(Transform toLookAt, float textDesiredSize)
     {
         this.toLookAt = toLookAt;
         animationStart = Time.realtimeSinceStartup;
+        this.textDesiredSize = textDesiredSize;
     }
 
     public bool updateAnimation()
@@ -36,7 +41,8 @@ public class FloatingTextAnimator : MonoBehaviour, IMyAnimator
         transform.rotation = Quaternion.LookRotation(toLookAt.position - transform.position);
 
         animationDirection.y -= animationTextGravity;
-        //animationDirection.Normalize(); trying with a change of speed
+
+        controller.setSize(textDesiredSize * FloatingTextManager.instance.sizeOverAnimation.Evaluate(animationCompletion));
 
         if (animationCompletion > 1)
         {

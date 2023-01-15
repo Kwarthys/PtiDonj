@@ -23,9 +23,6 @@ public class GameManager : NetworkBehaviour
 
     public LayerMask groundLayer;
 
-    public GameObject floatingTextPrefab;
-    public Transform floatingTextHolder;
-
     private void Awake()
     {
         instance = this;
@@ -137,7 +134,7 @@ public class GameManager : NetworkBehaviour
             if(characters.ContainsKey(attacker.netId))
             {
                 //Attacker is a player, we need to show him his damages
-                TargetRpcSpawnFloatingTextFor(attacker.connectionToClient, pos, text);
+                TargetRpcSpawnFloatingText(attacker.connectionToClient, pos, text);
             }
         }
 
@@ -152,27 +149,13 @@ public class GameManager : NetworkBehaviour
     }
 
     [TargetRpc]
-    public void TargetRpcSpawnFloatingTextFor(NetworkConnection target, Vector3 pos, string text)
+    public void TargetRpcSpawnFloatingText(NetworkConnection target, Vector3 pos, string text)
     {
-        Vector2 randomVector = Random.insideUnitCircle.normalized;
-        Vector3 randomVector3D = new Vector3(randomVector.x, Mathf.Abs(randomVector.y), 0);
+        FloatingTextManager.instance.spawnFloatingText(pos, text);
+    }
 
-        randomVector3D = localPlayerTransform.localToWorldMatrix * randomVector3D;
-
-        Vector3 monsterToPlayerDirection = (localPlayerTransform.position - pos).normalized;
-
-        Vector3 spawnPos = pos + monsterToPlayerDirection * 2.0f;
-        spawnPos += new Vector3(0, 1.5f, 0);
-        spawnPos += randomVector3D * 3f;
-
-        GameObject go = Instantiate(floatingTextPrefab, spawnPos, Quaternion.identity, floatingTextHolder);
-
-        FloatingTextController controller = go.GetComponent<FloatingTextController>();
-        controller.setText(text);
-
-        FloatingTextAnimator animator = go.GetComponent<FloatingTextAnimator>();
-        animator.setupAnimator(localPlayerTransform);
-        animator.animationDirection = randomVector3D;
-        animatedObjects.Add(animator);
+    public void registerAnimatedObject(IMyAnimator animatedObject)
+    {
+        animatedObjects.Add(animatedObject);
     }
 }

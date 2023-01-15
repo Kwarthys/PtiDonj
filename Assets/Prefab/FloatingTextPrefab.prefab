@@ -127,8 +127,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -239,6 +239,7 @@ MonoBehaviour:
   animationTextGravity: 0.015
   animationDirection: {x: 0, y: 1, z: 0}
   animate: 1
+  controller: {fileID: 8173496154971741735}
 --- !u!114 &6058914005256199862
 MonoBehaviour:
   m_ObjectHideFlags: 0

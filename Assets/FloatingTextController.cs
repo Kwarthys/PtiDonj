@@ -11,4 +11,9 @@ public class FloatingTextController : MonoBehaviour
     {
         textMesh.text = text;
     }
+
+    public void setSize(float size)
+    {
+        textMesh.fontSize = size;
+    }
 }
