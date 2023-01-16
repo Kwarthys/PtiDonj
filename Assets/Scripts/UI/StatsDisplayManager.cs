@@ -6,21 +6,25 @@ public class StatsDisplayManager : MonoBehaviour
 {
     public LifeDisplayController lifeDisplayController;
 
-    public void updateLifeDisplay(float lifePercent, float lifeReal, bool bypassAnimation = false)
+    protected bool needsOrientationUpdate = false;
+
+    public void changeLifeDisplay(float lifePercent, float lifeReal, bool bypassAnimation = false)
     {
         lifeDisplayController.updateLifeDisplay(lifePercent, lifeReal, bypassAnimation);
     }
 
-    public void updateDisplayOrientation()
+    public void updateDisplay()
     {
-        if(GameManager.instance.localPlayerTransform != null)
-        {
-            transform.rotation = Quaternion.LookRotation(transform.position - GameManager.instance.localPlayerTransform.position);
-        }
-
-        if(lifeDisplayController.needsUpdate)
+        if (lifeDisplayController.needsUpdate)
         {
             lifeDisplayController.updateDisplayAnimation();
         }
+
+        if(needsOrientationUpdate)
+        {
+            updateDisplayOrientation();
+        }
     }
+
+    protected virtual void updateDisplayOrientation() { }
 }

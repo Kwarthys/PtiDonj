@@ -12,6 +12,8 @@ public class MonsterController : MonoBehaviour
 
     public MonsterAbilityManager abilityManager;
 
+    public bool castAbilitiesDebug = true;
+
     public void updateMonster()
     {
         monsterStats.updateStats();
@@ -39,7 +41,10 @@ public class MonsterController : MonoBehaviour
         {
             target = null;
 
-            //abilityManager.castAbility(0);
+            if(castAbilitiesDebug)
+            {
+                abilityManager.castAbility(0);
+            }
         }
     }
 

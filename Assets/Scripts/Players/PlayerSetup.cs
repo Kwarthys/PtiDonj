@@ -7,6 +7,8 @@ public class PlayerSetup : NetworkBehaviour
 {
     public Behaviour[] toDisable;
 
+    public GameObject[] toDestroyOnLocal;
+
     public Transform playerCameraHolder;
 
     public CharacterStats playerStats;
@@ -23,6 +25,11 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
+            for (int i = 0; i < toDestroyOnLocal.Length; i++)
+            {
+                Destroy(toDestroyOnLocal[i]);
+            }
+
             Transform theCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
             theCamera.SetParent(playerCameraHolder);
             theCamera.localRotation = Quaternion.identity;
@@ -31,6 +38,8 @@ public class PlayerSetup : NetworkBehaviour
             Cursor.lockState = CursorLockMode.Locked;
 
             GameManager.instance.localPlayerTransform = transform;
+
+            playerStats.registerNewDisplayManager(GameManager.instance.localPlayerHealthBar);
         }
     }
 

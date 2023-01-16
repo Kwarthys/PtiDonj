@@ -20,6 +20,7 @@ public class GameManager : NetworkBehaviour
 
     [HideInInspector]
     public Transform localPlayerTransform;
+    public SelfStatsDisplayManager localPlayerHealthBar;
 
     public LayerMask groundLayer;
 

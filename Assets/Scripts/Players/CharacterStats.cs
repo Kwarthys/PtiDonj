@@ -30,7 +30,7 @@ public class CharacterStats : NetworkBehaviour
     private void updateLifeDisplayHook(float oldLife, float newLife)
     {
         life = newLife;
-        displayManager.updateLifeDisplay(life / maxLife, life, oldLife==-1);
+        displayManager.changeLifeDisplay(life / maxLife, life, oldLife==-1);
     }
 
     public void removeEffect(Effect effect)
@@ -49,10 +49,21 @@ public class CharacterStats : NetworkBehaviour
         }
     }
 
+    private void Awake()
+    {
+        life = maxLife;
+    }
+
     private void Start()
     {
         //forcing an update
-        updateLifeDisplayHook(-1, maxLife);
+        updateLifeDisplayHook(-1, life);
+    }
+
+    public void registerNewDisplayManager(StatsDisplayManager newManager)
+    {
+        displayManager = newManager;
+        updateLifeDisplayHook(-1, life);
     }
 
     public void updateStats()
@@ -60,7 +71,7 @@ public class CharacterStats : NetworkBehaviour
         updateEffects();
 
         //Update UI
-        displayManager.updateDisplayOrientation();
+        displayManager.updateDisplay();
     }
 
     private void updateEffects()

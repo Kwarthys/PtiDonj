@@ -618,6 +618,8 @@ MonoBehaviour:
   toDisable:
   - {fileID: 3852378758719500947}
   - {fileID: 3852378758719500946}
+  toDestroyOnLocal:
+  - {fileID: 3059222052978885120}
   playerCameraHolder: {fileID: 3852378757287495124}
   playerStats: {fileID: 1620960983934713654}
   networkIdentity: {fileID: 3454651033889386043}
@@ -790,12 +792,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 88038857707269973}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3059222052978885120}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8320b5076328cad47b268797e68d56e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3059222052978885120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3119953167971495253, guid: df697810ff61691439b11925a95b831d,
+    type: 3}
+  m_PrefabInstance: {fileID: 88038857707269973}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3059222052978885123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
