@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DelayedApplyEffectOnColliderEffect : OnTimeEffect
+public class DelayedApplyEffectOnColliderEffect : OnTimeEffect, IColliderEffect
 {
     public LayerMask targetsLayer;
 
     public EffectDescriptor[] effectsToApply;
 
     public ColliderTriggerHandler colliderTriggers;
+
+    public float size;
+
+    public float getZoneSize()
+    {
+        return size;
+    }
 
     public override void onEnd()
     {
@@ -18,5 +25,10 @@ public class DelayedApplyEffectOnColliderEffect : OnTimeEffect
         {
             applyEffectsTo(characters[i], effectsToApply);
         }
+    }
+
+    public void registerColliderTrigger(ColliderTriggerHandler triggerHandler)
+    {
+        this.colliderTriggers = triggerHandler;
     }
 }

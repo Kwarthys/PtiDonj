@@ -14,6 +14,8 @@ public class ApplyEffectWhileInColliderDescriptor : EffectDescriptor
 
     public ColliderTriggerHandler colliderTriggers;
 
+    public float zoneSize;
+
     public override Effect getNewEffect()
     {
         ApplyEffectWhileInColliderEffect effect = new ApplyEffectWhileInColliderEffect();
@@ -22,6 +24,8 @@ public class ApplyEffectWhileInColliderDescriptor : EffectDescriptor
         effect.effectOnDuration = true;
         effect.effectTickCooldown = this.effectTickCooldown;
         effect.targetsLayer = this.targetsLayer;
+
+        effect.size = zoneSize;
         
         effect.colliderTriggers = this.colliderTriggers;
 

@@ -6,11 +6,13 @@ public class DelayedApplyEffectOnColliderEffectDescriptor : EffectDescriptor
 {
     public LayerMask targetsLayer;
 
-    public EffectDescriptor[] effectsToApply;
-
     public ColliderTriggerHandler colliderTriggers;
 
+    public EffectDescriptor[] effectsToApply;
+
     public float effectDuration;
+
+    public float size;
 
     public override Effect getNewEffect()
     {
@@ -19,6 +21,8 @@ public class DelayedApplyEffectOnColliderEffectDescriptor : EffectDescriptor
         effect.targetsLayer = targetsLayer;
         effect.effectsToApply = effectsToApply;
         effect.colliderTriggers = colliderTriggers;
+
+        effect.size = size;
 
         effect.effectOnDuration = true;
         effect.effectDuration = effectDuration;

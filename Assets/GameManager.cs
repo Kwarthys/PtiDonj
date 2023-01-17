@@ -24,6 +24,10 @@ public class GameManager : NetworkBehaviour
 
     public LayerMask groundLayer;
 
+    public GameObject groundZonePositionHintPrefab;
+    public GameObject groundDamagingZoneMarkerPrefab;
+    public GameObject groundWarningZoneMarkerPrefab;
+
     private void Awake()
     {
         instance = this;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApplyEffectWhileInColliderEffect : TickingEffect
+public class ApplyEffectWhileInColliderEffect : TickingEffect, IColliderEffect
 {
     public Collider areaOfEffect;
 
@@ -12,6 +12,13 @@ public class ApplyEffectWhileInColliderEffect : TickingEffect
 
     public ColliderTriggerHandler colliderTriggers;
 
+    public float size;
+
+    public float getZoneSize()
+    {
+        return size;
+    }
+
     public override void onTick()
     {
         List<CharacterStats> targetsInside = colliderTriggers.getTargetsInside(targetsLayer);
@@ -20,5 +27,10 @@ public class ApplyEffectWhileInColliderEffect : TickingEffect
         {
             applyEffectsTo(targetsInside[j], effectsToApply);
         }
+    }
+
+    public void registerColliderTrigger(ColliderTriggerHandler triggerHandler)
+    {
+        this.colliderTriggers = triggerHandler;
     }
 }
