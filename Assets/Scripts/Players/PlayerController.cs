@@ -10,11 +10,25 @@ public class PlayerController : MonoBehaviour
     public float speed = 10;
     public float rotateSpeed = 5;
 
+    public float maxRotationMagnitude = 100;
+    public int frameToSmooth = 5;
+    private Vector2[] lastRotations;
+    private int lastRotationsIndex = 0;
+
     private Vector2 rotation = Vector2.zero;
     public Vector2 rotationVerticalClamps;
     public Vector2 rotationHorizontalClamps;
 
     public Transform cameraHolder;
+
+    private void Start()
+    {
+        lastRotations = new Vector2[frameToSmooth];
+        for (int i = 0; i < lastRotations.Length; i++)
+        {
+            lastRotations[i] = Vector2.zero;
+        }
+    }
 
     private void OnConnectedToServer()
     {
@@ -38,11 +52,12 @@ public class PlayerController : MonoBehaviour
 
     public void onRotate(InputAction.CallbackContext context)
     {
-
         if (context.performed)
         {
             Vector2 seeMovement = context.ReadValue<Vector2>();
             //Debug.Log(seeMovement);
+
+            seeMovement = smoothMovement(seeMovement);
 
             rotation += seeMovement * speed * Time.deltaTime;
 
@@ -66,5 +81,27 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement3D = new Vector3(lastMovement.x, 0, lastMovement.y) * speed * Time.deltaTime;
         transform.Translate(movement3D);
+    }
+
+    private Vector2 smoothMovement(Vector2 lastSeeMovement)
+    {
+        if (lastSeeMovement.sqrMagnitude > maxRotationMagnitude * maxRotationMagnitude)
+        {
+            lastSeeMovement = lastSeeMovement.normalized * maxRotationMagnitude;
+        }
+
+        lastRotations[lastRotationsIndex] = lastSeeMovement;
+        lastRotationsIndex = (lastRotationsIndex + 1) % lastRotations.Length;
+
+        Vector2 smoothedMovement = Vector2.zero;
+
+        for (int i = 0; i < lastRotations.Length; i++)
+        {
+            smoothedMovement += lastRotations[i];
+        }
+
+        smoothedMovement /= lastRotations.Length;
+
+        return smoothedMovement;
     }
 }

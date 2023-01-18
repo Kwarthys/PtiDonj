@@ -445,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   rotateSpeed: 3
+  frameToSmooth: 5
   rotationVerticalClamps: {x: -45, y: 45}
   rotationHorizontalClamps: {x: 0, y: 0}
   cameraHolder: {fileID: 3852378757287495124}
