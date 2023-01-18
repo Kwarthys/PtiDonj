@@ -6,6 +6,7 @@ public class DelayedApplyEffectOnColliderEffectDescriptor : EffectDescriptor
 {
     public LayerMask targetsLayer;
 
+    [HideInInspector]
     public ColliderTriggerHandler colliderTriggers;
 
     public EffectDescriptor[] effectsToApply;

@@ -70,7 +70,7 @@ MonoBehaviour:
   effectName: Effect
   tickDamage: 1
   effectDuration: 5
-  effectTickCooldown: 0.5
+  effectTickCooldown: 1
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   rotateSpeed: 3
+  maxRotationMagnitude: 100
   frameToSmooth: 5
   rotationVerticalClamps: {x: -45, y: 45}
   rotationHorizontalClamps: {x: 0, y: 0}

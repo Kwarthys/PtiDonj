@@ -5,14 +5,17 @@ using UnityEngine;
 public class OnTimeEffect : Effect
 {
     public float effectDuration;
-    protected float effectStart = -1;
+
+    protected float deltaTimeCounter;
 
     protected override bool updateEffect()
     {
-        return Time.realtimeSinceStartup - effectStart <= effectDuration; //returning false removes it from the active effects of the owner
+        deltaTimeCounter += Time.deltaTime;
+
+        return deltaTimeCounter > effectDuration; //returning false removes it from the active effects of the owner
     }
     public override void onStart()
     {
-        effectStart = Time.realtimeSinceStartup;
+        deltaTimeCounter = 0;
     }
 }

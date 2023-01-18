@@ -7,9 +7,10 @@ public class DotDamageEffectDescriptor : EffectDescriptor
     public float tickDamage = 10;
     public float effectDuration = 5;
     public float effectTickCooldown = .5f;
+    public bool tickOnStart = false;
 
     public override Effect getNewEffect()
     {
-        return new DotDamageEffect(tickDamage, effectDuration, effectTickCooldown);
+        return new DotDamageEffect(tickDamage, effectDuration, effectTickCooldown, tickOnStart);
     }
 }

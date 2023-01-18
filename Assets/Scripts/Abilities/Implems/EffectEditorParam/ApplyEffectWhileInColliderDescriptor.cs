@@ -12,6 +12,7 @@ public class ApplyEffectWhileInColliderDescriptor : EffectDescriptor
 
     public float effectTickCooldown;
 
+    [HideInInspector]
     public ColliderTriggerHandler colliderTriggers;
 
     public float zoneSize;

@@ -6,21 +6,23 @@ public abstract class TickingEffect : OnTimeEffect
 {
 
     public float effectTickCooldown;
-    protected float effectLastTick = -1;
 
     public bool tickOnStart = false;
 
+    private int tickHappened;
+
     protected override bool updateEffect()
     {
-        if (Time.realtimeSinceStartup - effectLastTick > effectTickCooldown)
+        deltaTimeCounter += Time.deltaTime;
+
+        while (deltaTimeCounter > effectTickCooldown * tickHappened) //while instead of if allows to tick multiple times for fast ticks and low updates count
         {
             onTick();
-            effectLastTick = Time.realtimeSinceStartup;
+            tickHappened++;
         }
 
-        if (Time.realtimeSinceStartup - effectStart > effectDuration + effectTickCooldown / 2) //making sure last tick will always trigger
+        if (deltaTimeCounter > effectDuration)
         {
-            onEnd();
             return false; //effect ends, returning false will remove it from the active effects of the owner
         }
 
@@ -28,13 +30,12 @@ public abstract class TickingEffect : OnTimeEffect
     }
     public override void onStart()
     {
-        effectStart = Time.realtimeSinceStartup;
-
-        effectLastTick = effectStart;
+        deltaTimeCounter = 0;
+        tickHappened = 1;
 
         if (tickOnStart)
         {
-            effectLastTick -= effectTickCooldown; //That way we generate a tick instantly
+            tickHappened = 0;
         }
     }
 }
