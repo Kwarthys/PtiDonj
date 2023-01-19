@@ -41,6 +41,15 @@ public class CharacterStats : NetworkBehaviour
     public void addEffect(Effect effect)
     {
         effect.owner = this;
+
+        if(effect.needsWorldPosUpdate)
+        {
+            if(AbilityTargetingData.tryFindGroundUnder(effect.owner.transform.position, out Vector3 ground))
+            {
+                effect.effectWorldPos = ground;
+            }
+        }
+
         effect.onStart();
 
         if(effect.effectOnDuration)

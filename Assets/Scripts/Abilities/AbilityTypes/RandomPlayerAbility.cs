@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomPlayerAbility : Ability
-{    protected override AbilityTargetingData computeTargeting()
+{
+    protected override AbilityTargetingData computeTargeting()
     {
         AbilityTargetingData targeting = new AbilityTargetingData();
         targeting.didHit = false;

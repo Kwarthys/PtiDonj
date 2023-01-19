@@ -15,6 +15,7 @@ public abstract class Effect
     public CharacterStats caster; //for future logging
 
     public Vector3 effectWorldPos;
+    public bool needsWorldPosUpdate = false;
 
     public virtual void onStart() { }
     public virtual void onTick() { }
@@ -38,6 +39,12 @@ public abstract class Effect
 
         for (int i = 0; i < effects.Count; i++)
         {
+            if (effects[i].needsWorldPosUpdate)
+            {
+                Debug.Log("setting effectwolrdpos at " + effects[i].owner.transform.position);
+                effects[i].effectWorldPos = effects[i].owner.transform.position;
+            }
+
             bool keepEffect = effects[i].updateEffect();
 
             if (!keepEffect)

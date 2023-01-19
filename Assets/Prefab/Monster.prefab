@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4228139189438976786}
   - component: {fileID: 8168085091699374511}
+  - component: {fileID: 8221336453366479883}
   - component: {fileID: 4201873667405966642}
   m_Layer: 7
   m_Name: AbilityOne
@@ -51,10 +52,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   selfOnlyIfTarget: 0
-  targetEffects: []
+  targetEffects:
+  - {fileID: 8221336453366479883}
   selfEffects: []
-  groundEffects:
+  groundEffects: []
+--- !u!114 &8221336453366479883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571033677096063429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9e53653c2e06443ab7e78c2cf97dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: Effect
+  tickOnStart: 1
+  tickCoolDown: 1
+  effectsToApply:
   - {fileID: 4201873667405966642}
+  effectDuration: 5
 --- !u!114 &4201873667405966642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +261,7 @@ MonoBehaviour:
   speed: 2
   monsterStats: {fileID: 5825245318181456642}
   abilityManager: {fileID: 5082397933859539144}
+  castAbilitiesDebug: 1
 --- !u!114 &5082397933859539144
 MonoBehaviour:
   m_ObjectHideFlags: 0

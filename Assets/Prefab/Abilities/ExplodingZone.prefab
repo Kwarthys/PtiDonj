@@ -69,8 +69,8 @@ MonoBehaviour:
   colliderTriggers: {fileID: 0}
   effectsToApply:
   - {fileID: -6239600518456634276}
-  effectDuration: 3
-  size: 5
+  effectDuration: 2
+  size: 2
 --- !u!114 &-6239600518456634276
 MonoBehaviour:
   m_ObjectHideFlags: 0
