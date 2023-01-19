@@ -16,8 +16,7 @@ public class OnTimeEffect : Effect
     protected override bool updateEffect()
     {
         deltaTimeCounter += Time.deltaTime;
-
-        return deltaTimeCounter > effectDuration; //returning false removes it from the active effects of the owner
+        return deltaTimeCounter < effectDuration; //returning false removes it from the active effects of the owner
     }
     public override void onStart()
     {

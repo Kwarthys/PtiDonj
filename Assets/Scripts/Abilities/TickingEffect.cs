@@ -26,12 +26,7 @@ public abstract class TickingEffect : OnTimeEffect
             tickHappened++;
         }
 
-        if (deltaTimeCounter > effectDuration)
-        {
-            return false; //effect ends, returning false will remove it from the active effects of the owner
-        }
-
-        return true;
+        return deltaTimeCounter < effectDuration; //returning false removes it from the active effects of the owner
     }
     public override void onStart()
     {

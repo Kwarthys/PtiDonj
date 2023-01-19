@@ -6,7 +6,7 @@ public class SpawnGroundEffectEffect : Effect
 {
     public GameObject groundEffectPrefab;
 
-    public SpawnGroundEffectEffect(string effectName, bool effectOnDuration, GameObject groundEffectPrefab) : base(effectName, false)
+    public SpawnGroundEffectEffect(string effectName, bool effectOnDuration, GameObject groundEffectPrefab) : base(effectName, effectOnDuration)
     {
         this.groundEffectPrefab = groundEffectPrefab;
     }

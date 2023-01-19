@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApllyEffectOnTickEffectDescriptor : EffectDescriptor
+public class ApplyEffectOnTickEffectDescriptor : EffectDescriptor
 {
     public bool tickOnStart = false;
     public float tickCoolDown = 1;
