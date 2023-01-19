@@ -6,14 +6,9 @@ public class DotDamageEffect : TickingEffect
 {
     public float tickDamage;
 
-    public DotDamageEffect(float tickDamage, float effectDuration, float effectTickCooldown, bool tickOnStart)
+    public DotDamageEffect(string effectName, bool effectOnDuration, float effectDuration, float effectTickCooldown, float tickDamage) : base(effectName, effectOnDuration, effectDuration, effectTickCooldown)
     {
         this.tickDamage = tickDamage;
-        this.effectDuration = effectDuration;
-        this.effectTickCooldown = effectTickCooldown;
-        this.tickOnStart = tickOnStart;
-
-        this.effectOnDuration = true;
     }
 
     public override void onTick()

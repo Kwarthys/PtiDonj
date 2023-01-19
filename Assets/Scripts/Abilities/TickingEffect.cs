@@ -11,6 +11,11 @@ public abstract class TickingEffect : OnTimeEffect
 
     private int tickHappened;
 
+    public TickingEffect(string effectName, bool effectOnDuration, float effectDuration, float effectTickCooldown) : base(effectName, effectOnDuration, effectDuration)
+    {
+        this.effectTickCooldown = effectTickCooldown;
+    }
+
     protected override bool updateEffect()
     {
         deltaTimeCounter += Time.deltaTime;

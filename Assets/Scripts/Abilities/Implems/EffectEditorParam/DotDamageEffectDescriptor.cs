@@ -11,6 +11,8 @@ public class DotDamageEffectDescriptor : EffectDescriptor
 
     public override Effect getNewEffect()
     {
-        return new DotDamageEffect(tickDamage, effectDuration, effectTickCooldown, tickOnStart);
+        DotDamageEffect e =  new DotDamageEffect(effectName, true, effectDuration, effectTickCooldown, tickDamage);
+        e.tickOnStart = tickOnStart;
+        return e;
     }
 }

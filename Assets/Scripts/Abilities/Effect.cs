@@ -22,6 +22,12 @@ public abstract class Effect
 
     public virtual bool onUpdate() { return false; }
 
+    public Effect(string effectName, bool effectOnDuration)
+    {
+        this.effectName = effectName;
+        this.effectOnDuration = effectOnDuration;
+    }
+
 
     /// <summary>
     /// Updates the effects in the list and returns the removed effects for complete and proper removal if needed

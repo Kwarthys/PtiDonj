@@ -11,7 +11,7 @@ public class InstantDamageEffect : Effect
         inflictDamage(damage);
     }
 
-    public InstantDamageEffect(float damage)
+    public InstantDamageEffect(string name, bool effectOnDuration, float damage) : base(name, effectOnDuration)
     {
         this.damage = damage;
     }

@@ -8,6 +8,11 @@ public class OnTimeEffect : Effect
 
     protected float deltaTimeCounter;
 
+    public OnTimeEffect(string effectName, bool effectOnDuration, float effectDuration) : base(effectName, effectOnDuration)
+    {
+        this.effectDuration = effectDuration;
+    }
+
     protected override bool updateEffect()
     {
         deltaTimeCounter += Time.deltaTime;

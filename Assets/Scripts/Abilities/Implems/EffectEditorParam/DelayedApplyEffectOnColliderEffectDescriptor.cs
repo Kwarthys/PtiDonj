@@ -17,16 +17,13 @@ public class DelayedApplyEffectOnColliderEffectDescriptor : EffectDescriptor
 
     public override Effect getNewEffect()
     {
-        DelayedApplyEffectOnColliderEffect effect = new DelayedApplyEffectOnColliderEffect();
+        DelayedApplyEffectOnColliderEffect effect = new DelayedApplyEffectOnColliderEffect(effectName, true, effectDuration);
 
         effect.targetsLayer = targetsLayer;
         effect.effectsToApply = effectsToApply;
         effect.colliderTriggers = colliderTriggers;
 
         effect.size = size;
-
-        effect.effectOnDuration = true;
-        effect.effectDuration = effectDuration;
 
         effect.associatedGameObject = gameObject;
 

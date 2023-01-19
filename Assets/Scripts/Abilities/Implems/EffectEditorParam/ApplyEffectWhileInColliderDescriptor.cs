@@ -19,19 +19,12 @@ public class ApplyEffectWhileInColliderDescriptor : EffectDescriptor
 
     public override Effect getNewEffect()
     {
-        ApplyEffectWhileInColliderEffect effect = new ApplyEffectWhileInColliderEffect();
+        ApplyEffectWhileInColliderEffect effect = new ApplyEffectWhileInColliderEffect(effectName, true, effectDuration, effectTickCooldown);
 
-        effect.effectDuration = this.effectDuration;
-        effect.effectOnDuration = true;
-        effect.effectTickCooldown = this.effectTickCooldown;
         effect.targetsLayer = this.targetsLayer;
-
-        effect.size = zoneSize;
-        
+        effect.size = zoneSize;        
         effect.colliderTriggers = this.colliderTriggers;
-
         effect.effectsToApply = this.effectsToApply;
-
         effect.associatedGameObject = gameObject;
 
         return effect;

@@ -8,6 +8,6 @@ public class InstantDamageEffectDescritor : EffectDescriptor
 
     public override Effect getNewEffect()
     {
-        return new InstantDamageEffect(damage);
+        return new InstantDamageEffect(effectName, true,damage);
     }
 }
