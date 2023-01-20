@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4228139189438976786}
+  - component: {fileID: 8409871384677358400}
   - component: {fileID: 8168085091699374511}
   - component: {fileID: 8221336453366479883}
   - component: {fileID: 4201873667405966642}
@@ -34,6 +35,18 @@ Transform:
   m_Father: {fileID: 5528280568063857269}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8409871384677358400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571033677096063429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464ec731d47b0ed44a38442b1ead8120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8168085091699374511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,10 +83,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: Effect
   tickOnStart: 1
-  tickCoolDown: 1
+  tickCoolDown: 0.5
   effectsToApply:
   - {fileID: 4201873667405966642}
-  effectDuration: 5
+  effectDuration: 3
 --- !u!114 &4201873667405966642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +102,7 @@ MonoBehaviour:
   effectName: Effect
   groundEffectPrefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40,
     type: 3}
+  needsWorldPosUpdate: 1
 --- !u!1 &3738697409307059959
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,8 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8341297ad94988f41975418f7e0f5127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities:
-  - {fileID: 8168085091699374511}
+  abilityTriggers: []
 --- !u!114 &5825245318181456640
 MonoBehaviour:
   m_ObjectHideFlags: 0

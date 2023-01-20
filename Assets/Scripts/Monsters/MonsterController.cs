@@ -40,11 +40,11 @@ public class MonsterController : MonoBehaviour
         if(Random.value > 0.995f)
         {
             target = null;
+        }
 
-            if(castAbilitiesDebug)
-            {
-                abilityManager.castAbility(0);
-            }
+        if (castAbilitiesDebug)
+        {
+            abilityManager.updateMonsterTriggers();
         }
     }
 
