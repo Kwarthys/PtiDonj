@@ -27,6 +27,7 @@ public class GameManager : NetworkBehaviour
     public GameObject groundZonePositionHintPrefab;
     public GameObject groundDamagingZoneMarkerPrefab;
     public GameObject groundWarningZoneMarkerPrefab;
+    public GameObject ExplosionVFXPrefab;
 
     private void Awake()
     {
@@ -67,10 +68,6 @@ public class GameManager : NetworkBehaviour
                 if(removedEffects[i].associatedGameObject != null)
                 {
                     NetworkServer.Destroy(removedEffects[i].associatedGameObject);
-                }
-                else
-                {
-                    Debug.LogWarning("GroundEffect " + removedEffects[i].effectName + " has no associated GameObject");
                 }
             }
         }

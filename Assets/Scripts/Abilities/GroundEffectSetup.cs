@@ -34,6 +34,7 @@ public class GroundEffectSetup : MonoBehaviour
         WarningZoneAnimator animator = marker.GetComponent<WarningZoneAnimator>();
 
         animator.animationDuration = ((OnTimeEffect)spawnedEffect).effectDuration;
+        animator.associatedGameObject = gameObject;
         GameManager.instance.registerAnimatedObject(animator);
 
         IColliderEffect colliderEffect = (IColliderEffect)spawnedEffect;

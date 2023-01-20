@@ -71,6 +71,7 @@ MonoBehaviour:
   tickDamage: 1
   effectDuration: 5
   effectTickCooldown: 1
+  tickOnStart: 0
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1ffb433fa28e541a105e1f20b2980e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 0
   type: 0
   targetLayer:
     serializedVersion: 2
@@ -172,8 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
+  groundEffectPrefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40,
     type: 3}
+  needsWorldPosUpdate: 0
 --- !u!1 &3852378756998237364
 GameObject:
   m_ObjectHideFlags: 0

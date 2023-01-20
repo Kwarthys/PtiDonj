@@ -26,6 +26,8 @@ public abstract class Ability : MonoBehaviour
     {
         manager = GetComponentInParent<AbilityManager>();
         ownerStats = GetComponentInParent<CharacterStats>();
+
+        lastCast = -cooldown;
     }
 
     public bool canCast()

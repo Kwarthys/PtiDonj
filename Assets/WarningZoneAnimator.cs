@@ -9,6 +9,8 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
     public float animationDuration;
     private float deltaTimeCounter = 0;
 
+    public GameObject associatedGameObject;
+
     private void Start()
     {
         MeshRenderer mr = GetComponent<MeshRenderer>();
@@ -16,7 +18,19 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
         mr.material = zoneMaterial;
     }
 
-    void IMyAnimator.destroy() {} //This is handled by the gameobject itself
+    void IMyAnimator.destroy()
+    {
+        //Destruction is NO LONGER handled by the attached effects, so we only instantiate the explosion animation AND DESTROY EFFECT
+        GameObject vfx = Instantiate(GameManager.instance.ExplosionVFXPrefab, transform.position, Quaternion.identity);
+        ExplosionVFXController vfxController = vfx.GetComponent<ExplosionVFXController>();
+        vfxController.setExplosionSize(transform.localScale.x);
+
+        if(associatedGameObject != null)
+        {
+            Destroy(associatedGameObject);
+        }
+    }
+
 
     bool IMyAnimator.updateAnimation()
     {

@@ -1392,6 +1392,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 5825245318181456655, guid: 88cd870e6712b024e8c3fe877377054a,
+        type: 3}
+      propertyPath: castAbilitiesDebug
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6230563668931222603, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}
       propertyPath: m_Enabled
@@ -1482,6 +1487,8 @@ MonoBehaviour:
   groundDamagingZoneMarkerPrefab: {fileID: 6563570190369477141, guid: 24f9b810e70e10240a228c817bf13a3c,
     type: 3}
   groundWarningZoneMarkerPrefab: {fileID: 7562037240279609054, guid: 4748d65aa74b9524ab07740d9b8fff7c,
+    type: 3}
+  ExplosionVFXPrefab: {fileID: 3447081770188818181, guid: 36a4f8596b41950408765e414c6f9aa6,
     type: 3}
 --- !u!4 &1490378061
 Transform:

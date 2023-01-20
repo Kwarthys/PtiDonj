@@ -6,7 +6,7 @@ public class DelayedApplyEffectOnColliderEffect : OnTimeEffect, IColliderEffect
 {
     public LayerMask targetsLayer;
 
-    public EffectDescriptor[] effectsToApply;
+    public EffectDescriptor[] effectsToApplyOnCharacters;
 
     public ColliderTriggerHandler colliderTriggers;
 
@@ -28,7 +28,7 @@ public class DelayedApplyEffectOnColliderEffect : OnTimeEffect, IColliderEffect
 
         for (int i = 0; i < characters.Count; i++)
         {
-            applyEffectsTo(characters[i], effectsToApply);
+            applyEffectsTo(characters[i], effectsToApplyOnCharacters);
         }
     }
 

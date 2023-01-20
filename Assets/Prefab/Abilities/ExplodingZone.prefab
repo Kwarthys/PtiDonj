@@ -67,10 +67,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   colliderTriggers: {fileID: 0}
-  effectsToApply:
+  effectsToApplyOnCharacters:
   - {fileID: -6239600518456634276}
   effectDuration: 2
-  size: 2
+  size: 4
+  gameManagerAutoRemove: 0
 --- !u!114 &-6239600518456634276
 MonoBehaviour:
   m_ObjectHideFlags: 0
