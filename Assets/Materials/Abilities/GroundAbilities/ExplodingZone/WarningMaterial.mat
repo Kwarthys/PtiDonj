@@ -37,6 +37,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _RemainingTimeHint: 1
     - _RotationSpeed: 3
     m_Colors: []
   m_BuildTextureStacks: []
