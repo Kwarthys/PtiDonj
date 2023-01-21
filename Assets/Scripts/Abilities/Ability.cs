@@ -20,7 +20,7 @@ public abstract class Ability : MonoBehaviour
     public EffectDescriptor[] groundEffects;
 
     protected AbilityManager manager;
-    protected CharacterStats ownerStats;
+    public CharacterStats ownerStats { get; protected set; }
 
     private void Start()
     {

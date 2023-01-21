@@ -20,6 +20,16 @@ public class CharacterStats : NetworkBehaviour
 
     public NetworkIdentity networkIdentity;
 
+    public float getCurrentLife()
+    {
+        return life;
+    }
+
+    public float getCurrentLifeRelative()
+    {
+        return life / maxLife;
+    }
+
     public void takeDamage(float amount, NetworkIdentity attacker, NetworkIdentity damaged)
     {
         life -= amount;
