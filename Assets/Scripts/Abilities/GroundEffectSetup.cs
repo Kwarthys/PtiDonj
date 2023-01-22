@@ -48,7 +48,7 @@ public class GroundEffectSetup : MonoBehaviour
         GameObject hint = Instantiate(GameManager.instance.groundZonePositionHintPrefab, groundModelsHolder);
 
         marker.transform.localScale = new Vector3(zoneSize, zoneSize, 1);
-        hint.transform.localScale = new Vector3(zoneSize/2, 1, zoneSize/2);
+        hint.transform.localScale = new Vector3(zoneSize, 1, zoneSize);
         hint.transform.position = spawnedEffect.effectWorldPos;
     }
 
