@@ -46,6 +46,8 @@ public class GroundEffectSetup : MonoBehaviour
         float zoneSize = colliderEffect.getZoneSize();
 
         GameObject hint = Instantiate(GameManager.instance.groundZonePositionHintPrefab, groundModelsHolder);
+        ZonePosHintController hintController = hint.GetComponent<ZonePosHintController>();
+        trigger.associatedHintZoneController = hintController;
 
         marker.transform.localScale = new Vector3(zoneSize, zoneSize, 1);
         hint.transform.localScale = new Vector3(zoneSize, 1, zoneSize);

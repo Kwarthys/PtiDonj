@@ -9,6 +9,8 @@ public class ColliderTriggerHandler : MonoBehaviour
     public ColliderCallback onTriggerEnterCallback = null;
     public ColliderCallback onTriggerExitCallback = null;
 
+    public ZonePosHintController associatedHintZoneController;
+
     private List<CharacterStats> targetsInside = new List<CharacterStats>();
 
     public List<CharacterStats> getTargetsInside(LayerMask mask)
@@ -35,6 +37,11 @@ public class ColliderTriggerHandler : MonoBehaviour
             if (!targetsInside.Contains(character))
             {
                 targetsInside.Add(character);
+
+                if(character.transform == GameManager.instance.localPlayerTransform)
+                {
+                    associatedHintZoneController.setPlayerInside(true);
+                }
             }
         }
 
@@ -50,6 +57,11 @@ public class ColliderTriggerHandler : MonoBehaviour
             if (targetsInside.Contains(character))
             {
                 targetsInside.Remove(character);
+
+                if (character.transform == GameManager.instance.localPlayerTransform)
+                {
+                    associatedHintZoneController.setPlayerInside(false);
+                }
             }
         }
 
