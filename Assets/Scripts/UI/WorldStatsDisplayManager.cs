@@ -11,9 +11,9 @@ public class WorldStatsDisplayManager : StatsDisplayManager
 
     protected override void updateDisplayOrientation()
     {
-        if(GameManager.instance.localPlayerTransform != null)
+        if(PlayerManager.instance.localPlayerTransform != null)
         {
-            transform.rotation = Quaternion.LookRotation(transform.position - GameManager.instance.localPlayerTransform.position);
+            transform.rotation = Quaternion.LookRotation(transform.position - PlayerManager.instance.localPlayerTransform.position);
         }
     }
 }

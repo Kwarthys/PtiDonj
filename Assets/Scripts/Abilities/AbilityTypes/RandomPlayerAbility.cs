@@ -9,7 +9,7 @@ public class RandomPlayerAbility : Ability
         AbilityTargetingData targeting = new AbilityTargetingData();
         targeting.didHit = false;
 
-        CharacterStats player = GameManager.instance.getRandomCharacter();
+        CharacterStats player = PlayerManager.instance.getRandomCharacter();
         if (player == null)
         {
             return targeting;

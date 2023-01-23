@@ -19,7 +19,7 @@ public class FloatingTextManager : MonoBehaviour
 
     public void spawnFloatingText(Vector3 pos, string text)
     {
-        Transform localPlayerTransform = GameManager.instance.localPlayerTransform;
+        Transform localPlayerTransform = PlayerManager.instance.localPlayerTransform;
 
         Vector2 randomVector = Random.insideUnitCircle.normalized;
         Vector3 randomVector3D = new Vector3(randomVector.x, Mathf.Abs(randomVector.y), 0);

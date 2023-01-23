@@ -37,9 +37,9 @@ public class PlayerSetup : NetworkBehaviour
 
             Cursor.lockState = CursorLockMode.Locked;
 
-            GameManager.instance.localPlayerTransform = transform;
+            PlayerManager.instance.localPlayerTransform = transform;
 
-            playerStats.registerNewDisplayManager(GameManager.instance.localPlayerHealthBar);
+            playerStats.registerNewDisplayManager(PlayerManager.instance.localPlayerHealthBar);
         }
     }
 
@@ -47,13 +47,13 @@ public class PlayerSetup : NetworkBehaviour
     {
         base.OnStartClient();
 
-        GameManager.instance.registerCharacter(networkIdentity.netId, playerStats);
+        PlayerManager.instance.registerCharacter(networkIdentity.netId, playerStats);
     }
 
     public override void OnStopClient()
     {
         base.OnStopClient();
 
-        GameManager.instance.removeCharacter(networkIdentity.netId);
+        PlayerManager.instance.removeCharacter(networkIdentity.netId);
     }
 }

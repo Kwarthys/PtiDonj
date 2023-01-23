@@ -50,7 +50,7 @@ public class MonsterController : MonoBehaviour
 
     private Transform choseNewTarget()
     {
-        CharacterStats player = GameManager.instance.getRandomCharacter();
+        CharacterStats player = PlayerManager.instance.getRandomCharacter();
         if(player == null)
         {
             return null;

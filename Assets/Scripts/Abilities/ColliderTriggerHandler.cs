@@ -38,7 +38,7 @@ public class ColliderTriggerHandler : MonoBehaviour
             {
                 targetsInside.Add(character);
 
-                if(character.transform == GameManager.instance.localPlayerTransform)
+                if(character.transform == PlayerManager.instance.localPlayerTransform)
                 {
                     associatedHintZoneController.setPlayerInside(true);
                 }
@@ -58,7 +58,7 @@ public class ColliderTriggerHandler : MonoBehaviour
             {
                 targetsInside.Remove(character);
 
-                if (character.transform == GameManager.instance.localPlayerTransform)
+                if (character.transform == PlayerManager.instance.localPlayerTransform)
                 {
                     associatedHintZoneController.setPlayerInside(false);
                 }

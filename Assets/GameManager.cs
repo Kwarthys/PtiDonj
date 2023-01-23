@@ -6,21 +6,11 @@ using Mirror;
 public class GameManager : NetworkBehaviour
 {
     [SerializeField]
-    private Dictionary<uint, CharacterStats> characters = new Dictionary<uint, CharacterStats>();
-
-    [SerializeField]
-    public List<MonsterController> monstersList = new List<MonsterController>(); //for now public and filled from editor, but will be filled automatically in the future
-
-    [SerializeField]
     private List<Effect> groundEffects = new List<Effect>();
 
     private List<IMyAnimator> animatedObjects = new List<IMyAnimator>();
 
     public static GameManager instance;
-
-    [HideInInspector]
-    public Transform localPlayerTransform;
-    public SelfStatsDisplayManager localPlayerHealthBar;
 
     public LayerMask groundLayer;
 
@@ -37,14 +27,24 @@ public class GameManager : NetworkBehaviour
 
     private void Update()
     {
-        foreach (KeyValuePair<uint, CharacterStats> pair in characters)
+        foreach (KeyValuePair<uint, CharacterStats> pair in PlayerManager.instance.playerCharacters)
         {
-            pair.Value.updateStats();
+            pair.Value.updateDisplay();
+
+            if(isServer)
+            {
+                pair.Value.updateStats();
+            }
         }
 
-        for (int i = 0; i < monstersList.Count; i++)
+        for (int i = 0; i < PlayerManager.instance.monstersList.Count; i++)
         {
-            monstersList[i].updateMonster();
+            PlayerManager.instance.monstersList[i].monsterStats.updateDisplay();
+
+            if(isServer)
+            {
+                PlayerManager.instance.monstersList[i].updateMonster();
+            }
         }
 
         for (int i = 0; i < animatedObjects.Count; i++)
@@ -71,37 +71,6 @@ public class GameManager : NetworkBehaviour
                 }
             }
         }
-    }
-
-    public void registerCharacter(uint netId, CharacterStats character)
-    {
-        characters.Add(netId, character);
-    }
-
-    public void removeCharacter(uint netId)
-    {
-        characters.Remove(netId);
-    }
-
-    public CharacterStats getCharacter(uint netId)
-    {
-        return characters[netId];
-    }
-
-    public CharacterStats getRandomCharacter()
-    {
-        if (characters.Count == 0) return null;
-
-        List<CharacterStats> charList = new List<CharacterStats>();
-
-        foreach(KeyValuePair<uint, CharacterStats> entry in characters)
-        {
-            charList.Add(entry.Value);
-        }
-
-        int r = (int)(Random.value * charList.Count);
-
-        return charList[r];
     }
     
 
@@ -133,7 +102,7 @@ public class GameManager : NetworkBehaviour
     {
         if(attacker != null)
         {
-            if(characters.ContainsKey(attacker.netId))
+            if(PlayerManager.instance.isPlayerRegistered(attacker.netId))
             {
                 //Attacker is a player, we need to show him his damages
                 TargetRpcSpawnFloatingText(attacker.connectionToClient, pos, text);
@@ -142,7 +111,7 @@ public class GameManager : NetworkBehaviour
 
         if(damaged != null)
         {
-            if(characters.ContainsKey(damaged.netId))
+            if(PlayerManager.instance.isPlayerRegistered(damaged.netId))
             {
                 //Damaged character is a player, we need to show him the damaged taken
                 //still unsure on how to display that, if if needs to be displayed at all

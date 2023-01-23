@@ -88,7 +88,10 @@ public class CharacterStats : NetworkBehaviour
     public void updateStats()
     {
         updateEffects();
+    }
 
+    public void updateDisplay()
+    {
         //Update UI
         displayManager.updateDisplay();
     }
