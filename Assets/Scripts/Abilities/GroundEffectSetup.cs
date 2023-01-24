@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class GroundEffectSetup : MonoBehaviour
+public class GroundEffectSetup : NetworkBehaviour
 {
     public enum MarkerType { damagingZone, WarningZone}
 
@@ -12,14 +13,27 @@ public class GroundEffectSetup : MonoBehaviour
 
     public EffectDescriptor mainEffect;
 
-    public Effect spawnedEffect = null;
+    private Effect spawnedEffect = null;
 
-    private void Start()
+    public bool gameManagerAutoRemove = true;
+
+    public void initialize(Effect spawnedEffect)
     {
-        setupGroundMarkers();
+        if(isServer)
+        {
+            this.spawnedEffect = spawnedEffect;
+            float effectDuration = ((OnTimeEffect)spawnedEffect).effectDuration;
+            IColliderEffect colliderEffect = (IColliderEffect)spawnedEffect;
+            float zoneSize = colliderEffect.getZoneSize();
+
+            ClientRPCSetupGroundMarkers(effectDuration, zoneSize);
+
+            spawnedEffect.associatedGameObject = gameManagerAutoRemove ? gameObject : null;
+        }
     }
 
-    public void setupGroundMarkers()
+    [ClientRpc]
+    public void ClientRPCSetupGroundMarkers(float effectDuration, float zoneSize)
     {
         GameObject holder = new GameObject("ModelsHolder");
         groundModelsHolder = holder.transform;
@@ -28,30 +42,36 @@ public class GroundEffectSetup : MonoBehaviour
 
         GameObject markerPrefab = getGroundMarker();
 
-        GameObject marker = Instantiate(markerPrefab, spawnedEffect.effectWorldPos + Vector3.up * 0.01f, markerPrefab.transform.rotation, groundModelsHolder);
+        //GameObject marker = Instantiate(markerPrefab, spawnedEffect.effectWorldPos + Vector3.up * 0.01f, markerPrefab.transform.rotation, groundModelsHolder);
+        GameObject marker = Instantiate(markerPrefab, transform.position + Vector3.up * 0.01f, markerPrefab.transform.rotation, groundModelsHolder);
 
         ColliderTriggerHandler trigger = marker.GetComponent<ColliderTriggerHandler>();
         WarningZoneAnimator animator = marker.GetComponent<WarningZoneAnimator>();
 
         if(animator != null)
         {
-            animator.animationDuration = ((OnTimeEffect)spawnedEffect).effectDuration;
-            animator.associatedGameObject = gameObject;
+            animator.initialize(effectDuration, gameObject);
             GameManager.instance.registerAnimatedObject(animator);
+
+            Debug.Log("Setting marker for " + effectDuration + "s and GO: " + gameObject);
         }
 
-        IColliderEffect colliderEffect = (IColliderEffect)spawnedEffect;
-
-        colliderEffect.registerColliderTrigger(trigger);
-        float zoneSize = colliderEffect.getZoneSize();
+        if(isServer) //spawnedEffect will be null on clients, where we don't need that link
+        {
+            IColliderEffect colliderEffect = (IColliderEffect)spawnedEffect;
+            colliderEffect.registerColliderTrigger(trigger);
+            Debug.Log("Linked");
+        }
 
         GameObject hint = Instantiate(GameManager.instance.groundZonePositionHintPrefab, groundModelsHolder);
         ZonePosHintController hintController = hint.GetComponent<ZonePosHintController>();
+        hintController.initialize();
         trigger.associatedHintZoneController = hintController;
 
         marker.transform.localScale = new Vector3(zoneSize, zoneSize, 1);
         hint.transform.localScale = new Vector3(zoneSize, 1, zoneSize);
-        hint.transform.position = spawnedEffect.effectWorldPos;
+        //hint.transform.position = spawnedEffect.effectWorldPos;
+        hint.transform.position = transform.position;
     }
 
     private GameObject getGroundMarker()

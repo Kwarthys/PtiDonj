@@ -15,8 +15,6 @@ public class DelayedApplyEffectOnColliderEffectDescriptor : EffectDescriptor
 
     public float size;
 
-    public bool gameManagerAutoRemove = true;
-
     public override Effect getNewEffect()
     {
         DelayedApplyEffectOnColliderEffect effect = new DelayedApplyEffectOnColliderEffect(effectName, true, effectDuration);
@@ -27,7 +25,7 @@ public class DelayedApplyEffectOnColliderEffectDescriptor : EffectDescriptor
 
         effect.size = size;
 
-        effect.associatedGameObject = gameManagerAutoRemove ? gameObject: null;
+        effect.associatedGameObject = gameObject;
 
         return effect;
     }

@@ -20,6 +20,7 @@ public class SpawnGroundEffectEffect : Effect
         e.caster = caster;
         e.effectWorldPos = effectWorldPos;
         GameManager.instance.addGroundEffect(e);
-        setup.spawnedEffect = e;
+
+        setup.initialize(e);
     }
 }

@@ -48,8 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66698578b1548b84fb7d500b77559908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   markerType: 1
   mainEffect: {fileID: 6666765595785659222}
+  gameManagerAutoRemove: 0
 --- !u!114 &6666765595785659222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +75,6 @@ MonoBehaviour:
   - {fileID: -6239600518456634276}
   effectDuration: 2
   size: 4
-  gameManagerAutoRemove: 0
 --- !u!114 &-6239600518456634276
 MonoBehaviour:
   m_ObjectHideFlags: 0

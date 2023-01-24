@@ -47,27 +47,49 @@ public class GameManager : NetworkBehaviour
             }
         }
 
+        List<IMyAnimator> toRemove = null;
+
         for (int i = 0; i < animatedObjects.Count; i++)
         {
-            if(!animatedObjects[i].updateAnimation())
+            bool keepAnimation = animatedObjects[i].updateAnimation();
+
+            if (!keepAnimation)
+            {
+                if(toRemove == null)
+                {
+                    toRemove = new List<IMyAnimator>();
+                }
+
+                Debug.Log("Destroying at " + (i + 1) + "/" + animatedObjects.Count);
+                toRemove.Add(animatedObjects[i]);
+            }
+        }
+
+        if(toRemove != null)
+        {
+            for (int i = 0; i < toRemove.Count; i++)
             {
                 animatedObjects[i].destroy();
                 animatedObjects.RemoveAt(i);
-                i--;
+                animatedObjects.Remove(toRemove[i]);
             }
         }
     }
 
     private void FixedUpdate()
     {
-        List<Effect> removedEffects = Effect.updateEffects(groundEffects);
-        if(removedEffects != null)
+        if(isServer)
         {
-            for (int i = 0; i < removedEffects.Count; i++)
+            List<Effect> removedEffects = Effect.updateEffects(groundEffects);
+            if(removedEffects != null)
             {
-                if(removedEffects[i].associatedGameObject != null)
+                for (int i = 0; i < removedEffects.Count; i++)
                 {
-                    NetworkServer.Destroy(removedEffects[i].associatedGameObject);
+                    if(removedEffects[i].associatedGameObject != null)
+                    {
+                        Debug.Log("GM Removing " + removedEffects[i].associatedGameObject.name);
+                        NetworkServer.Destroy(removedEffects[i].associatedGameObject);
+                    }
                 }
             }
         }

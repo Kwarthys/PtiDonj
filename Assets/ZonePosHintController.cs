@@ -11,7 +11,7 @@ public class ZonePosHintController : MonoBehaviour
         zoneMaterial.SetFloat("_Opacity", state ? 1 : 0);
     }
 
-    private void Start()
+    public void initialize()
     {
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         zoneMaterial = new Material(renderer.material);
