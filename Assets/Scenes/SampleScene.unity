@@ -1396,7 +1396,7 @@ PrefabInstance:
     - target: {fileID: 5825245318181456655, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}
       propertyPath: castAbilitiesDebug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6230563668931222603, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}

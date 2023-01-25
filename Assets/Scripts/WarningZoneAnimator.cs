@@ -27,46 +27,69 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
         associatedGameObject.name = id;
 
         debugCounter++;
-
-        Debug.Log("Setup " + associatedGameObject + " (" + id + ")");
     }
 
-    void IMyAnimator.destroy()
+    void IMyAnimator.destroyAnimator()
     {
-        Debug.Log("Destroying " + associatedGameObject + " (" + id + ")");
+        //Debug.Log("Destroying " + associatedGameObject + " (" + id + ")");
         //Destruction is NO LONGER handled by the attached effects, so we only instantiate the explosion animation AND DESTROY EFFECT
-        GameObject vfx = Instantiate(GameManager.instance.ExplosionVFXPrefab, transform.position, Quaternion.identity);
-        ExplosionVFXController vfxController = vfx.GetComponent<ExplosionVFXController>();
-        vfxController.setExplosionSize(transform.localScale.x);
 
         if(associatedGameObject != null)
         {
-            Debug.Log("Destroyed " + associatedGameObject + " (" + id + ")");
+            GameObject vfx = Instantiate(GameManager.instance.ExplosionVFXPrefab, transform.position, Quaternion.identity);
+            ExplosionVFXController vfxController = vfx.GetComponent<ExplosionVFXController>();
+            vfxController.setExplosionSize(transform.localScale.x);
+
+            //Debug.Log("Destroyed " + associatedGameObject + " (" + id + ")");
             Destroy(associatedGameObject);
         }
         else
         {
-            Debug.LogWarning("null associatedGameObject");
+            //this should not happen, but as it does, this will prevent errors
+            Debug.LogWarning("null associatedGameObject while in IMyAnimator.destroy()");
         }
     }
 
+    /*
     private void OnDestroy()
     {
         Debug.Log("ONDESTROY on " + associatedGameObject + " (" + id + ")");
-    }
+    }*/
 
 
     bool IMyAnimator.updateAnimation()
     {
+        /*
+        bool sendDebug = false;
+        string debug = "";
+
         if(associatedGameObject == null)
         {
-            Debug.Log("Updating " + associatedGameObject + " (" + id + ")");
+            debug += ("Updating " + associatedGameObject + " (" + id + ")");
+            sendDebug = true;
         }
+        */
 
         deltaTimeCounter += Time.deltaTime;
 
         zoneMaterial.SetFloat("_RemainingTimeHint", deltaTimeCounter / animationDuration);
+       
+        /*
+        if(!(deltaTimeCounter / animationDuration < 1))
+        {
+            if(sendDebug)
+            {
+                debug += " - ";
+            }
+            debug += ("Animation finished");
+            sendDebug = true;
+        }
 
+        if(sendDebug)
+        {
+            Debug.Log(debug);
+        }
+        */
         return deltaTimeCounter / animationDuration < 1;
     }
 }

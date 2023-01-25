@@ -53,7 +53,7 @@ public class FloatingTextAnimator : MonoBehaviour, IMyAnimator
         return true;
     }
 
-    public void destroy()
+    public void destroyAnimator()
     {
         Destroy(gameObject);
     }

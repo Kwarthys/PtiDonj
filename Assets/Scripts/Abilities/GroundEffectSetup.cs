@@ -53,14 +53,14 @@ public class GroundEffectSetup : NetworkBehaviour
             animator.initialize(effectDuration, gameObject);
             GameManager.instance.registerAnimatedObject(animator);
 
-            Debug.Log("Setting marker for " + effectDuration + "s and GO: " + gameObject);
+            //Debug.Log("Setting marker for " + effectDuration + "s and GO: " + gameObject);
         }
 
         if(isServer) //spawnedEffect will be null on clients, where we don't need that link
         {
             IColliderEffect colliderEffect = (IColliderEffect)spawnedEffect;
             colliderEffect.registerColliderTrigger(trigger);
-            Debug.Log("Linked");
+            //Debug.Log("Linked");
         }
 
         GameObject hint = Instantiate(GameManager.instance.groundZonePositionHintPrefab, groundModelsHolder);

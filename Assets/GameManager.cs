@@ -60,7 +60,7 @@ public class GameManager : NetworkBehaviour
                     toRemove = new List<IMyAnimator>();
                 }
 
-                Debug.Log("Destroying at " + (i + 1) + "/" + animatedObjects.Count);
+                //Debug.Log("Destroying at " + (i + 1) + "/" + animatedObjects.Count);
                 toRemove.Add(animatedObjects[i]);
             }
         }
@@ -69,7 +69,7 @@ public class GameManager : NetworkBehaviour
         {
             for (int i = 0; i < toRemove.Count; i++)
             {
-                animatedObjects[i].destroy();
+                animatedObjects[i].destroyAnimator();
                 animatedObjects.RemoveAt(i);
                 animatedObjects.Remove(toRemove[i]);
             }
@@ -83,22 +83,29 @@ public class GameManager : NetworkBehaviour
             List<Effect> removedEffects = Effect.updateEffects(groundEffects);
             if(removedEffects != null)
             {
+                //RpcSendDebugLog(removedEffects.Count + " GM effects to remove");
+
                 for (int i = 0; i < removedEffects.Count; i++)
                 {
                     if(removedEffects[i].associatedGameObject != null)
                     {
+                        //RpcSendDebugLog("Network destroyed " + removedEffects[i].associatedGameObject.name);
                         Debug.Log("GM Removing " + removedEffects[i].associatedGameObject.name);
                         NetworkServer.Destroy(removedEffects[i].associatedGameObject);
-                    }
+                    }/*
+                    else
+                    {
+                        RpcSendDebugLog("Prevented a network destroy");
+                    }*/
                 }
             }
         }
     }
-    
 
-    public void removeGroundEffect(Effect effect)
+    [ClientRpc]
+    public void RpcSendDebugLog(string debugString) //debug
     {
-        groundEffects.Remove(effect);
+        Debug.Log(debugString);
     }
 
     public void addGroundEffect(Effect effect)

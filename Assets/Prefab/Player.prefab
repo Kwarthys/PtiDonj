@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1005315451}
   - component: {fileID: 1005315449}
-  - component: {fileID: 3320412963004399586}
+  - component: {fileID: 1453896692489255617}
   m_Layer: 6
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -51,11 +51,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   selfOnlyIfTarget: 0
-  targetEffects:
-  - {fileID: 3320412963004399586}
+  targetEffects: []
   selfEffects: []
-  groundEffects: []
---- !u!114 &3320412963004399586
+  groundEffects:
+  - {fileID: 1453896692489255617}
+--- !u!114 &1453896692489255617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,14 +64,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005315448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b11cede626f92d046a6b89f23fd188a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  tickDamage: 1
-  effectDuration: 5
-  effectTickCooldown: 1
-  tickOnStart: 0
+  groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
+    type: 3}
+  needsWorldPosUpdate: 0
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0

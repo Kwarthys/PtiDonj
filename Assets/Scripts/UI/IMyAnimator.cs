@@ -10,5 +10,5 @@ public interface IMyAnimator
     /// <returns>False if the animation has completed</returns>
     public bool updateAnimation();
 
-    public void destroy();
+    public void destroyAnimator();
 }
