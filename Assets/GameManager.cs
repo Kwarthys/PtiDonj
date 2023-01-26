@@ -47,6 +47,11 @@ public class GameManager : NetworkBehaviour
             }
         }
 
+        if(ErrorMessageController.instance.needsAnimationUpdate())
+        {
+            ErrorMessageController.instance.updateAnimation();
+        }
+
         List<IMyAnimator> toRemove = null;
 
         for (int i = 0; i < animatedObjects.Count; i++)
@@ -90,7 +95,7 @@ public class GameManager : NetworkBehaviour
                     if(removedEffects[i].associatedGameObject != null)
                     {
                         //RpcSendDebugLog("Network destroyed " + removedEffects[i].associatedGameObject.name);
-                        Debug.Log("GM Removing " + removedEffects[i].associatedGameObject.name);
+                        //Debug.Log("GM Removing " + removedEffects[i].associatedGameObject.name);
                         NetworkServer.Destroy(removedEffects[i].associatedGameObject);
                     }/*
                     else
