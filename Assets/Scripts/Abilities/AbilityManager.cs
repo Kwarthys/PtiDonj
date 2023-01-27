@@ -26,7 +26,7 @@ public class AbilityManager : NetworkBehaviour
     [Command]
     public void CmdCastBasicAbility()
     {
-        if(basicAbility.canCast())
+        if(basicAbility.canCastAbility())
         {
             basicAbility.tryCastAbility();
         }
@@ -43,9 +43,22 @@ public class AbilityManager : NetworkBehaviour
     [Command]
     public void CmdCastSecondBasicAbility()
     {
-        if(secondBasicAbility.canCast())
+        if(secondBasicAbility.canCastAbility())
         {
             secondBasicAbility.tryCastAbility();
+        }
+    }
+
+    public void updateAbilities()
+    {
+        if(basicAbility.needsUpdate())
+        {
+            basicAbility.onAbilityUpdate();
+        }        
+
+        if (secondBasicAbility.needsUpdate())
+        {
+            secondBasicAbility.onAbilityUpdate();
         }
     }
 }

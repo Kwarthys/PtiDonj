@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public Transform cameraHolder;
 
+    public CharacterStats associatedPlayer;
+
     private void Start()
     {
         lastRotations = new Vector2[frameToSmooth];
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement3D = new Vector3(lastMovement.x, 0, lastMovement.y) * speed * Time.deltaTime;
         transform.Translate(movement3D);
+
+        associatedPlayer.moving = lastMovement.sqrMagnitude > 0;
     }
 
     private Vector2 smoothMovement(Vector2 lastSeeMovement)

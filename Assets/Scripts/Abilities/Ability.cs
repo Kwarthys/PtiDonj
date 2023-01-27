@@ -6,7 +6,9 @@ using Mirror;
 public abstract class Ability : MonoBehaviour
 {
     public float cooldown = 1;
-    private float lastCast = -1;
+    protected bool canCast = true;
+    protected float cooldownDeltaTimeCounter = 0;
+
     public enum AbilityType { Basic, Combat, Movement, Finisher}
 
     public AbilityType type;
@@ -26,38 +28,52 @@ public abstract class Ability : MonoBehaviour
     {
         manager = GetComponentInParent<AbilityManager>();
         ownerStats = GetComponentInParent<CharacterStats>();
-
-        lastCast = -cooldown;
     }
 
-    public bool canCast()
+    public virtual void onAbilityUpdate()
     {
-        return Time.realtimeSinceStartup - lastCast > cooldown;
+        if (canCast) return;
+
+        cooldownDeltaTimeCounter += Time.deltaTime;
+        if(cooldownDeltaTimeCounter > cooldown)
+        {
+            canCast = true;
+            cooldownDeltaTimeCounter = 0;
+        }
     }
 
-    public bool tryCastAbility()
+    public virtual bool needsUpdate()
     {
-        bool casted = false;
+        return !canCast;
+    }
 
-        if (canCast())
+    public virtual bool canCastAbility()
+    {
+        return canCast;
+    }
+
+    public virtual bool tryCastAbility()
+    {
+        if (canCast)
         {
             AbilityTargetingData targeting = computeTargeting();
 
-            casted = true;
-            lastCast = Time.realtimeSinceStartup;
+            canCast = false;
 
             applyAbility(targeting);
 
             //for additional effect such as dash or complex logic
             onCast();
+
+            return true;
         }
 
-        return casted;
+        return false;
     }
 
     protected abstract AbilityTargetingData computeTargeting();
 
-    private void applyAbility(AbilityTargetingData targeting)
+    protected void applyAbility(AbilityTargetingData targeting)
     {
         if (!selfOnlyIfTarget || targeting.charHit != null) //only apply if we don't need a target to do so, or if we do have a target
         {

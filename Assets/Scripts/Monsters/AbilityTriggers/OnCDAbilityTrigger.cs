@@ -6,6 +6,6 @@ public class OnCDAbilityTrigger : MonsterAbilityTrigger
 {
     public override bool isTriggerValid()
     {
-        return linkedAbility.canCast();
+        return linkedAbility.canCastAbility();
     }
 }

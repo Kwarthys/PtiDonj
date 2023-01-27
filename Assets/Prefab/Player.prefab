@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1005315451}
-  - component: {fileID: 1005315449}
+  - component: {fileID: 8851823824815168547}
   - component: {fileID: 1453896692489255617}
+  - component: {fileID: 9126553349831644882}
   m_Layer: 6
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Father: {fileID: 1049237760}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1005315449
+--- !u!114 &8851823824815168547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,19 +43,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005315448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1ffb433fa28e541a105e1f20b2980e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f95bebb02396c643b94af8bcb4f4880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 3
   type: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
   selfOnlyIfTarget: 0
-  targetEffects: []
+  targetEffects:
+  - {fileID: 9126553349831644882}
   selfEffects: []
   groundEffects:
   - {fileID: 1453896692489255617}
+  castTime: 2
 --- !u!114 &1453896692489255617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +74,20 @@ MonoBehaviour:
   groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
     type: 3}
   needsWorldPosUpdate: 0
+--- !u!114 &9126553349831644882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005315448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ed0fff51d1ff145b4ae7f4b3c6072b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: Effect
+  damage: 10
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +468,7 @@ MonoBehaviour:
   rotationVerticalClamps: {x: -45, y: 45}
   rotationHorizontalClamps: {x: 0, y: 0}
   cameraHolder: {fileID: 3852378757287495124}
+  associatedPlayer: {fileID: 1620960983934713654}
 --- !u!114 &3852378758719500947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +599,8 @@ MonoBehaviour:
   maxLife: 100
   displayManager: {fileID: 88038857143686158}
   networkIdentity: {fileID: 3454651033889386043}
+  abilityManager: {fileID: 4395670705419160430}
+  moving: 0
 --- !u!114 &4395670705419160430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,7 +616,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  basicAbility: {fileID: 1005315449}
+  basicAbility: {fileID: 8851823824815168547}
   secondBasicAbility: {fileID: 9020783451331779710}
   visor: {fileID: 3852378757287495124}
   selfStats: {fileID: 1620960983934713654}

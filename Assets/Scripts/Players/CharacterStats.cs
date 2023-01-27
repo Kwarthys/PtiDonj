@@ -20,6 +20,10 @@ public class CharacterStats : NetworkBehaviour
 
     public NetworkIdentity networkIdentity;
 
+    public AbilityManager abilityManager;
+
+    public bool moving = false;
+
     public float getCurrentLife()
     {
         return life;
@@ -88,6 +92,11 @@ public class CharacterStats : NetworkBehaviour
     public void updateStats()
     {
         updateEffects();
+
+        if(abilityManager != null) //will only be true on players, not monsters (yet ?)
+        {
+            abilityManager.updateAbilities();
+        }
     }
 
     public void updateDisplay()
