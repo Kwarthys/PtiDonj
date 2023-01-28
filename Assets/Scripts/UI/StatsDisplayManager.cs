@@ -5,6 +5,7 @@ using UnityEngine;
 public class StatsDisplayManager : MonoBehaviour
 {
     public LifeDisplayController lifeDisplayController;
+    public CastBarDisplayController castBarDisplayController;
 
     protected bool needsOrientationUpdate = false;
 
@@ -13,11 +14,26 @@ public class StatsDisplayManager : MonoBehaviour
         lifeDisplayController.updateLifeDisplay(lifePercent, lifeReal, bypassAnimation);
     }
 
+    public void setCastBar(float animationDuration, string text, CastBarDisplayController.FillMode fillMode)
+    {
+        castBarDisplayController.setupAnimationAndPlay(animationDuration, text, fillMode);
+    }
+
+    public void interruptCastBar()
+    {
+        castBarDisplayController.interruptCastBar();
+    }
+
     public void updateDisplay()
     {
         if (lifeDisplayController.needsUpdate)
         {
             lifeDisplayController.updateDisplayAnimation();
+        }
+
+        if(castBarDisplayController.needsUpdate)
+        {
+            castBarDisplayController.updateAnimation();
         }
 
         if(needsOrientationUpdate)

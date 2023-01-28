@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 5
+  abilityName: Ability
   type: 0
   targetLayer:
     serializedVersion: 2
@@ -260,6 +261,8 @@ MonoBehaviour:
   maxLife: 1000
   displayManager: {fileID: 7826102989446278344}
   networkIdentity: {fileID: 5825245318181456640}
+  abilityManager: {fileID: 0}
+  moving: 0
 --- !u!114 &5825245318181456655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0
+  abilityName: Ability
   type: 0
   targetLayer:
     serializedVersion: 2
@@ -518,21 +522,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
         type: 3}
@@ -580,41 +569,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953168117900253, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953168117900253, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953168117900253, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953168117900253, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953168117900253, guid: df697810ff61691439b11925a95b831d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3119953168117900253, guid: df697810ff61691439b11925a95b831d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0

@@ -16,6 +16,8 @@ public class RaycastedDelayedAbility : RaycastedAbility
             canCast = false;
             delayDeltaTimeCounter = 0;
             cooldownDeltaTimeCounter = 0;
+
+            ownerStats.setupCastBarAnimation(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
         }
 
         return casting;
@@ -43,6 +45,7 @@ public class RaycastedDelayedAbility : RaycastedAbility
             if (ownerStats.moving)
             {
                 casting = false; //Interrupted
+                ownerStats.interruptCastBarAnimation();
                 ErrorMessageController.instance.showText("Cast interrupted, stay still !");
             }
 

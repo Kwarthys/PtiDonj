@@ -9,6 +9,7 @@ public abstract class Ability : MonoBehaviour
     protected bool canCast = true;
     protected float cooldownDeltaTimeCounter = 0;
 
+    public string abilityName = "Ability";
     public enum AbilityType { Basic, Combat, Movement, Finisher}
 
     public AbilityType type;

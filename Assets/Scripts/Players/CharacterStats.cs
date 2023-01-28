@@ -83,6 +83,16 @@ public class CharacterStats : NetworkBehaviour
         updateLifeDisplayHook(-1, life);
     }
 
+    public void setupCastBarAnimation(float animationDuration, string text, CastBarDisplayController.FillMode fillMode)
+    {
+        displayManager.setCastBar(animationDuration, text, fillMode);
+    }
+
+    public void interruptCastBarAnimation()
+    {
+        displayManager.interruptCastBar();
+    }
+
     public void registerNewDisplayManager(StatsDisplayManager newManager)
     {
         displayManager = newManager;
