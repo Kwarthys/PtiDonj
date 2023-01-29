@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 public abstract class Ability : MonoBehaviour
 {
+    public Sprite image;
+
     public float cooldown = 1;
     protected bool canCast = true;
     protected float cooldownDeltaTimeCounter = 0;
@@ -21,6 +24,8 @@ public abstract class Ability : MonoBehaviour
     public EffectDescriptor[] targetEffects;
     public EffectDescriptor[] selfEffects;
     public EffectDescriptor[] groundEffects;
+
+    public AbilityWidgetController associatedWidget;
 
     protected AbilityManager manager;
     public CharacterStats ownerStats { get; protected set; }
@@ -125,5 +130,22 @@ public abstract class Ability : MonoBehaviour
         Debug.DrawLine(worldPoint + Vector3.left, worldPoint + Vector3.right * 2, Color.red, 5);
         Debug.DrawLine(worldPoint + Vector3.forward, worldPoint + Vector3.back * 2, Color.blue, 5);
         Debug.DrawLine(worldPoint + Vector3.up, worldPoint + Vector3.down * 2, Color.yellow, 5);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>Vector2 [cooldown, relativeCooldown]</returns>
+    public virtual Vector2 getCooldownData()
+    {
+        if(canCast)
+        {
+            return new Vector2(-1, -1);
+        }
+        else
+        {
+            float timeLeft = cooldown - cooldownDeltaTimeCounter;
+            return new Vector2(Mathf.Ceil(timeLeft), timeLeft / cooldown);
+        }
     }
 }

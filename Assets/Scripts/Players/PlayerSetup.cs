@@ -40,6 +40,8 @@ public class PlayerSetup : NetworkBehaviour
             PlayerManager.instance.localPlayerTransform = transform;
 
             playerStats.registerNewDisplayManager(PlayerManager.instance.localPlayerHealthBar);
+
+            playerStats.abilityManager.setupLocalPlayerAbilityDisplay();
         }
     }
 

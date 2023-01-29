@@ -18,6 +18,8 @@ public class GameManager : NetworkBehaviour
     public GameObject groundDamagingZoneMarkerPrefab;
     public GameObject groundWarningZoneMarkerPrefab;
     public GameObject ExplosionVFXPrefab;
+    public GameObject abilityWidgetPrefab;
+    public Transform abilityWidgetsHolder;
 
     private void Awake()
     {

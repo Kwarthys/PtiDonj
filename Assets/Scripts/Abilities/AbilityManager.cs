@@ -15,20 +15,43 @@ public class AbilityManager : NetworkBehaviour
 
     public LayerMask groundLayer;
 
+    private List<AbilityWidgetController> widgets = new List<AbilityWidgetController>();
+
+    public void setupLocalPlayerAbilityDisplay()
+    {
+        GameObject widgetPrefab = GameManager.instance.abilityWidgetPrefab;
+        Transform holder = GameManager.instance.abilityWidgetsHolder;
+
+        AbilityWidgetController w;
+
+        w = Instantiate(widgetPrefab, holder).GetComponent<AbilityWidgetController>();
+        w.setup(basicAbility);
+        widgets.Add(w);
+
+        w = Instantiate(widgetPrefab, holder).GetComponent<AbilityWidgetController>();
+        w.setup(secondBasicAbility);
+        widgets.Add(w);
+    }
+
     public void castBasicAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            CmdCastBasicAbility();
+            CmdCastBasicAbility(selfStats.netIdentity);
         }
     }
 
     [Command]
-    public void CmdCastBasicAbility()
+    public void CmdCastBasicAbility(NetworkIdentity caster)
     {
         if(basicAbility.canCastAbility())
         {
-            basicAbility.tryCastAbility();
+            bool fired = basicAbility.tryCastAbility();
+
+            if(fired)
+            {
+                TargetRpcNotifyAbilityFired(caster.connectionToClient, 0);
+            }
         }
     }
 
@@ -36,17 +59,39 @@ public class AbilityManager : NetworkBehaviour
     {
         if (context.performed)
         {
-            CmdCastSecondBasicAbility();
+            CmdCastSecondBasicAbility(selfStats.netIdentity);
         }
     }
 
     [Command]
-    public void CmdCastSecondBasicAbility()
+    public void CmdCastSecondBasicAbility(NetworkIdentity caster)
     {
         if(secondBasicAbility.canCastAbility())
         {
-            secondBasicAbility.tryCastAbility();
+            bool fired = secondBasicAbility.tryCastAbility();
+
+            if(fired)
+            {
+                TargetRpcNotifyAbilityFired(caster.connectionToClient, 1);
+            }
         }
+    }
+
+    [TargetRpc]
+    public void TargetRpcNotifyAbilityFired(NetworkConnection target, int abilityIndex)
+    {
+        Ability fired;
+
+        if(abilityIndex == 0)
+        {
+            fired = basicAbility;
+        }
+        else
+        {
+            fired = secondBasicAbility;
+        }
+
+        fired.associatedWidget.abilityFired();
     }
 
     public void updateAbilities()
@@ -59,6 +104,14 @@ public class AbilityManager : NetworkBehaviour
         if (secondBasicAbility.needsUpdate())
         {
             secondBasicAbility.onAbilityUpdate();
+        }
+
+        for (int i = 0; i < widgets.Count; i++)
+        {
+            if(widgets[i].needsUpdate)
+            {
+                widgets[i].updateAnimation();
+            }
         }
     }
 }

@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f95bebb02396c643b94af8bcb4f4880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 14eaa0cbb3f46404a8d5ed3c7bf87e05, type: 3}
   cooldown: 3
+  abilityName: Ability
   type: 0
   targetLayer:
     serializedVersion: 2
@@ -57,6 +59,7 @@ MonoBehaviour:
   selfEffects: []
   groundEffects:
   - {fileID: 1453896692489255617}
+  associatedWidget: {fileID: 0}
   castTime: 2
 --- !u!114 &1453896692489255617
 MonoBehaviour:
@@ -166,7 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1ffb433fa28e541a105e1f20b2980e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
+  image: {fileID: 21300000, guid: a238b267c895f6c44aa6bc50d2ba6b3b, type: 3}
+  cooldown: 1
+  abilityName: Ability
   type: 0
   targetLayer:
     serializedVersion: 2
@@ -176,6 +181,7 @@ MonoBehaviour:
   selfEffects: []
   groundEffects:
   - {fileID: 5927845191951810014}
+  associatedWidget: {fileID: 0}
 --- !u!114 &5927845191951810014
 MonoBehaviour:
   m_ObjectHideFlags: 0
