@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
 {
@@ -9,7 +10,7 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
     public float animationDuration;
     private float deltaTimeCounter = 0;
 
-    private GameObject associatedGameObject;
+    public GameObject associatedGameObject;
 
     private static int debugCounter = 0;
     private string id = "";
@@ -29,9 +30,9 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
         debugCounter++;
     }
 
-    void IMyAnimator.destroyAnimator()
+    public void destroyAnimator()
     {
-        //Debug.Log("Destroying " + associatedGameObject + " (" + id + ")");
+        Debug.Log("MYANIMATOR Destroying " + associatedGameObject + " (" + id + ")");
         //Destruction is NO LONGER handled by the attached effects, so we only instantiate the explosion animation AND DESTROY EFFECT
 
         if(associatedGameObject != null)
@@ -41,23 +42,24 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
             vfxController.setExplosionSize(transform.localScale.x);
 
             //Debug.Log("Destroyed " + associatedGameObject + " (" + id + ")");
-            Destroy(associatedGameObject);
+
+            NetworkServer.Destroy(associatedGameObject);
         }
         else
         {
             //this should not happen, but as it does, this will prevent errors
-            Debug.LogWarning("null associatedGameObject while in IMyAnimator.destroy()");
+            Debug.LogWarning("null associatedGameObject while in IMyAnimator.destroy() " + id);
         }
     }
 
-    /*
+    
     private void OnDestroy()
     {
         Debug.Log("ONDESTROY on " + associatedGameObject + " (" + id + ")");
-    }*/
+    }
 
 
-    bool IMyAnimator.updateAnimation()
+    public bool updateAnimation()
     {
         /*
         bool sendDebug = false;

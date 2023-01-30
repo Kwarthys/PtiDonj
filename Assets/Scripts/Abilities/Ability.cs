@@ -48,6 +48,12 @@ public abstract class Ability : MonoBehaviour
         }
     }
 
+    public void notifyAbilityFired()
+    {
+        canCast = false;
+        cooldownDeltaTimeCounter = 0;
+    }
+
     public virtual bool needsUpdate()
     {
         return !canCast;

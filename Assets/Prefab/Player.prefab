@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 21300000, guid: a238b267c895f6c44aa6bc50d2ba6b3b, type: 3}
-  cooldown: 1
+  cooldown: 0.1
   abilityName: Ability
   type: 0
   targetLayer:

@@ -92,6 +92,19 @@ public class AbilityManager : NetworkBehaviour
         }
 
         fired.associatedWidget.abilityFired();
+        fired.notifyAbilityFired();
+    }
+
+    [Command]
+    public void CmdSetupCastBar(float castTime, string abilityName, CastBarDisplayController.FillMode fillMode)
+    {
+
+    }
+
+    [ClientRpc]
+    public void RpcSetupCastBar(float castTime, string abilityName, CastBarDisplayController.FillMode fillMode)
+    {
+        //ownerStats.setupCastBarAnimation(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
     }
 
     public void updateAbilities()

@@ -17,7 +17,7 @@ public class RaycastedDelayedAbility : RaycastedAbility
             delayDeltaTimeCounter = 0;
             cooldownDeltaTimeCounter = 0;
 
-            ownerStats.setupCastBarAnimation(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
+            manager.CmdSetupCastBar(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
         }
 
         return casting;

@@ -54,6 +54,7 @@ public class GameManager : NetworkBehaviour
             ErrorMessageController.instance.updateAnimation();
         }
 
+
         List<IMyAnimator> toRemove = null;
 
         for (int i = 0; i < animatedObjects.Count; i++)
@@ -67,17 +68,32 @@ public class GameManager : NetworkBehaviour
                     toRemove = new List<IMyAnimator>();
                 }
 
-                //Debug.Log("Destroying at " + (i + 1) + "/" + animatedObjects.Count);
+                //NetworkIdentity id = ((WarningZoneAnimator)animatedObjects[i]).associatedGameObject.GetComponent<NetworkIdentity>();
+                
+                if(animatedObjects[i] is WarningZoneAnimator w)
+                {
+                    if(w.associatedGameObject != null)
+                    {
+                        Debug.Log(w.associatedGameObject.GetComponent<NetworkIdentity>());
+                    }
+                    else
+                    {
+                        //Debug.LogError("NULLOS");
+                    }
+                }
+
+                //Debug.Log("GM Destroying at " + (i + 1) + "/" + animatedObjects.Count);
                 toRemove.Add(animatedObjects[i]);
             }
         }
+
 
         if(toRemove != null)
         {
             for (int i = 0; i < toRemove.Count; i++)
             {
-                animatedObjects[i].destroyAnimator();
-                animatedObjects.RemoveAt(i);
+                //RpcSendDebugLog("GM Destoryed " + i);
+                toRemove[i].destroyAnimator();
                 animatedObjects.Remove(toRemove[i]);
             }
         }
@@ -99,11 +115,11 @@ public class GameManager : NetworkBehaviour
                         //RpcSendDebugLog("Network destroyed " + removedEffects[i].associatedGameObject.name);
                         //Debug.Log("GM Removing " + removedEffects[i].associatedGameObject.name);
                         NetworkServer.Destroy(removedEffects[i].associatedGameObject);
-                    }/*
+                    }
                     else
                     {
-                        RpcSendDebugLog("Prevented a network destroy");
-                    }*/
+                        //RpcSendDebugLog("Prevented a network destroy");
+                    }
                 }
             }
         }
@@ -124,12 +140,12 @@ public class GameManager : NetworkBehaviour
             groundEffects.Add(effect);
         }
     }
-
+    
     public GameObject spawnPrefab(GameObject prefab, Vector3 pos)
-    {
+    {        
         GameObject go = Instantiate(prefab, pos, Quaternion.identity);
 
-        NetworkServer.Spawn(go);
+        NetworkServer.Spawn(go);//create COMMAND RPC that spawns stuff
 
         return go;
     }
