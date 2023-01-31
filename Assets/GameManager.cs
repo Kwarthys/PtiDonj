@@ -8,18 +8,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     private List<Effect> groundEffects = new List<Effect>();
 
-    private List<IMyAnimator> animatedObjects = new List<IMyAnimator>();
-
     public static GameManager instance;
-
-    public LayerMask groundLayer;
-
-    public GameObject groundZonePositionHintPrefab;
-    public GameObject groundDamagingZoneMarkerPrefab;
-    public GameObject groundWarningZoneMarkerPrefab;
-    public GameObject ExplosionVFXPrefab;
-    public GameObject abilityWidgetPrefab;
-    public Transform abilityWidgetsHolder;
 
     private void Awake()
     {
@@ -46,55 +35,6 @@ public class GameManager : NetworkBehaviour
             if(isServer)
             {
                 PlayerManager.instance.monstersList[i].updateMonster();
-            }
-        }
-
-        if(ErrorMessageController.instance.needsAnimationUpdate())
-        {
-            ErrorMessageController.instance.updateAnimation();
-        }
-
-
-        List<IMyAnimator> toRemove = null;
-
-        for (int i = 0; i < animatedObjects.Count; i++)
-        {
-            bool keepAnimation = animatedObjects[i].updateAnimation();
-
-            if (!keepAnimation)
-            {
-                if(toRemove == null)
-                {
-                    toRemove = new List<IMyAnimator>();
-                }
-
-                //NetworkIdentity id = ((WarningZoneAnimator)animatedObjects[i]).associatedGameObject.GetComponent<NetworkIdentity>();
-                
-                if(animatedObjects[i] is WarningZoneAnimator w)
-                {
-                    if(w.associatedGameObject != null)
-                    {
-                        Debug.Log(w.associatedGameObject.GetComponent<NetworkIdentity>());
-                    }
-                    else
-                    {
-                        //Debug.LogError("NULLOS");
-                    }
-                }
-
-                //Debug.Log("GM Destroying at " + (i + 1) + "/" + animatedObjects.Count);
-                toRemove.Add(animatedObjects[i]);
-            }
-        }
-
-
-        if(toRemove != null)
-        {
-            for (int i = 0; i < toRemove.Count; i++)
-            {
-                //RpcSendDebugLog("GM Destoryed " + i);
-                toRemove[i].destroyAnimator();
-                animatedObjects.Remove(toRemove[i]);
             }
         }
     }
@@ -145,14 +85,14 @@ public class GameManager : NetworkBehaviour
     {        
         GameObject go = Instantiate(prefab, pos, Quaternion.identity);
 
-        NetworkServer.Spawn(go);//create COMMAND RPC that spawns stuff
+        NetworkServer.Spawn(go);
 
         return go;
     }
 
     public void spawnFloatingTextFor(Vector3 pos, string text, NetworkIdentity attacker, NetworkIdentity damaged)
     {
-        if(attacker != null)
+        if(attacker != null && attacker != damaged) //self injuries displayed as damage taken, not dealt
         {
             if(PlayerManager.instance.isPlayerRegistered(attacker.netId))
             {
@@ -165,7 +105,7 @@ public class GameManager : NetworkBehaviour
         {
             if(PlayerManager.instance.isPlayerRegistered(damaged.netId))
             {
-                //Damaged character is a player, we need to show him the damaged taken
+                //Damaged character is a player, we need to show him the damage taken
                 //still unsure on how to display that, if if needs to be displayed at all
             }
         }
@@ -175,10 +115,5 @@ public class GameManager : NetworkBehaviour
     public void TargetRpcSpawnFloatingText(NetworkConnection target, Vector3 pos, string text)
     {
         FloatingTextManager.instance.spawnFloatingText(pos, text);
-    }
-
-    public void registerAnimatedObject(IMyAnimator animatedObject)
-    {
-        animatedObjects.Add(animatedObject);
     }
 }

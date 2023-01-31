@@ -14,7 +14,7 @@ public class ApplyEffectWhileInColliderEffect : TickingEffect, IColliderEffect
 
     public float size;
 
-    public ApplyEffectWhileInColliderEffect(string effectName, bool effectOnDuration, float effectDuration, float effectTickCooldown) : base(effectName, effectOnDuration, effectDuration, effectTickCooldown)
+    public ApplyEffectWhileInColliderEffect(string effectName, float effectDuration, float effectTickCooldown) : base(effectName, effectDuration, effectTickCooldown)
     {
 
     }

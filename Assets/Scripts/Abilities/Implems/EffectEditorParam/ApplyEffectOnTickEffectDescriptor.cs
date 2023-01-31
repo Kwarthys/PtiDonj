@@ -11,7 +11,7 @@ public class ApplyEffectOnTickEffectDescriptor : EffectDescriptor
 
     public override Effect getNewEffect()
     {
-        ApplyEffectOnTickEffect effect = new ApplyEffectOnTickEffect(effectName, true, effectDuration, tickCoolDown, effectsToApply);
+        ApplyEffectOnTickEffect effect = new ApplyEffectOnTickEffect(effectName, effectDuration, tickCoolDown, effectsToApply);
 
         effect.tickOnStart = tickOnStart;
 

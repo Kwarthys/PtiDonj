@@ -11,7 +11,7 @@ public abstract class TickingEffect : OnTimeEffect
 
     private int tickHappened;
 
-    public TickingEffect(string effectName, bool effectOnDuration, float effectDuration, float effectTickCooldown) : base(effectName, effectOnDuration, effectDuration)
+    public TickingEffect(string effectName, float effectDuration, float effectTickCooldown) : base(effectName, effectDuration)
     {
         this.effectTickCooldown = effectTickCooldown;
     }

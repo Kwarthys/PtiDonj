@@ -19,8 +19,8 @@ public class AbilityManager : NetworkBehaviour
 
     public void setupLocalPlayerAbilityDisplay()
     {
-        GameObject widgetPrefab = GameManager.instance.abilityWidgetPrefab;
-        Transform holder = GameManager.instance.abilityWidgetsHolder;
+        GameObject widgetPrefab = LocalReferencer.instance.abilityWidgetPrefab;
+        Transform holder = LocalReferencer.instance.abilityWidgetsHolder;
 
         AbilityWidgetController w;
 

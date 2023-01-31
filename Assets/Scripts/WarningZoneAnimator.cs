@@ -37,7 +37,7 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
 
         if(associatedGameObject != null)
         {
-            GameObject vfx = Instantiate(GameManager.instance.ExplosionVFXPrefab, transform.position, Quaternion.identity);
+            GameObject vfx = Instantiate(LocalReferencer.instance.ExplosionVFXPrefab, transform.position, Quaternion.identity);
             ExplosionVFXController vfxController = vfx.GetComponent<ExplosionVFXController>();
             vfxController.setExplosionSize(transform.localScale.x);
 

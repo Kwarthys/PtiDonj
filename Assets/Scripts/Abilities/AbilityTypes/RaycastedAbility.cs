@@ -14,7 +14,7 @@ public class RaycastedAbility : Ability
 
         Debug.DrawRay(visor.position, visor.forward * 10, Color.black, 3);
 
-        if (Physics.Raycast(visor.position, visor.forward, out RaycastHit hit, 250, targetLayer | GameManager.instance.groundLayer))
+        if (Physics.Raycast(visor.position, visor.forward, out RaycastHit hit, 250, targetLayer | LocalReferencer.instance.groundLayer))
         {
             result.didHit = true;
             result.charHit = hit.transform.GetComponent<CharacterStats>();
@@ -22,7 +22,7 @@ public class RaycastedAbility : Ability
 
             drawDebugCrossAtPoint(hit.point);
 
-            if (Physics.Raycast(hit.point + Vector3.up, Vector3.down, out RaycastHit floorhit, 100, GameManager.instance.groundLayer)) //looking for floor
+            if (Physics.Raycast(hit.point + Vector3.up, Vector3.down, out RaycastHit floorhit, 100, LocalReferencer.instance.groundLayer)) //looking for floor
             {
                 result.pointHit = floorhit.point;
             }

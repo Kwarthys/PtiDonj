@@ -17,7 +17,7 @@ public class DelayedApplyEffectOnColliderEffectDescriptor : EffectDescriptor
 
     public override Effect getNewEffect()
     {
-        DelayedApplyEffectOnColliderEffect effect = new DelayedApplyEffectOnColliderEffect(effectName, true, effectDuration);
+        DelayedApplyEffectOnColliderEffect effect = new DelayedApplyEffectOnColliderEffect(effectName, effectDuration);
 
         effect.targetsLayer = targetsLayer;
         effect.effectsToApplyOnCharacters = effectsToApplyOnCharacters;

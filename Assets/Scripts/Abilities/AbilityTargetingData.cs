@@ -22,7 +22,7 @@ public class AbilityTargetingData
     {
         groundWorldPos = Vector3.zero;
 
-        if (Physics.Raycast(worldPos + Vector3.up, Vector3.down, out RaycastHit floorhit, 100, GameManager.instance.groundLayer)) //looking for floor
+        if (Physics.Raycast(worldPos + Vector3.up, Vector3.down, out RaycastHit floorhit, 100, LocalReferencer.instance.groundLayer)) //looking for floor
         {
             groundWorldPos = floorhit.point;
 

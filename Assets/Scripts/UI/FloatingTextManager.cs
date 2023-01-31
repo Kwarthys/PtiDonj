@@ -42,6 +42,6 @@ public class FloatingTextManager : MonoBehaviour
         FloatingTextAnimator animator = go.GetComponent<FloatingTextAnimator>();
         animator.setupAnimator(localPlayerTransform, Mathf.Min(maxTextSize, textToPlayerSqrDistance));
         animator.animationDirection = randomVector3D;
-        GameManager.instance.registerAnimatedObject(animator);
+        LocalAnimatorManager.instance.registerAnimatedLocalObject(animator);
     }
 }

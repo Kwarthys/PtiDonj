@@ -42,7 +42,6 @@ public class GroundEffectSetup : NetworkBehaviour
 
         GameObject markerPrefab = getGroundMarker();
 
-        //GameObject marker = Instantiate(markerPrefab, spawnedEffect.effectWorldPos + Vector3.up * 0.01f, markerPrefab.transform.rotation, groundModelsHolder);
         GameObject marker = Instantiate(markerPrefab, transform.position + Vector3.up * 0.01f, markerPrefab.transform.rotation, groundModelsHolder);
 
         ColliderTriggerHandler trigger = marker.GetComponent<ColliderTriggerHandler>();
@@ -51,26 +50,22 @@ public class GroundEffectSetup : NetworkBehaviour
         if(animator != null)
         {
             animator.initialize(effectDuration, gameObject);
-            GameManager.instance.registerAnimatedObject(animator);
-
-            //Debug.Log("Setting marker for " + effectDuration + "s and GO: " + gameObject);
+            LocalAnimatorManager.instance.registerAnimatedLocalObject(animator);
         }
 
         if(isServer) //spawnedEffect will be null on clients, where we don't need that link
         {
             IColliderEffect colliderEffect = (IColliderEffect)spawnedEffect;
             colliderEffect.registerColliderTrigger(trigger);
-            //Debug.Log("Linked");
         }
 
-        GameObject hint = Instantiate(GameManager.instance.groundZonePositionHintPrefab, groundModelsHolder);
+        GameObject hint = Instantiate(LocalReferencer.instance.groundZonePositionHintPrefab, groundModelsHolder);
         ZonePosHintController hintController = hint.GetComponent<ZonePosHintController>();
         hintController.initialize();
         trigger.associatedHintZoneController = hintController;
 
         marker.transform.localScale = new Vector3(zoneSize, zoneSize, 1);
         hint.transform.localScale = new Vector3(zoneSize, 1, zoneSize);
-        //hint.transform.position = spawnedEffect.effectWorldPos;
         hint.transform.position = transform.position;
     }
 
@@ -79,11 +74,11 @@ public class GroundEffectSetup : NetworkBehaviour
         switch(markerType)
         {
             case MarkerType.damagingZone:
-                return GameManager.instance.groundDamagingZoneMarkerPrefab;
+                return LocalReferencer.instance.groundDamagingZoneMarkerPrefab;
 
             case MarkerType.WarningZone:
             default:
-                return GameManager.instance.groundWarningZoneMarkerPrefab;
+                return LocalReferencer.instance.groundWarningZoneMarkerPrefab;
         }
     }
 }

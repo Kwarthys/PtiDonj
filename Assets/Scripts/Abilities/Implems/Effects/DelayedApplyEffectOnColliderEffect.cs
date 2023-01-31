@@ -12,7 +12,7 @@ public class DelayedApplyEffectOnColliderEffect : OnTimeEffect, IColliderEffect
 
     public float size;
 
-    public DelayedApplyEffectOnColliderEffect(string effectName, bool effectOnDuration, float effectDuration) : base(effectName, effectOnDuration, effectDuration)
+    public DelayedApplyEffectOnColliderEffect(string effectName, float effectDuration) : base(effectName, effectDuration)
     {
 
     }
