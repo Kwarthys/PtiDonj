@@ -908,6 +908,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &663987499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 663987500}
+  m_Layer: 0
+  m_Name: GroundZoneMarkersHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &663987500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663987499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 716787783}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &715864709
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,6 +1011,7 @@ MonoBehaviour:
   abilityWidgetPrefab: {fileID: 5065992008402662331, guid: a9836b7124e67af468d74ceebc934dd2,
     type: 3}
   abilityWidgetsHolder: {fileID: 786292022}
+  groundZoneMarkersHolder: {fileID: 663987500}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -1006,7 +1038,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 663987500}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1192,6 +1225,7 @@ MonoBehaviour:
   - {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4, type: 3}
   - {fileID: 8173496154971741732, guid: 43300ebff78654242a6d0d0e97c84680, type: 3}
   - {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40, type: 3}
+  - {fileID: 3447081770188818181, guid: 36a4f8596b41950408765e414c6f9aa6, type: 3}
   timeInterpolationGui: 0
 --- !u!4 &762484535
 Transform:

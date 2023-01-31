@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec47b447433fb24db633333b662efdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedHintZoneController: {fileID: 0}
 --- !u!114 &-7933698027657183850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,3 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1237edacb2d85af43915ae7af7cb56ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationDuration: 0
+  associatedGameObject: {fileID: 0}
+  onEndFXPrefab: {fileID: 3447081770188818181, guid: 36a4f8596b41950408765e414c6f9aa6,
+    type: 3}

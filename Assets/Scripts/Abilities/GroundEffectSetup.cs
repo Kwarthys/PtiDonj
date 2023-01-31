@@ -26,19 +26,23 @@ public class GroundEffectSetup : NetworkBehaviour
             IColliderEffect colliderEffect = (IColliderEffect)spawnedEffect;
             float zoneSize = colliderEffect.getZoneSize();
 
-            ClientRPCSetupGroundMarkers(effectDuration, zoneSize);
+            ClientRPCSetupGroundMarkers(effectDuration, zoneSize, transform.position);
 
             spawnedEffect.associatedGameObject = gameManagerAutoRemove ? gameObject : null;
+        }
+        else
+        {
+            Debug.LogWarning("Initialize GroundEffectSetup client side, should only be called server-side");
         }
     }
 
     [ClientRpc]
-    public void ClientRPCSetupGroundMarkers(float effectDuration, float zoneSize)
+    public void ClientRPCSetupGroundMarkers(float effectDuration, float zoneSize, Vector3 pos)
     {
         GameObject holder = new GameObject("ModelsHolder");
         groundModelsHolder = holder.transform;
-        groundModelsHolder.parent = transform;
-        groundModelsHolder.localPosition = Vector3.zero;
+        groundModelsHolder.parent = LocalReferencer.instance.groundZoneMarkersHolder;
+        groundModelsHolder.position = pos;
 
         GameObject markerPrefab = getGroundMarker();
 

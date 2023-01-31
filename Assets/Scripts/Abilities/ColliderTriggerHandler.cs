@@ -9,6 +9,7 @@ public class ColliderTriggerHandler : MonoBehaviour
     public ColliderCallback onTriggerEnterCallback = null;
     public ColliderCallback onTriggerExitCallback = null;
 
+    [HideInInspector]
     public ZonePosHintController associatedHintZoneController;
 
     private List<CharacterStats> targetsInside = new List<CharacterStats>();

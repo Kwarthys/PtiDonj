@@ -7,10 +7,14 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
 {
     private Material zoneMaterial;
 
+    [HideInInspector]
     public float animationDuration;
     private float deltaTimeCounter = 0;
 
+    [HideInInspector]
     public GameObject associatedGameObject;
+
+    public GameObject onEndFXPrefab;
 
     private static int debugCounter = 0;
     private string id = "";
@@ -32,6 +36,12 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
 
     public void destroyAnimator()
     {
+        /***** Will have to find another way to spawn the end FX, it cannot be handled here
+
+
+        //GameManager.instance.spawnPrefab(onEndFXPrefab, transform.position); //carefull, this should only be called by the server (GameManager should not exist client side anyway)
+
+        /*
         Debug.Log("MYANIMATOR Destroying " + associatedGameObject + " (" + id + ")");
         //Destruction is NO LONGER handled by the attached effects, so we only instantiate the explosion animation AND DESTROY EFFECT
 
@@ -50,6 +60,7 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
             //this should not happen, but as it does, this will prevent errors
             Debug.LogWarning("null associatedGameObject while in IMyAnimator.destroy() " + id);
         }
+        */
     }
 
     
@@ -61,37 +72,8 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
 
     public bool updateAnimation()
     {
-        /*
-        bool sendDebug = false;
-        string debug = "";
-
-        if(associatedGameObject == null)
-        {
-            debug += ("Updating " + associatedGameObject + " (" + id + ")");
-            sendDebug = true;
-        }
-        */
-
         deltaTimeCounter += Time.deltaTime;
-
         zoneMaterial.SetFloat("_RemainingTimeHint", deltaTimeCounter / animationDuration);
-       
-        /*
-        if(!(deltaTimeCounter / animationDuration < 1))
-        {
-            if(sendDebug)
-            {
-                debug += " - ";
-            }
-            debug += ("Animation finished");
-            sendDebug = true;
-        }
-
-        if(sendDebug)
-        {
-            Debug.Log(debug);
-        }
-        */
         return deltaTimeCounter / animationDuration < 1;
     }
 }

@@ -11,7 +11,9 @@ public class LocalReferencer : MonoBehaviour
     public GameObject groundWarningZoneMarkerPrefab;
     public GameObject ExplosionVFXPrefab;
     public GameObject abilityWidgetPrefab;
+
     public Transform abilityWidgetsHolder;
+    public Transform groundZoneMarkersHolder;
 
     public LayerMask groundLayer;
 
