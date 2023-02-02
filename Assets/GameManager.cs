@@ -21,22 +21,12 @@ public class GameManager : NetworkBehaviour
         {
             foreach (KeyValuePair<uint, CharacterStats> pair in PlayerManager.instance.playerCharacters)
             {
-                pair.Value.updateDisplay();
-
-                if(isServer)
-                {
-                    pair.Value.updateStats();
-                }
+                pair.Value.updateStats();
             }
 
             for (int i = 0; i < PlayerManager.instance.monstersList.Count; i++)
             {
-                PlayerManager.instance.monstersList[i].monsterStats.updateDisplay();
-
-                if(isServer)
-                {
-                    PlayerManager.instance.monstersList[i].updateMonster();
-                }
+                PlayerManager.instance.monstersList[i].updateMonster();
             }
         }
     }

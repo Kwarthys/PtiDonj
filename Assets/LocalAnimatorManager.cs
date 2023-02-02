@@ -19,6 +19,16 @@ public class LocalAnimatorManager : MonoBehaviour
             ErrorMessageController.instance.updateAnimation();
         }
 
+        foreach (KeyValuePair<uint, CharacterStats> pair in PlayerManager.instance.playerCharacters)
+        {
+            pair.Value.updateDisplay();
+        }
+
+        for (int i = 0; i < PlayerManager.instance.monstersList.Count; i++)
+        {
+            PlayerManager.instance.monstersList[i].monsterStats.updateDisplay();
+        }
+
         List<IMyAnimator> toRemove = null;
 
         for (int i = 0; i < animatedLocalObjects.Count; i++)
