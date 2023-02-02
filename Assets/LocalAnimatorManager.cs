@@ -12,7 +12,7 @@ public class LocalAnimatorManager : MonoBehaviour
         instance = this;
     }
 
-    public void updateAnimators()
+    public void Update()
     {
         if (ErrorMessageController.instance.needsAnimationUpdate())
         {

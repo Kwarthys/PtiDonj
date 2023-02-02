@@ -46,15 +46,20 @@ public class GroundEffectSetup : NetworkBehaviour
 
         GameObject markerPrefab = getGroundMarker();
 
-        GameObject marker = Instantiate(markerPrefab, transform.position + Vector3.up * 0.01f, markerPrefab.transform.rotation, groundModelsHolder);
+        GameObject marker = Instantiate(markerPrefab, pos + Vector3.up * 0.01f, markerPrefab.transform.rotation, groundModelsHolder);
 
         ColliderTriggerHandler trigger = marker.GetComponent<ColliderTriggerHandler>();
         WarningZoneAnimator animator = marker.GetComponent<WarningZoneAnimator>();
 
         if(animator != null)
         {
-            animator.initialize(effectDuration, gameObject);
+            animator.initialize(effectDuration, holder);
             LocalAnimatorManager.instance.registerAnimatedLocalObject(animator);
+
+            GameObject vfx = Instantiate(animator.onEndFXPrefab, pos + Vector3.up * 0.01f, Quaternion.identity, LocalReferencer.instance.groundZoneMarkersHolder);
+            ExplosionVFXController fxController = vfx.GetComponent<ExplosionVFXController>();
+            fxController.setupExplosion(zoneSize, effectDuration, 3);
+            LocalAnimatorManager.instance.registerAnimatedLocalObject(fxController);
         }
 
         if(isServer) //spawnedEffect will be null on clients, where we don't need that link

@@ -1846,30 +1846,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2571033677096063429, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4201873667405966642, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: needsWorldPosUpdate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5825245318181456640, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}
       propertyPath: sceneId
       value: 1417571693
-      objectReference: {fileID: 0}
-    - target: {fileID: 5825245318181456642, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: life
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5825245318181456642, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: maxLife
-      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5825245318181456643, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}
@@ -1934,37 +1914,12 @@ PrefabInstance:
     - target: {fileID: 5825245318181456655, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}
       propertyPath: castAbilitiesDebug
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6230563668931222603, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7652676618999885829, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: animationTime
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8168085091699374511, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}
       propertyPath: cooldown
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8168085091699374511, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: groundEffects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8221336453366479883, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: tickCoolDown
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8221336453366479883, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: effectDuration
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88cd870e6712b024e8c3fe877377054a, type: 3}

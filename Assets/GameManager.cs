@@ -10,67 +10,35 @@ public class GameManager : NetworkBehaviour
 
     public static GameManager instance;
 
-    private List<IMyAnimator> networkedAnimatedObjects = new List<IMyAnimator>();
-
     private void Awake()
     {
         instance = this;
     }
 
-    public void registerNetworkedAnimatedObject(IMyAnimator animatedObject)
-    {
-        if(!networkedAnimatedObjects.Contains(animatedObject))
-        {
-            networkedAnimatedObjects.Add(animatedObject);
-        }
-        else
-        {
-            RpcSendDebugLog("Networked animated objected got registered more than once");
-        }
-    }
-
     private void Update()
     {
-        foreach (KeyValuePair<uint, CharacterStats> pair in PlayerManager.instance.playerCharacters)
+        if(isServer)
         {
-            pair.Value.updateDisplay();
-
-            if(isServer)
+            foreach (KeyValuePair<uint, CharacterStats> pair in PlayerManager.instance.playerCharacters)
             {
-                pair.Value.updateStats();
+                pair.Value.updateDisplay();
+
+                if(isServer)
+                {
+                    pair.Value.updateStats();
+                }
+            }
+
+            for (int i = 0; i < PlayerManager.instance.monstersList.Count; i++)
+            {
+                PlayerManager.instance.monstersList[i].monsterStats.updateDisplay();
+
+                if(isServer)
+                {
+                    PlayerManager.instance.monstersList[i].updateMonster();
+                }
             }
         }
-
-        for (int i = 0; i < PlayerManager.instance.monstersList.Count; i++)
-        {
-            PlayerManager.instance.monstersList[i].monsterStats.updateDisplay();
-
-            if(isServer)
-            {
-                PlayerManager.instance.monstersList[i].updateMonster();
-            }
-        }
-
-        for (int i = networkedAnimatedObjects.Count - 1; i >= 0; i--)
-        {
-            IMyAnimator animated = networkedAnimatedObjects[i];
-
-            bool keepAnimating = animated.updateAnimation();
-
-            if(!keepAnimating)
-            {
-                animated.destroyAnimator();
-                networkedAnimatedObjects.Remove(animated);
-            }
-        }
-
-        RpcUpdateLocalAnimator();
-    }
-
-    [ClientRpc]
-    private void RpcUpdateLocalAnimator()
-    {
-        LocalAnimatorManager.instance.updateAnimators();
     }
 
     private void FixedUpdate()

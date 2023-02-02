@@ -25,6 +25,7 @@ public abstract class Ability : MonoBehaviour
     public EffectDescriptor[] selfEffects;
     public EffectDescriptor[] groundEffects;
 
+    [HideInInspector]
     public AbilityWidgetController associatedWidget;
 
     protected AbilityManager manager;

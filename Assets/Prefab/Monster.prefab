@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8409871384677358400}
   - component: {fileID: 8168085091699374511}
   - component: {fileID: 8221336453366479883}
-  - component: {fileID: 4201873667405966642}
+  - component: {fileID: 8710926577006091104}
   m_Layer: 7
   m_Name: AbilityOne
   m_TagString: Untagged
@@ -59,7 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd457a469d865642ae9ce0ff4093d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
+  image: {fileID: 0}
+  cooldown: 10
   abilityName: Ability
   type: 0
   targetLayer:
@@ -70,6 +71,7 @@ MonoBehaviour:
   - {fileID: 8221336453366479883}
   selfEffects: []
   groundEffects: []
+  associatedWidget: {fileID: 0}
 --- !u!114 &8221336453366479883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,9 +88,9 @@ MonoBehaviour:
   tickOnStart: 1
   tickCoolDown: 0.5
   effectsToApply:
-  - {fileID: 4201873667405966642}
-  effectDuration: 3
---- !u!114 &4201873667405966642
+  - {fileID: 8710926577006091104}
+  effectDuration: 5
+--- !u!114 &8710926577006091104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,13 +99,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2571033677096063429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c1b92285f8b743478fec480b5bff40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  groundEffectPrefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40,
-    type: 3}
-  needsWorldPosUpdate: 1
+  prefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40, type: 3}
 --- !u!1 &3738697409307059959
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  life: 1000
+  life: 0.1
   maxLife: 1000
   displayManager: {fileID: 7826102989446278344}
   networkIdentity: {fileID: 5825245318181456640}
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 117217810546446325}
   - component: {fileID: 4515191239834965645}
   - component: {fileID: 4363599046025376816}
-  - component: {fileID: 8343811949131891790}
+  - component: {fileID: 762335434550687435}
   m_Layer: 7
   m_Name: AbilityTwo
   m_TagString: Untagged
@@ -479,6 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd457a469d865642ae9ce0ff4093d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
   cooldown: 0
   abilityName: Ability
   type: 0
@@ -486,11 +487,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   selfOnlyIfTarget: 0
-  targetEffects: []
+  targetEffects:
+  - {fileID: 762335434550687435}
   selfEffects: []
-  groundEffects:
-  - {fileID: 8343811949131891790}
---- !u!114 &8343811949131891790
+  groundEffects: []
+  associatedWidget: {fileID: 0}
+--- !u!114 &762335434550687435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -499,13 +501,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8598114419448048769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c1b92285f8b743478fec480b5bff40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
-    type: 3}
-  needsWorldPosUpdate: 0
+  prefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4, type: 3}
 --- !u!1001 &7826102990090590099
 PrefabInstance:
   m_ObjectHideFlags: 0

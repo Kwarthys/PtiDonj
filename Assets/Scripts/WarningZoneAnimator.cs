@@ -36,44 +36,14 @@ public class WarningZoneAnimator : MonoBehaviour, IMyAnimator
 
     public void destroyAnimator()
     {
-        /***** Will have to find another way to spawn the end FX, it cannot be handled here
-
-
-        //GameManager.instance.spawnPrefab(onEndFXPrefab, transform.position); //carefull, this should only be called by the server (GameManager should not exist client side anyway)
-
-        /*
-        Debug.Log("MYANIMATOR Destroying " + associatedGameObject + " (" + id + ")");
-        //Destruction is NO LONGER handled by the attached effects, so we only instantiate the explosion animation AND DESTROY EFFECT
-
-        if(associatedGameObject != null)
-        {
-            GameObject vfx = Instantiate(LocalReferencer.instance.ExplosionVFXPrefab, transform.position, Quaternion.identity);
-            ExplosionVFXController vfxController = vfx.GetComponent<ExplosionVFXController>();
-            vfxController.setExplosionSize(transform.localScale.x);
-
-            //Debug.Log("Destroyed " + associatedGameObject + " (" + id + ")");
-
-            NetworkServer.Destroy(associatedGameObject);
-        }
-        else
-        {
-            //this should not happen, but as it does, this will prevent errors
-            Debug.LogWarning("null associatedGameObject while in IMyAnimator.destroy() " + id);
-        }
-        */
+        Destroy(associatedGameObject);
     }
-
-    
-    private void OnDestroy()
-    {
-        Debug.Log("ONDESTROY on " + associatedGameObject + " (" + id + ")");
-    }
-
 
     public bool updateAnimation()
     {
         deltaTimeCounter += Time.deltaTime;
         zoneMaterial.SetFloat("_RemainingTimeHint", deltaTimeCounter / animationDuration);
+
         return deltaTimeCounter / animationDuration < 1;
     }
 }

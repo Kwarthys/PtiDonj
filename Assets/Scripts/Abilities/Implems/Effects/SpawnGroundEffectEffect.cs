@@ -13,8 +13,6 @@ public class SpawnGroundEffectEffect : Effect
 
     public override void onStart()
     {
-        Debug.Log("Spawn ground effect onStart");
-
         GroundEffectSetup setup = GameManager.instance.spawnPrefab(groundEffectPrefab, effectWorldPos).GetComponent<GroundEffectSetup>();
 
         Effect e = setup.mainEffect.getNewEffect();
