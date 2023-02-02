@@ -98,13 +98,13 @@ public class AbilityManager : NetworkBehaviour
     [Command]
     public void CmdSetupCastBar(float castTime, string abilityName, CastBarDisplayController.FillMode fillMode)
     {
-
+        RpcSetupCastBar(castTime, abilityName, fillMode);
     }
 
     [ClientRpc]
     public void RpcSetupCastBar(float castTime, string abilityName, CastBarDisplayController.FillMode fillMode)
     {
-        //ownerStats.setupCastBarAnimation(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
+        selfStats.setupCastBarAnimation(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
     }
 
     public void updateAbilities()

@@ -13,6 +13,8 @@ public class AbilityWidgetController : MonoBehaviour
 
     private Ability associatedAbility;
 
+    private float deltaTimeCounter;
+
     public bool needsUpdate { get; private set; } = false;
 
     public void setup(Ability ability)
@@ -36,14 +38,17 @@ public class AbilityWidgetController : MonoBehaviour
     {
         if (!needsUpdate) return;
 
-        Vector2 data = associatedAbility.getCooldownData();
-        float cooldown = data.x;
-        float relativeCooldown = data.y;
+        deltaTimeCounter += Time.deltaTime;
 
-        image.material.SetFloat("_HideAmount", relativeCooldown);
-        textMesh.SetText(cooldown.ToString());
+        float cooldown = associatedAbility.getCooldown();
 
-        if(cooldown < 0)
+        image.material.SetFloat("_HideAmount", 1-(deltaTimeCounter / cooldown));
+
+        float roundedTimeLeft = Mathf.Ceil(cooldown - deltaTimeCounter);
+
+        textMesh.SetText(roundedTimeLeft.ToString());
+
+        if(cooldown < deltaTimeCounter)
         {
             needsUpdate = false;
             image.material.SetFloat("_HideAmount", 0);
@@ -54,6 +59,7 @@ public class AbilityWidgetController : MonoBehaviour
     public void abilityFired()
     {
         needsUpdate = true;
+        deltaTimeCounter = 0;
     }
 
 }

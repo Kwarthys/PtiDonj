@@ -139,20 +139,15 @@ public abstract class Ability : MonoBehaviour
         Debug.DrawLine(worldPoint + Vector3.up, worldPoint + Vector3.down * 2, Color.yellow, 5);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns>Vector2 [cooldown, relativeCooldown]</returns>
-    public virtual Vector2 getCooldownData()
+    public virtual float getCooldown()
     {
         if(canCast)
         {
-            return new Vector2(-1, -1);
+            return -1;
         }
         else
         {
-            float timeLeft = cooldown - cooldownDeltaTimeCounter;
-            return new Vector2(Mathf.Ceil(timeLeft), timeLeft / cooldown);
+            return cooldown;
         }
     }
 }
