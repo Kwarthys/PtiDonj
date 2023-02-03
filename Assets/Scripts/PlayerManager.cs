@@ -51,6 +51,26 @@ public class PlayerManager : MonoBehaviour
         return charList[r];
     }
 
+    public CharacterStats[] getNRandomCharacters(int maxNumber)
+    {
+        if (playerCharacters.Count == 0) return null;
+
+        List<CharacterStats> charList = new List<CharacterStats>();
+
+        foreach (KeyValuePair<uint, CharacterStats> entry in playerCharacters)
+        {
+            charList.Add(entry.Value);
+        }
+
+        while(charList.Count > maxNumber)
+        {
+            int randomIndex = (int)(Random.value * charList.Count);
+            charList.RemoveAt(randomIndex);
+        }
+
+        return charList.ToArray();
+    }
+
     public bool isPlayerRegistered(uint netID)
     {
         return playerCharacters.ContainsKey(netID);

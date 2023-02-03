@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class AbilityTargetingData
 {
-    public bool didHit;
+    public CharacterStats charDidHit = null;
+    public bool characterHit;
     public Vector3 pointHit;
-    public CharacterStats charHit = null;
+    public bool groundHit;
 
-    public bool registerGroundUnder(CharacterStats player)
+    public void registerGroundUnderCharacter()
     {
-        if(tryFindGroundUnder(player.transform.position, out Vector3 floorHit))
+        if (charDidHit == null)
+        {
+            Debug.LogError("Trying to register ground under null character.");
+            return;
+        }
+
+        if(tryFindGroundUnder(charDidHit.transform.position, out Vector3 floorHit))
         {
             pointHit = floorHit;
-            return true;
+            groundHit = true;
         }
-        return false;
+        groundHit = false;
     }
 
     public static bool tryFindGroundUnder(Vector3 worldPos, out Vector3 groundWorldPos)

@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RaycastedTargeting : AbilityTargeting
+{
+    protected Transform visor;
+    private void Start()
+    {
+        visor = GetComponentInParent<AbilityManager>().visor;
+    }
+
+    public override AbilityTargetingData[] findTargets(LayerMask targetsLayerMask)
+    {
+        AbilityTargetingData[] dataArray = new AbilityTargetingData[1]; //single target
+
+        AbilityTargetingData result = new AbilityTargetingData();
+
+        result.characterHit = false;
+
+        Debug.DrawRay(visor.position, visor.forward * 10, Color.black, 3);
+
+        if (Physics.Raycast(visor.position, visor.forward, out RaycastHit hit, 250, targetsLayerMask | LocalReferencer.instance.groundLayer))
+        {
+            result.charDidHit = hit.transform.GetComponent<CharacterStats>();
+            result.characterHit = result.charDidHit != null;
+            result.pointHit = new Vector3(0, 0, 0); //this should always be updated, if didHit is true
+            result.groundHit = false;
+
+            if(result.charDidHit)
+            {
+                result.registerGroundUnderCharacter();
+            }
+            else
+            {
+                if(AbilityTargetingData.tryFindGroundUnder(hit.point, out Vector3 point))
+                {
+                    result.pointHit = point;
+                    result.groundHit = true;
+                }
+            }
+        }
+
+        dataArray[0] = result;
+
+        return dataArray;
+    }
+}

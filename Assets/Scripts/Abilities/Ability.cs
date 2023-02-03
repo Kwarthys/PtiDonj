@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public abstract class Ability : MonoBehaviour
+public class Ability : MonoBehaviour
 {
+    public AbilityTargeting abilityTargeting;
+
     public Sprite image;
 
     public float cooldown = 1;
@@ -30,6 +32,7 @@ public abstract class Ability : MonoBehaviour
 
     protected AbilityManager manager;
     public CharacterStats ownerStats { get; protected set; }
+
 
     private void Start()
     {
@@ -69,12 +72,8 @@ public abstract class Ability : MonoBehaviour
     {
         if (canCast)
         {
-            AbilityTargetingData targeting = computeTargeting();
-
+            computeTargetingAndApplyAbility();
             canCast = false;
-
-            applyAbility(targeting);
-
             //for additional effect such as dash or complex logic
             onCast();
 
@@ -84,21 +83,31 @@ public abstract class Ability : MonoBehaviour
         return false;
     }
 
-    protected abstract AbilityTargetingData computeTargeting();
-
-    protected void applyAbility(AbilityTargetingData targeting)
+    protected void computeTargetingAndApplyAbility()
     {
-        if (!selfOnlyIfTarget || targeting.charHit != null) //only apply if we don't need a target to do so, or if we do have a target
+        AbilityTargetingData[] targets = abilityTargeting.findTargets(targetLayer);
+        for (int i = 0; i < targets.Length; i++)
+        {
+            applyAbility(targets[i]);
+        }
+    }
+
+    protected void applyAbility(AbilityTargetingData target)
+    {
+        if (!selfOnlyIfTarget || target.charDidHit != null) //only apply if we don't need a target to do so, or if we do have a target
         {
             applyAbilitySelf();
         }
 
-        if (targeting.charHit != null)
+        if (target.charDidHit != null)
         {
-            applyAbilityTarget(targeting.charHit);
+            applyAbilityTarget(target.charDidHit);
         }
 
-        applyAbilityGround(targeting.pointHit);
+        if(target.groundHit)
+        {
+            applyAbilityGround(target.pointHit);
+        }
     }
 
     private void applyAbilityTarget(CharacterStats target)
@@ -132,7 +141,7 @@ public abstract class Ability : MonoBehaviour
         }
     }
     protected virtual void onCast() { }
-    public void drawDebugCrossAtPoint(Vector3 worldPoint)
+    public static void drawDebugCrossAtPoint(Vector3 worldPoint)
     {
         Debug.DrawLine(worldPoint + Vector3.left, worldPoint + Vector3.right * 2, Color.red, 5);
         Debug.DrawLine(worldPoint + Vector3.forward, worldPoint + Vector3.back * 2, Color.blue, 5);

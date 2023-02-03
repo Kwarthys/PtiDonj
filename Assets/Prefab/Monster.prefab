@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4228139189438976786}
   - component: {fileID: 8409871384677358400}
+  - component: {fileID: 4480132167116935851}
   - component: {fileID: 8168085091699374511}
   - component: {fileID: 8221336453366479883}
   - component: {fileID: 8710926577006091104}
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464ec731d47b0ed44a38442b1ead8120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4480132167116935851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571033677096063429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6e93a09e3b034458a6018acc49555b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTargets: 1
 --- !u!114 &8168085091699374511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,16 +70,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2571033677096063429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fd457a469d865642ae9ce0ff4093d7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityTargeting: {fileID: 4480132167116935851}
   image: {fileID: 0}
-  cooldown: 10
+  cooldown: 1
   abilityName: Ability
   type: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   selfOnlyIfTarget: 0
   targetEffects:
   - {fileID: 8221336453366479883}
@@ -428,6 +443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 117217810546446325}
   - component: {fileID: 4515191239834965645}
+  - component: {fileID: 1907292592466499826}
   - component: {fileID: 4363599046025376816}
   - component: {fileID: 762335434550687435}
   m_Layer: 7
@@ -467,6 +483,19 @@ MonoBehaviour:
   triggers:
   - 0.75
   - 0.5
+--- !u!114 &1907292592466499826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598114419448048769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6e93a09e3b034458a6018acc49555b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfTargets: 5
 --- !u!114 &4363599046025376816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,16 +505,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8598114419448048769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fd457a469d865642ae9ce0ff4093d7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityTargeting: {fileID: 1907292592466499826}
   image: {fileID: 0}
-  cooldown: 0
+  cooldown: 1
   abilityName: Ability
   type: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   selfOnlyIfTarget: 0
   targetEffects:
   - {fileID: 762335434550687435}

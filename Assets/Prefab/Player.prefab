@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1005315451}
+  - component: {fileID: 3076829481270543313}
   - component: {fileID: 8851823824815168547}
-  - component: {fileID: 1453896692489255617}
   - component: {fileID: 9126553349831644882}
+  - component: {fileID: 4297352067365052579}
   m_Layer: 6
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -34,6 +35,18 @@ Transform:
   m_Father: {fileID: 1049237760}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3076829481270543313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005315448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca273659bcfc4543bdad4de2461ac95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8851823824815168547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f95bebb02396c643b94af8bcb4f4880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityTargeting: {fileID: 3076829481270543313}
   image: {fileID: 21300000, guid: 14eaa0cbb3f46404a8d5ed3c7bf87e05, type: 3}
   cooldown: 3
   abilityName: SuperSpell
@@ -56,26 +70,11 @@ MonoBehaviour:
   selfOnlyIfTarget: 0
   targetEffects:
   - {fileID: 9126553349831644882}
+  - {fileID: 4297352067365052579}
   selfEffects: []
-  groundEffects:
-  - {fileID: 1453896692489255617}
+  groundEffects: []
   associatedWidget: {fileID: 0}
   castTime: 2
---- !u!114 &1453896692489255617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005315448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectName: Effect
-  groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
-    type: 3}
 --- !u!114 &9126553349831644882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +89,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: Effect
   damage: 10
+--- !u!114 &4297352067365052579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005315448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c1b92285f8b743478fec480b5bff40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: Effect
+  prefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4, type: 3}
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,8 +145,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5480432696447524988}
+  - component: {fileID: 9189768077676925487}
   - component: {fileID: 9020783451331779710}
-  - component: {fileID: 5927845191951810014}
+  - component: {fileID: 7397438080358453448}
   m_Layer: 6
   m_Name: BasicSecondAttack
   m_TagString: Untagged
@@ -156,6 +170,18 @@ Transform:
   m_Father: {fileID: 1049237760}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9189768077676925487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073555622785391330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca273659bcfc4543bdad4de2461ac95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9020783451331779710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,23 +191,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073555622785391330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1ffb433fa28e541a105e1f20b2980e, type: 3}
+  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityTargeting: {fileID: 9189768077676925487}
   image: {fileID: 21300000, guid: a238b267c895f6c44aa6bc50d2ba6b3b, type: 3}
-  cooldown: 0.1
+  cooldown: 1
   abilityName: Ability
   type: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   selfOnlyIfTarget: 0
-  targetEffects: []
+  targetEffects:
+  - {fileID: 7397438080358453448}
   selfEffects: []
-  groundEffects:
-  - {fileID: 5927845191951810014}
+  groundEffects: []
   associatedWidget: {fileID: 0}
---- !u!114 &5927845191951810014
+--- !u!114 &7397438080358453448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,12 +217,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073555622785391330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c1b92285f8b743478fec480b5bff40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  groundEffectPrefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40,
-    type: 3}
+  prefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40, type: 3}
 --- !u!1 &3852378756998237364
 GameObject:
   m_ObjectHideFlags: 0

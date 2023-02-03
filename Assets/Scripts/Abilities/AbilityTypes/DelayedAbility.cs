@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaycastedDelayedAbility : RaycastedAbility
+public class DelayedAbility : Ability
 {
     public float castTime = 2f;
     protected float delayDeltaTimeCounter = 0;
@@ -36,8 +36,7 @@ public class RaycastedDelayedAbility : RaycastedAbility
 
             if(delayDeltaTimeCounter > castTime)
             {
-                AbilityTargetingData targeting = computeTargeting();
-                applyAbility(targeting);
+                computeTargetingAndApplyAbility();
                 onCast();
                 casting = false;
             }
