@@ -94,23 +94,32 @@ public class Ability : MonoBehaviour
 
     protected void applyAbility(AbilityTargetingData target)
     {
-        if (!selfOnlyIfTarget || target.charDidHit != null) //only apply if we don't need a target to do so, or if we do have a target
+        if(selfEffects.Length > 0)
         {
-            applyAbilitySelf();
+            if (!selfOnlyIfTarget || target.charDidHit) //only apply if we don't need a target to do so, or if we do have a target
+            {
+                applyAbilitySelf(selfEffects);
+            }
         }
 
-        if (target.charDidHit != null)
+        if(targetEffects.Length > 0)
         {
-            applyAbilityTarget(target.charDidHit);
+            if (target.charDidHit)
+            {
+                applyAbilityTarget(target.characterHit, targetEffects);
+            }
         }
 
-        if(target.groundHit)
+        if(groundEffects.Length > 0)
         {
-            applyAbilityGround(target.pointHit);
+            if(target.groundDidHit)
+            {
+                applyAbilityGround(target.pointHit, groundEffects);
+            }
         }
     }
 
-    private void applyAbilityTarget(CharacterStats target)
+    private void applyAbilityTarget(CharacterStats target, EffectDescriptor[] targetEffects)
     {
         for (int i = 0; i < targetEffects.Length; ++i)
         {
@@ -120,7 +129,7 @@ public class Ability : MonoBehaviour
         }
     }
 
-    private void applyAbilitySelf()
+    private void applyAbilitySelf(EffectDescriptor[] selfEffects)
     {
         for (int i = 0; i < selfEffects.Length; ++i)
         {
@@ -130,7 +139,7 @@ public class Ability : MonoBehaviour
         }
     }
 
-    private void applyAbilityGround(Vector3 posOnGround)
+    private void applyAbilityGround(Vector3 posOnGround, EffectDescriptor[] groundEffects)
     {
         for (int i = 0; i < groundEffects.Length; ++i)
         {

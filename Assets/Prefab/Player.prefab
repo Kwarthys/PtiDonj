@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3076829481270543313}
   - component: {fileID: 8851823824815168547}
   - component: {fileID: 9126553349831644882}
-  - component: {fileID: 4297352067365052579}
+  - component: {fileID: 765458642222239677}
   m_Layer: 6
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -70,9 +70,9 @@ MonoBehaviour:
   selfOnlyIfTarget: 0
   targetEffects:
   - {fileID: 9126553349831644882}
-  - {fileID: 4297352067365052579}
   selfEffects: []
-  groundEffects: []
+  groundEffects:
+  - {fileID: 765458642222239677}
   associatedWidget: {fileID: 0}
   castTime: 2
 --- !u!114 &9126553349831644882
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: Effect
   damage: 10
---- !u!114 &4297352067365052579
+--- !u!114 &765458642222239677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,11 +98,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005315448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c1b92285f8b743478fec480b5bff40c, type: 3}
+  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  prefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4, type: 3}
+  groundEffectPrefab: {fileID: 6273722514160757825, guid: 061ba0464c841df469165030058cd3a4,
+    type: 3}
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +148,7 @@ GameObject:
   - component: {fileID: 5480432696447524988}
   - component: {fileID: 9189768077676925487}
   - component: {fileID: 9020783451331779710}
-  - component: {fileID: 7397438080358453448}
+  - component: {fileID: 6560062033089377573}
   m_Layer: 6
   m_Name: BasicSecondAttack
   m_TagString: Untagged
@@ -203,12 +204,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   selfOnlyIfTarget: 0
-  targetEffects:
-  - {fileID: 7397438080358453448}
+  targetEffects: []
   selfEffects: []
-  groundEffects: []
+  groundEffects:
+  - {fileID: 6560062033089377573}
   associatedWidget: {fileID: 0}
---- !u!114 &7397438080358453448
+--- !u!114 &6560062033089377573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,11 +218,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073555622785391330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c1b92285f8b743478fec480b5bff40c, type: 3}
+  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  prefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40, type: 3}
+  groundEffectPrefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40,
+    type: 3}
 --- !u!1 &3852378756998237364
 GameObject:
   m_ObjectHideFlags: 0

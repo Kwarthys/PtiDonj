@@ -14,8 +14,8 @@ public class RandomPlayersTargeting : AbilityTargeting
         for (int i = 0; i < targets.Length; i++)
         {
             AbilityTargetingData targeting = new AbilityTargetingData();
-            targeting.characterHit = true;
-            targeting.charDidHit = targets[i];
+            targeting.charDidHit = true;
+            targeting.characterHit = targets[i];
             targeting.registerGroundUnderCharacter();
 
             dataArray[i] = targeting;
