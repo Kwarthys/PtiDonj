@@ -15,8 +15,6 @@ public class GroundEffectSetup : NetworkBehaviour
 
     private Effect spawnedEffect = null;
 
-    public bool gameManagerAutoRemove = true;
-
     public void initialize(Effect spawnedEffect)
     {
         if(isServer)
@@ -27,8 +25,6 @@ public class GroundEffectSetup : NetworkBehaviour
             float zoneSize = colliderEffect.getZoneSize();
 
             ClientRPCSetupGroundMarkers(effectDuration, zoneSize, transform.position);
-
-            spawnedEffect.associatedGameObject = gameManagerAutoRemove ? gameObject : null;
         }
         else
         {
@@ -49,17 +45,20 @@ public class GroundEffectSetup : NetworkBehaviour
         GameObject marker = Instantiate(markerPrefab, pos + Vector3.up * 0.01f, markerPrefab.transform.rotation, groundModelsHolder);
 
         ColliderTriggerHandler trigger = marker.GetComponent<ColliderTriggerHandler>();
-        WarningZoneAnimator animator = marker.GetComponent<WarningZoneAnimator>();
+        ZoneAnimator animator = marker.GetComponent<ZoneAnimator>();
 
         if(animator != null)
         {
             animator.initialize(effectDuration, holder);
             LocalAnimatorManager.instance.registerAnimatedLocalObject(animator);
 
-            GameObject vfx = Instantiate(animator.onEndFXPrefab, pos + Vector3.up * 0.01f, Quaternion.identity, LocalReferencer.instance.groundZoneMarkersHolder);
-            ExplosionVFXController fxController = vfx.GetComponent<ExplosionVFXController>();
-            fxController.setupExplosion(zoneSize, effectDuration, 3);
-            LocalAnimatorManager.instance.registerAnimatedLocalObject(fxController);
+            if(animator.onEndFXPrefab != null)
+            {
+                GameObject vfx = Instantiate(animator.onEndFXPrefab, pos + Vector3.up * 0.01f, Quaternion.identity, LocalReferencer.instance.groundZoneMarkersHolder);
+                ExplosionVFXController fxController = vfx.GetComponent<ExplosionVFXController>();
+                fxController.setupExplosion(zoneSize, effectDuration, 3);
+                LocalAnimatorManager.instance.registerAnimatedLocalObject(fxController);
+            }
         }
 
         if(isServer) //spawnedEffect will be null on clients, where we don't need that link

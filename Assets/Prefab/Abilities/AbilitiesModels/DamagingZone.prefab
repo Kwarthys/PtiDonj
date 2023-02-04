@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5533006468625875154}
   - component: {fileID: 3928244858583887789}
   - component: {fileID: 3490977788779958005}
+  - component: {fileID: 3878078658652425611}
   m_Layer: 0
   m_Name: DamagingZone
   m_TagString: Untagged
@@ -110,3 +111,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec47b447433fb24db633333b662efdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  associatedHintZoneController: {fileID: 0}
+--- !u!114 &3878078658652425611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6563570190369477141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9068da4977a1ea46afb7ca9696b6fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationDuration: 0
+  associatedGameObject: {fileID: 0}
+  onEndFXPrefab: {fileID: 0}
