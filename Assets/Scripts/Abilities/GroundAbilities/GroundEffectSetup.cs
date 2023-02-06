@@ -52,6 +52,14 @@ public class GroundEffectSetup : NetworkBehaviour
             animator.initialize(effectDuration, holder);
             LocalAnimatorManager.instance.registerAnimatedLocalObject(animator);
 
+            if(animator.playOnStartFXPrefab != null)
+            {
+                GameObject vfx = Instantiate(animator.playOnStartFXPrefab, pos + Vector3.up * 0.01f, Quaternion.identity, LocalReferencer.instance.groundZoneMarkersHolder);
+                DamagingFXController fxController = vfx.GetComponent<DamagingFXController>();
+                fxController.initialize(zoneSize, effectDuration);
+                LocalAnimatorManager.instance.registerAnimatedLocalObject(fxController);
+            }
+
             if(animator.onEndFXPrefab != null)
             {
                 GameObject vfx = Instantiate(animator.onEndFXPrefab, pos + Vector3.up * 0.01f, Quaternion.identity, LocalReferencer.instance.groundZoneMarkersHolder);

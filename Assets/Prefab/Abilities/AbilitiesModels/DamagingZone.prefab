@@ -126,4 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationDuration: 0
   associatedGameObject: {fileID: 0}
+  playOnStartFXPrefab: {fileID: 6896439527815924230, guid: ef5565aa79fd5f64d8853c44d8d73c16,
+    type: 3}
   onEndFXPrefab: {fileID: 0}

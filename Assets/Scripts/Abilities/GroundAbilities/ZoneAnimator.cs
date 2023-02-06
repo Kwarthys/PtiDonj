@@ -13,6 +13,7 @@ public abstract class ZoneAnimator : MonoBehaviour, IMyAnimator
     [HideInInspector]
     public GameObject associatedGameObject;
 
+    public GameObject playOnStartFXPrefab;
     public GameObject onEndFXPrefab;
 
     public void destroyAnimator()
