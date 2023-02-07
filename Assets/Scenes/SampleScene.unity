@@ -2470,7 +2470,7 @@ GameObject:
   - component: {fileID: 1644074216}
   - component: {fileID: 1644074215}
   m_Layer: 0
-  m_Name: WinfParticles
+  m_Name: WindParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
