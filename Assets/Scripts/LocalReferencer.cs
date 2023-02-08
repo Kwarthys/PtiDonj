@@ -9,6 +9,7 @@ public class LocalReferencer : MonoBehaviour
     public GameObject groundZonePositionHintPrefab;
     public GameObject groundDamagingZoneMarkerPrefab;
     public GameObject groundWarningZoneMarkerPrefab;
+    public GameObject windZoneMarkerPrefab;
     public GameObject ExplosionVFXPrefab;
     public GameObject abilityWidgetPrefab;
 

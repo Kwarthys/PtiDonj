@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 5480432696447524988}
   - component: {fileID: 9189768077676925487}
   - component: {fileID: 9020783451331779710}
-  - component: {fileID: 6560062033089377573}
+  - component: {fileID: 7248267949421903636}
   m_Layer: 6
   m_Name: BasicSecondAttack
   m_TagString: Untagged
@@ -204,12 +204,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   selfOnlyIfTarget: 0
-  targetEffects: []
+  targetEffects:
+  - {fileID: 7248267949421903636}
   selfEffects: []
-  groundEffects:
-  - {fileID: 6560062033089377573}
+  groundEffects: []
   associatedWidget: {fileID: 0}
---- !u!114 &6560062033089377573
+--- !u!114 &7248267949421903636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,11 +218,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073555622785391330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80f64e5161dda6b4998197c17424da61, type: 3}
+  m_Script: {fileID: 11500000, guid: ffb56c5acefc65e43b583943b476f7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effectName: Effect
-  groundEffectPrefab: {fileID: 8262432769108347627, guid: 69c4b788897718248a39f7a5afffcf40,
+  prefabToSpawn: {fileID: 6240620484723491733, guid: 09b76995030b11c4eaa6ee34b4d4e593,
     type: 3}
 --- !u!1 &3852378756998237364
 GameObject:

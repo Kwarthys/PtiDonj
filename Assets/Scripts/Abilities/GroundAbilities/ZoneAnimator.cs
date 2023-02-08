@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ZoneAnimator : MonoBehaviour, IMyAnimator
+public class ZoneAnimator : MonoBehaviour, IMyAnimator
 {
     protected Material zoneMaterial;
 
@@ -30,8 +30,11 @@ public abstract class ZoneAnimator : MonoBehaviour, IMyAnimator
     public void initialize(float animationDuration, GameObject associatedGameObject)
     {
         MeshRenderer mr = GetComponent<MeshRenderer>();
-        zoneMaterial = new Material(mr.material);
-        mr.material = zoneMaterial;
+        if(mr != null)
+        {
+            zoneMaterial = new Material(mr.material);
+            mr.material = zoneMaterial;
+        }
 
         this.animationDuration = animationDuration;
         this.associatedGameObject = associatedGameObject;

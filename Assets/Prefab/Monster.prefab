@@ -277,6 +277,7 @@ MonoBehaviour:
   displayManager: {fileID: 7826102989446278344}
   networkIdentity: {fileID: 5825245318181456640}
   abilityManager: {fileID: 0}
+  followingZoneHolder: {fileID: 0}
   moving: 0
 --- !u!114 &5825245318181456655
 MonoBehaviour:

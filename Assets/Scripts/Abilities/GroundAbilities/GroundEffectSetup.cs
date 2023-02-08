@@ -5,7 +5,7 @@ using Mirror;
 
 public class GroundEffectSetup : NetworkBehaviour
 {
-    public enum MarkerType { damagingZone, WarningZone}
+    public enum MarkerType { damagingZone, WarningZone, WindZone}
 
     public MarkerType markerType;
 
@@ -91,6 +91,9 @@ public class GroundEffectSetup : NetworkBehaviour
         {
             case MarkerType.damagingZone:
                 return LocalReferencer.instance.groundDamagingZoneMarkerPrefab;
+
+            case MarkerType.WindZone:
+                return LocalReferencer.instance.windZoneMarkerPrefab;
 
             case MarkerType.WarningZone:
             default:

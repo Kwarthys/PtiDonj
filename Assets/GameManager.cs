@@ -72,10 +72,19 @@ public class GameManager : NetworkBehaviour
             groundEffects.Add(effect);
         }
     }
-    
+
     public GameObject spawnPrefab(GameObject prefab, Vector3 pos)
-    {        
+    {
         GameObject go = Instantiate(prefab, pos, Quaternion.identity);
+
+        NetworkServer.Spawn(go);
+
+        return go;
+    }
+
+    public GameObject spawnPrefab(GameObject prefab, Transform parent)
+    {
+        GameObject go = Instantiate(prefab, parent);
 
         NetworkServer.Spawn(go);
 
