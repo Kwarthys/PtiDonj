@@ -1466,8 +1466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c23bfb1c77a22f45a03458315f78972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monstersList:
-  - {fileID: 1357723484}
   localPlayerTransform: {fileID: 0}
   localPlayerHealthBar: {fileID: 1071853016}
 --- !u!4 &933330835
@@ -1914,18 +1912,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88cd870e6712b024e8c3fe877377054a, type: 3}
---- !u!114 &1357723484 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5825245318181456655, guid: 88cd870e6712b024e8c3fe877377054a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1329090771}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78e688a7bf3fb7498840af82c82ee75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1374011911
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class CharacterStats : NetworkBehaviour
 
     public AbilityManager abilityManager;
 
-    public Transform followingZoneHolder { get; private set; }
+    public Transform followingZoneHolder;
 
     public bool moving = false;
 
@@ -69,10 +69,6 @@ public class CharacterStats : NetworkBehaviour
     private void Awake()
     {
         life = maxLife;
-
-        GameObject holderGO = new GameObject("FollowingZoneHolder");
-        followingZoneHolder = holderGO.transform;
-        followingZoneHolder.parent = transform;
     }
 
     private void Start()

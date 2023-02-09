@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     public Dictionary<uint, CharacterStats> playerCharacters = new Dictionary<uint, CharacterStats>();
 
     [SerializeField]
-    public List<MonsterController> monstersList = new List<MonsterController>(); //for now public and filled from editor, but will be filled automatically in the future
+    public Dictionary<uint, MonsterController> monsterControllers = new Dictionary<uint,MonsterController>(); //for now public and filled from editor, but will be filled automatically in the future
 
     [HideInInspector]
     public Transform localPlayerTransform;
@@ -30,9 +30,29 @@ public class PlayerManager : MonoBehaviour
         playerCharacters.Remove(netId);
     }
 
+    public void registerMonster(uint netId, MonsterController monsterController)
+    {
+        monsterControllers.Add(netId, monsterController);
+    }
+
+    public void removeMonster(uint netId)
+    {
+        monsterControllers.Remove(netId);
+    }
+
     public CharacterStats getCharacter(uint netId)
     {
-        return playerCharacters[netId];
+        if(playerCharacters.ContainsKey(netId))
+        {
+            return playerCharacters[netId];
+        }
+
+        if(monsterControllers.ContainsKey(netId))
+        {
+            return monsterControllers[netId].monsterStats;
+        }
+
+        return null;
     }
 
     public CharacterStats getRandomCharacter()

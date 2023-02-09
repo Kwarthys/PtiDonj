@@ -24,9 +24,9 @@ public class GameManager : NetworkBehaviour
                 pair.Value.updateStats();
             }
 
-            for (int i = 0; i < PlayerManager.instance.monstersList.Count; i++)
+            foreach(KeyValuePair<uint, MonsterController> pair in PlayerManager.instance.monsterControllers)
             {
-                PlayerManager.instance.monstersList[i].updateMonster();
+                pair.Value.updateMonster();
             }
         }
     }

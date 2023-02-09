@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class DamagingFXController : MonoBehaviour, IMyAnimator
+public class DamagingFXController : VFXController
 {
-    public VisualEffect vfx;
-
-    private float duration = 3;
     public float fadeOutTime = 1f;
     public float delay = 1f;
 
-    private float deltaTimeCounter = 0;
-
     private bool faded = false;
 
-    public void initialize(float size, float duration)
+    public override void initialize(float size, float duration)
     {
         vfx.SetFloat("Size", size);
         vfx.SetFloat("SpawnRate", 1);
@@ -29,12 +24,7 @@ public class DamagingFXController : MonoBehaviour, IMyAnimator
         }
     }
 
-    public void destroyAnimator()
-    {
-        Destroy(gameObject);
-    }
-
-    public bool updateAnimation()
+    public override bool updateAnimation()
     {
         deltaTimeCounter += Time.deltaTime;
 

@@ -14,11 +14,12 @@ public class SpawnFollowingPrefabEffect : Effect
     public override void onStart()
     {
         GameObject spawnedPrefab = GameManager.instance.spawnPrefab(prefabToSpawn, owner.followingZoneHolder);
-        GroundEffectSetup setup = spawnedPrefab.GetComponent<GroundEffectSetup>();
+        InstanciatedEffectSetup setup = spawnedPrefab.GetComponent<InstanciatedEffectSetup>();
 
         Effect e = setup.mainEffect.getNewEffect();
         e.caster = caster;
         e.associatedGameObject = spawnedPrefab;
+        e.owner = owner;
 
         setup.initialize(e);
 

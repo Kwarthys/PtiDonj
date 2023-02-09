@@ -24,9 +24,9 @@ public class LocalAnimatorManager : MonoBehaviour
             pair.Value.updateDisplay();
         }
 
-        for (int i = 0; i < PlayerManager.instance.monstersList.Count; i++)
+        foreach(KeyValuePair<uint, MonsterController> pair in PlayerManager.instance.monsterControllers)
         {
-            PlayerManager.instance.monstersList[i].monsterStats.updateDisplay();
+            pair.Value.monsterStats.updateDisplay();
         }
 
         List<IMyAnimator> toRemove = null;

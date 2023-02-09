@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class ExplosionVFXController : MonoBehaviour, IMyAnimator
+public class ExplosionVFXController : VFXController
 {
-    public VisualEffect vfx;
-
-    private float duration = 3;
-    private float delay = 0;
-
-    private float deltaTimeCounter = 0;
+    public float delay = 3f;
     private bool playedExplosion = false;
 
-    public void setupExplosion(float size, float delay, float duration)
+    public override void initialize(float size, float duration)
     {
         vfx.SetFloat("ExplosionSize", size);
 
-        this.delay = delay;
         this.duration = duration;
         deltaTimeCounter = 0;
         playedExplosion = false;
@@ -25,7 +19,7 @@ public class ExplosionVFXController : MonoBehaviour, IMyAnimator
         vfx.Stop();
     }
 
-    public bool updateAnimation()
+    public override bool updateAnimation()
     {
         deltaTimeCounter += Time.deltaTime;
 
@@ -36,10 +30,5 @@ public class ExplosionVFXController : MonoBehaviour, IMyAnimator
         }
 
         return deltaTimeCounter < duration + delay;
-    }
-
-    public void destroyAnimator()
-    {
-        Destroy(gameObject);
     }
 }

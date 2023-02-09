@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2077788002286077754}
   - component: {fileID: -5315053130305314086}
   m_Layer: 0
-  m_Name: WindParticles
+  m_Name: BasicZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationDuration: 0
   associatedGameObject: {fileID: 0}
-  playOnStartFXPrefab: {fileID: 0}
+  playOnStartFXPrefab: {fileID: 3464821948817952945, guid: 78857e5ad698bc345a6bc1fbb335ba19,
+    type: 3}
   onEndFXPrefab: {fileID: 0}
 --- !u!114 &-2077788002286077754
 MonoBehaviour:
