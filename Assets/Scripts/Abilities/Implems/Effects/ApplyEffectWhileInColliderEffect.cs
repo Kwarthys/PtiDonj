@@ -14,6 +14,8 @@ public class ApplyEffectWhileInColliderEffect : TickingEffect, IColliderEffect
 
     public float size;
 
+    public bool includeOwnerIfAny = false;
+
     public ApplyEffectWhileInColliderEffect(string effectName, float effectDuration, float effectTickCooldown) : base(effectName, effectDuration, effectTickCooldown)
     {
 
@@ -31,6 +33,14 @@ public class ApplyEffectWhileInColliderEffect : TickingEffect, IColliderEffect
         for (int j = 0; j < targetsInside.Count; j++)
         {
             applyEffectsTo(targetsInside[j], effectsToApply);
+        }
+
+        if(includeOwnerIfAny)
+        {
+            if(owner != null)
+            {
+                applyEffectsTo(owner, effectsToApply);
+            }
         }
     }
 

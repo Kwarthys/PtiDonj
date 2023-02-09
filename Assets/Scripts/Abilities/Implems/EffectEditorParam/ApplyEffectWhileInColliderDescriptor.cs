@@ -17,6 +17,8 @@ public class ApplyEffectWhileInColliderDescriptor : EffectDescriptor
 
     public float zoneSize;
 
+    public bool includeOwnerIfAny = false;
+
     public override Effect getNewEffect()
     {
         ApplyEffectWhileInColliderEffect effect = new ApplyEffectWhileInColliderEffect(effectName, effectDuration, effectTickCooldown);
@@ -26,6 +28,7 @@ public class ApplyEffectWhileInColliderDescriptor : EffectDescriptor
         effect.colliderTriggers = this.colliderTriggers;
         effect.effectsToApply = this.effectsToApply;
         effect.associatedGameObject = gameObject;
+        effect.includeOwnerIfAny = includeOwnerIfAny;
 
         return effect;
     }

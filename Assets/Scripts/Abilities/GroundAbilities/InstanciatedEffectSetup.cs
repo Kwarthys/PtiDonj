@@ -8,6 +8,7 @@ public abstract class InstanciatedEffectSetup : NetworkBehaviour
     public enum MarkerType { damagingZone, WarningZone, WindZone }
     public MarkerType markerType;
 
+    [SerializeField]
     public EffectDescriptor mainEffect;
 
     protected Effect spawnedEffect = null;

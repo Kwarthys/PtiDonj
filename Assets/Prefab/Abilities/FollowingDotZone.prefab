@@ -75,6 +75,7 @@ MonoBehaviour:
   effectTickCooldown: 1
   colliderTriggers: {fileID: 0}
   zoneSize: 6
+  includeOwnerIfAny: 1
 --- !u!114 &5210416407525556854
 MonoBehaviour:
   m_ObjectHideFlags: 0

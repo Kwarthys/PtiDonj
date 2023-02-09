@@ -31,6 +31,8 @@ public class ColliderTriggerHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.transform.name + " ENTER");
+
         CharacterStats character = other.GetComponentInParent<CharacterStats>();
         
         if (character != null)
@@ -39,10 +41,14 @@ public class ColliderTriggerHandler : MonoBehaviour
             {
                 targetsInside.Add(character);
 
-                if(character.transform == PlayerManager.instance.localPlayerTransform)
+                if(associatedHintZoneController != null)
                 {
-                    associatedHintZoneController.setPlayerInside(true);
+                    if(character.transform == PlayerManager.instance.localPlayerTransform)
+                    {
+                        associatedHintZoneController.setPlayerInside(true);
+                    }
                 }
+
             }
         }
 
@@ -51,6 +57,7 @@ public class ColliderTriggerHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("EXIT");
         CharacterStats character = other.GetComponentInParent<CharacterStats>(); 
         
         if (character != null)
@@ -59,9 +66,12 @@ public class ColliderTriggerHandler : MonoBehaviour
             {
                 targetsInside.Remove(character);
 
-                if (character.transform == PlayerManager.instance.localPlayerTransform)
+                if (associatedHintZoneController != null)
                 {
-                    associatedHintZoneController.setPlayerInside(false);
+                    if (character.transform == PlayerManager.instance.localPlayerTransform)
+                    {
+                        associatedHintZoneController.setPlayerInside(false);
+                    }
                 }
             }
         }
