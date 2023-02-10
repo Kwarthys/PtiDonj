@@ -11,8 +11,6 @@ public class FollowingEffectSetup : InstanciatedEffectSetup
 
         GameObject marker = Instantiate(getGroundMarker(), parent);
 
-        Debug.Log(parent);
-
         ColliderTriggerHandler trigger = marker.GetComponent<ColliderTriggerHandler>();
 
         ZoneAnimator animator = marker.GetComponent<ZoneAnimator>();

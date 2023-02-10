@@ -63,4 +63,29 @@ public class DelayedAbility : Ability
         }
 
     }
+
+    public override AbilityCooldownData getCooldownData()
+    {
+        AbilityCooldownData data = new AbilityCooldownData();
+
+        if(canCast)
+        {
+            data.state = CooldownState.ready;
+        }
+        else
+        {
+            if(casting)
+            {
+                data.state = CooldownState.casting;
+            }
+            else
+            {
+                data.state = CooldownState.charging;
+                data.fullCooldown = cooldown;
+                data.cooldownSpent = cooldownDeltaTimeCounter;
+            }
+        }
+
+        return data;
+    }
 }

@@ -31,8 +31,6 @@ public class ColliderTriggerHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.transform.name + " ENTER");
-
         CharacterStats character = other.GetComponentInParent<CharacterStats>();
         
         if (character != null)

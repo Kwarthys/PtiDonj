@@ -26,9 +26,7 @@ public abstract class InstanciatedEffectSetup : NetworkBehaviour
             if (spawnedEffect.owner != null)
             {
                 parentID = spawnedEffect.owner.netId;
-            }
-
-            Debug.Log(parentID);
+            }   
 
             ClientRPCSetupMarkers(effectDuration, zoneSize, parentID);
         }

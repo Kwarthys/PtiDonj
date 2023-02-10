@@ -157,15 +157,21 @@ public class Ability : MonoBehaviour
         Debug.DrawLine(worldPoint + Vector3.up, worldPoint + Vector3.down * 2, Color.yellow, 5);
     }
 
-    public virtual float getCooldown()
+    public virtual AbilityCooldownData getCooldownData()
     {
+        AbilityCooldownData data = new AbilityCooldownData();
+
         if(canCast)
         {
-            return -1;
+            data.state = CooldownState.ready;
         }
         else
         {
-            return cooldown;
+            data.state = CooldownState.charging;
+            data.fullCooldown = cooldown;
+            data.cooldownSpent = cooldownDeltaTimeCounter;
         }
+
+        return data;
     }
 }

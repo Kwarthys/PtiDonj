@@ -29,8 +29,7 @@ public class AbilityWidgetController : MonoBehaviour
             image.material.mainTexture = ability.image.texture;
 
             needsUpdate = false;
-            image.material.SetFloat("_HideAmount", 0);
-            textMesh.SetText("");
+            resetWidget();
         }
     }
 
@@ -40,20 +39,33 @@ public class AbilityWidgetController : MonoBehaviour
 
         deltaTimeCounter += Time.deltaTime;
 
-        float cooldown = associatedAbility.getCooldown();
+        AbilityCooldownData data = associatedAbility.getCooldownData();
 
-        image.material.SetFloat("_HideAmount", 1-(deltaTimeCounter / cooldown));
-
-        float roundedTimeLeft = Mathf.Ceil(cooldown - deltaTimeCounter);
-
-        textMesh.SetText(roundedTimeLeft.ToString());
-
-        if(cooldown < deltaTimeCounter)
+        if(data.state == CooldownState.ready)
         {
             needsUpdate = false;
-            image.material.SetFloat("_HideAmount", 0);
+            resetWidget();
+        }
+        else if(data.state == CooldownState.casting)
+        {
+            image.material.SetFloat("_HideAmount", 1);
             textMesh.SetText("");
         }
+        else if(data.state == CooldownState.charging)
+        {
+            float timeLeft = data.fullCooldown - data.cooldownSpent;
+            float roundedTimeLeft = Mathf.Ceil(timeLeft);
+            float relativeRecharge = 1 - (data.cooldownSpent / data.fullCooldown);
+
+            textMesh.SetText(roundedTimeLeft.ToString());
+            image.material.SetFloat("_HideAmount", relativeRecharge);
+        }
+    }
+
+    private void resetWidget()
+    {
+        image.material.SetFloat("_HideAmount", 0);
+        textMesh.SetText("");
     }
 
     public void abilityFired()
