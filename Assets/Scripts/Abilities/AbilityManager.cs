@@ -95,7 +95,8 @@ public class AbilityManager : NetworkBehaviour
         fired.notifyAbilityFired();
     }
 
-    [Command]
+    [Command(requiresAuthority = false)] //dunno why this is suddenly needed
+    //[Command]
     public void CmdSetupCastBar(float castTime, string abilityName, CastBarDisplayController.FillMode fillMode)
     {
         RpcSetupCastBar(castTime, abilityName, fillMode);

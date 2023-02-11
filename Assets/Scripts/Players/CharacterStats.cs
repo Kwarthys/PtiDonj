@@ -96,10 +96,17 @@ public class CharacterStats : NetworkBehaviour
     public void updateStats()
     {
         updateEffects();
+        updateAbilities(false); //called from server, so we disable the anti server update of "clientOnly"
+    }
 
-        if(abilityManager != null) //will only be true on players, not monsters (yet ?)
+    public void updateAbilities(bool clientOnly = true)
+    {
+        if(!isServer || !clientOnly)
         {
-            abilityManager.updateAbilities();
+            if (abilityManager != null) //will only be true on players, not monsters (yet ?)
+            {
+                abilityManager.updateAbilities();
+            }
         }
     }
 

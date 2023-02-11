@@ -26,19 +26,22 @@ public abstract class InstanciatedEffectSetup : NetworkBehaviour
             if (spawnedEffect.owner != null)
             {
                 parentID = spawnedEffect.owner.netId;
-            }   
+            }
 
-            ClientRPCSetupMarkers(effectDuration, zoneSize, parentID);
+            Debug.Log("initialize-isServer? " + isServer);
+
+            RpcSetupMarkers(effectDuration, zoneSize, parentID);
         }
         else
         {
-            Debug.LogWarning("Initialize Instantiated effect client side, should only be called server-side");
+            Debug.LogWarning("Initialize Instantiated effect client-side, should only be called server-side");
         }
     }
 
     [ClientRpc]
-    private void ClientRPCSetupMarkers(float effectDuration, float zoneSize, uint parentCharacter)
+    private void RpcSetupMarkers(float effectDuration, float zoneSize, uint parentCharacter)
     {
+        Debug.Log("setupMarkers");
         setupMarkers(effectDuration, zoneSize, parentCharacter);
     }
 

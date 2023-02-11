@@ -22,6 +22,7 @@ public class LocalAnimatorManager : MonoBehaviour
         foreach (KeyValuePair<uint, CharacterStats> pair in PlayerManager.instance.playerCharacters)
         {
             pair.Value.updateDisplay();
+            pair.Value.updateAbilities(); //update cooldown systems for local display
         }
 
         foreach(KeyValuePair<uint, MonsterController> pair in PlayerManager.instance.monsterControllers)

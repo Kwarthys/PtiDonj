@@ -74,7 +74,7 @@ MonoBehaviour:
   groundEffects:
   - {fileID: 765458642222239677}
   associatedWidget: {fileID: 0}
-  castTime: 0.5
+  castTime: 2
 --- !u!114 &9126553349831644882
 MonoBehaviour:
   m_ObjectHideFlags: 0
