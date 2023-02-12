@@ -531,6 +531,9 @@ MonoBehaviour:
   frameToSmooth: 5
   rotationVerticalClamps: {x: -45, y: 45}
   rotationHorizontalClamps: {x: 0, y: 0}
+  obstaclesLayers:
+    serializedVersion: 2
+    m_Bits: 704
   cameraHolder: {fileID: 3852378757287495124}
   associatedPlayer: {fileID: 1620960983934713654}
 --- !u!114 &3852378758719500947

@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public Vector2 rotationVerticalClamps;
     public Vector2 rotationHorizontalClamps;
 
+    public LayerMask obstaclesLayers;
+
     public Transform cameraHolder;
 
     public CharacterStats associatedPlayer;
@@ -82,8 +84,22 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         Vector3 movement3D = new Vector3(lastMovement.x, 0, lastMovement.y) * speed * Time.deltaTime;
-        transform.Translate(movement3D);
 
+        Vector3 worldMovement = transform.localToWorldMatrix * movement3D;
+
+        //checkCollisions
+        Debug.DrawRay(transform.position, worldMovement * 3, Color.black, 3);
+
+        if(Physics.Raycast(transform.position, worldMovement, out RaycastHit hit, worldMovement.magnitude * 6, obstaclesLayers))
+        {
+            //Debug.Log("Hit " + hit.transform.name);
+            //Debug.DrawRay(hit.point, hit.normal, Color.blue, 5);
+        }
+        else
+        {
+            transform.Translate(movement3D);
+        }
+        
         associatedPlayer.moving = lastMovement.sqrMagnitude > 0;
     }
 

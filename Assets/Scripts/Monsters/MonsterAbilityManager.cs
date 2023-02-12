@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterAbilityManager : MonoBehaviour
 {
-    public List<MonsterAbilityTrigger> abilityTriggers;
+    private List<MonsterAbilityTrigger> abilityTriggers;
 
     private void Start()
     {
