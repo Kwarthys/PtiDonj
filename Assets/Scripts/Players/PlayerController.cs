@@ -86,19 +86,19 @@ public class PlayerController : MonoBehaviour
         Vector3 movement3D = new Vector3(lastMovement.x, 0, lastMovement.y) * speed * Time.deltaTime;
 
         Vector3 worldMovement = transform.localToWorldMatrix * movement3D;
+        float worldMovementMagnitude = worldMovement.magnitude;
 
         //checkCollisions
-        Debug.DrawRay(transform.position, worldMovement * 3, Color.black, 3);
+        if(Physics.Raycast(transform.position, worldMovement, out RaycastHit hit, worldMovementMagnitude * 10, obstaclesLayers))
+        {
+            //Hit a wall, start gliding alongside it
+            Vector3 wallNormal = hit.normal;
+            float angle = Vector3.Angle(wallNormal, worldMovement);
+            Vector3 projectedMovementOnNormal = worldMovementMagnitude * Mathf.Cos(Mathf.Deg2Rad * angle) * wallNormal.normalized;
+            worldMovement = worldMovement - projectedMovementOnNormal;
+        }
 
-        if(Physics.Raycast(transform.position, worldMovement, out RaycastHit hit, worldMovement.magnitude * 6, obstaclesLayers))
-        {
-            //Debug.Log("Hit " + hit.transform.name);
-            //Debug.DrawRay(hit.point, hit.normal, Color.blue, 5);
-        }
-        else
-        {
-            transform.Translate(movement3D);
-        }
+        transform.position += worldMovement;        
         
         associatedPlayer.moving = lastMovement.sqrMagnitude > 0;
     }
