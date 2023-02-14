@@ -5,7 +5,6 @@ using Mirror;
 
 public class GroundEffectSetup : InstanciatedEffectSetup
 {
-    [ClientRpc]
     public override void setupMarkers(float effectDuration, float zoneSize, uint parentID)//parentID is not set and not used for ground effects
     {
         Vector3 pos = transform.position;
