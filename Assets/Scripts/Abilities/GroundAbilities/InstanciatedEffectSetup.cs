@@ -28,8 +28,6 @@ public abstract class InstanciatedEffectSetup : NetworkBehaviour
                 parentID = spawnedEffect.owner.netId;
             }
 
-            Debug.Log("initialize-isServer? " + isServer);
-
             RpcSetupMarkers(effectDuration, zoneSize, parentID);
         }
         else
@@ -41,7 +39,6 @@ public abstract class InstanciatedEffectSetup : NetworkBehaviour
     [ClientRpc]
     private void RpcSetupMarkers(float effectDuration, float zoneSize, uint parentCharacter)
     {
-        Debug.Log("setupMarkers");
         setupMarkers(effectDuration, zoneSize, parentCharacter);
     }
 

@@ -108,6 +108,19 @@ public class AbilityManager : NetworkBehaviour
         selfStats.setupCastBarAnimation(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
     }
 
+    [Command]
+    public void CmdInterruptCastBarAnimation()
+    {
+        RpcInterruptCastBarAnimation();
+    }
+
+    [ClientRpc]
+    public void RpcInterruptCastBarAnimation()
+    {
+        selfStats.interruptCastBarAnimation();
+    }
+
+
     public void updateAbilities()
     {
         if(basicAbility.needsUpdate())

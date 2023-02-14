@@ -44,7 +44,8 @@ public class DelayedAbility : Ability
             if (ownerStats.moving)
             {
                 casting = false; //Interrupted
-                ownerStats.interruptCastBarAnimation();
+                manager.CmdInterruptCastBarAnimation();
+                Debug.Log("Interrupt");
                 ErrorMessageController.instance.showText("Cast interrupted, stay still !");
             }
 
