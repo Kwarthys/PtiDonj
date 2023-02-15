@@ -98,9 +98,9 @@ public class PlayerController : MonoBehaviour
             worldMovement = worldMovement - projectedMovementOnNormal;
         }
 
-        transform.position += worldMovement;        
+        transform.position += worldMovement;
         
-        associatedPlayer.moving = lastMovement.sqrMagnitude > 0;
+        associatedPlayer.notifyPlayerMovementChange(lastMovement.sqrMagnitude > 0);
     }
 
     private Vector2 smoothMovement(Vector2 lastSeeMovement)

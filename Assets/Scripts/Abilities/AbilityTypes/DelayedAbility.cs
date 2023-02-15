@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class DelayedAbility : Ability
 {
@@ -23,12 +24,18 @@ public class DelayedAbility : Ability
         return casting;
     }
 
+    public override void notifyAbilityFired()
+    {
+        base.notifyAbilityFired();
+        casting = true;
+    }
+
     public override bool canCastAbility()
     {
         return canCast && !ownerStats.moving;
     }
 
-    public override void onAbilityUpdate()
+    public override void onAbilityUpdate(bool animationOnly)
     {
         if(casting)
         {
@@ -36,22 +43,25 @@ public class DelayedAbility : Ability
 
             if(delayDeltaTimeCounter > castTime)
             {
-                computeTargetingAndApplyAbility();
-                onCast();
+                if(!animationOnly)
+                {
+                    //this should not be called on clients
+                    computeTargetingAndApplyAbility();
+                    onCast();
+                }
                 casting = false;
             }
 
             if (ownerStats.moving)
             {
+                manager.CmdNotifyAbilityInterruption(abilityIndex);
                 casting = false; //Interrupted
-                manager.CmdInterruptCastBarAnimation();
-                Debug.Log("Interrupt");
-                ErrorMessageController.instance.showText("Cast interrupted, stay still !");
             }
 
-            if (!casting)
+            if(!casting)
             {
-                cooldownDeltaTimeCounter = 0; //starts cd on interrupt or on cast
+                delayDeltaTimeCounter = 0;
+                cooldownDeltaTimeCounter = 0;
             }
         }
         else if(!canCast)
@@ -62,7 +72,12 @@ public class DelayedAbility : Ability
                 canCast = true; //cd Refreshed
             }
         }
+    }
 
+    public void interruptAbility()
+    {
+        ErrorMessageController.instance.showText("Cast interrupted, stay still !");
+        manager.CmdInterruptCastBarAnimation();
     }
 
     public override AbilityCooldownData getCooldownData()

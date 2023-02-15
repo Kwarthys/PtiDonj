@@ -18,8 +18,6 @@ public class RaycastedTargeting : AbilityTargeting
 
         result.charDidHit = false;
 
-        Debug.DrawRay(visor.position, visor.forward * 10, Color.black, 3);
-
         if (Physics.Raycast(visor.position, visor.forward, out RaycastHit hit, 250, targetsLayerMask | LocalReferencer.instance.groundLayer))
         {
             result.characterHit = hit.transform.GetComponent<CharacterStats>();

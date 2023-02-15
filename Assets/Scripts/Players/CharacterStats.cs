@@ -24,7 +24,19 @@ public class CharacterStats : NetworkBehaviour
 
     public Transform followingZoneHolder;
 
-    public bool moving = false;
+    public bool moving { get; private set; } = false;
+
+    public void notifyPlayerMovementChange(bool isMoving)
+    {
+        moving = isMoving;
+        CmdNotifyPlayerMovementChange(isMoving);
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdNotifyPlayerMovementChange(bool isMoving)
+    {
+        moving = isMoving;
+    }
 
     public float getCurrentLife()
     {
@@ -105,7 +117,7 @@ public class CharacterStats : NetworkBehaviour
         {
             if (abilityManager != null) //will only be true on players, not monsters (yet ?)
             {
-                abilityManager.updateAbilities();
+                abilityManager.updateAbilities(clientOnly);
             }
         }
     }

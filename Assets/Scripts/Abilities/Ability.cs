@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Mirror;
 
 public class Ability : MonoBehaviour
 {
@@ -30,6 +29,7 @@ public class Ability : MonoBehaviour
     [HideInInspector]
     public AbilityWidgetController associatedWidget;
 
+    public short abilityIndex;
     protected AbilityManager manager;
     public CharacterStats ownerStats { get; protected set; }
 
@@ -40,7 +40,7 @@ public class Ability : MonoBehaviour
         ownerStats = GetComponentInParent<CharacterStats>();
     }
 
-    public virtual void onAbilityUpdate()
+    public virtual void onAbilityUpdate(bool animationOnly)
     {
         if (canCast) return;
 
@@ -52,7 +52,7 @@ public class Ability : MonoBehaviour
         }
     }
 
-    public void notifyAbilityFired()
+    public virtual void notifyAbilityFired()
     {
         canCast = false;
         cooldownDeltaTimeCounter = 0;

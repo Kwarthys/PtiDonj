@@ -9,6 +9,8 @@ public class AbilityManager : NetworkBehaviour
     public Ability basicAbility;
     public Ability secondBasicAbility;
 
+    private Ability[] abilities;
+
     public Transform visor;
 
     public CharacterStats selfStats;
@@ -16,6 +18,17 @@ public class AbilityManager : NetworkBehaviour
     public LayerMask groundLayer;
 
     private List<AbilityWidgetController> widgets = new List<AbilityWidgetController>();
+
+    private void Awake()
+    {
+        abilities = new Ability[2];
+
+        basicAbility.abilityIndex = 0;
+        abilities[0] = basicAbility;
+
+        secondBasicAbility.abilityIndex = 1; //this will be automated by loadout setup by player (when implmented)
+        abilities[1] = secondBasicAbility;
+    }
 
     public void setupLocalPlayerAbilityDisplay()
     {
@@ -120,17 +133,32 @@ public class AbilityManager : NetworkBehaviour
         selfStats.interruptCastBarAnimation();
     }
 
+    [Command]
+    public void CmdNotifyAbilityInterruption(int abilityIndex)
+    {
+        RpcNotifyAbilitInterruption(abilityIndex);
+    }
 
-    public void updateAbilities()
+    [ClientRpc]
+    public void RpcNotifyAbilitInterruption(int abilityIndex)
+    {
+        if(abilities[abilityIndex] is DelayedAbility ability)
+        {
+            ability.interruptAbility();
+        }
+    }
+
+
+    public void updateAbilities(bool animationOnly)
     {
         if(basicAbility.needsUpdate())
         {
-            basicAbility.onAbilityUpdate();
+            basicAbility.onAbilityUpdate(animationOnly);
         }        
 
         if (secondBasicAbility.needsUpdate())
         {
-            secondBasicAbility.onAbilityUpdate();
+            secondBasicAbility.onAbilityUpdate(animationOnly);
         }
 
         for (int i = 0; i < widgets.Count; i++)

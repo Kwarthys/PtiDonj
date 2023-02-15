@@ -55,7 +55,6 @@ public class ColliderTriggerHandler : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("EXIT");
         CharacterStats character = other.GetComponentInParent<CharacterStats>(); 
         
         if (character != null)
