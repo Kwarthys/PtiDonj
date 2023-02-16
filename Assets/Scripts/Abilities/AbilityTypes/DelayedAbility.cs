@@ -47,7 +47,6 @@ public class DelayedAbility : Ability
                 {
                     //this should not be called on clients
                     computeTargetingAndApplyAbility();
-                    onCast();
                 }
                 casting = false;
             }

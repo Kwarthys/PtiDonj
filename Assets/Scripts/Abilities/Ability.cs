@@ -33,11 +33,15 @@ public class Ability : MonoBehaviour
     protected AbilityManager manager;
     public CharacterStats ownerStats { get; protected set; }
 
+    protected MovementEffector movementEffector;
+
 
     private void Start()
     {
         manager = GetComponentInParent<AbilityManager>();
         ownerStats = GetComponentInParent<CharacterStats>();
+
+        movementEffector = GetComponent<MovementEffector>();
     }
 
     public virtual void onAbilityUpdate(bool animationOnly)
@@ -74,8 +78,6 @@ public class Ability : MonoBehaviour
         {
             computeTargetingAndApplyAbility();
             canCast = false;
-            //for additional effect such as dash or complex logic
-            onCast();
 
             return true;
         }
@@ -149,7 +151,7 @@ public class Ability : MonoBehaviour
             GameManager.instance.addGroundEffect(effect);
         }
     }
-    protected virtual void onCast() { }
+
     public static void drawDebugCrossAtPoint(Vector3 worldPoint)
     {
         Debug.DrawLine(worldPoint + Vector3.left, worldPoint + Vector3.right * 2, Color.red, 5);

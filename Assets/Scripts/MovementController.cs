@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
-    private Vector2 lastMovement = Vector2.zero;
-
-    public float speed = 10;
+    public LayerMask obstaclesLayers;
+    public float speed;
     public float rotateSpeed = 5;
 
     public float maxRotationMagnitude = 100;
@@ -19,11 +17,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 rotationVerticalClamps;
     public Vector2 rotationHorizontalClamps;
 
-    public LayerMask obstaclesLayers;
-
     public Transform cameraHolder;
 
-    public CharacterStats associatedPlayer;
+    public CharacterStats associatedCharacter;
 
     private void Start()
     {
@@ -34,62 +30,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnConnectedToServer()
+    public void updateMovements(Vector2 local2DRotation, Vector2 local2DTranslation)
     {
-        Debug.Log("connected to server");
+        updateRotations(local2DRotation);
+        updateTranslations(local2DTranslation);
     }
 
-    public void onJump(InputAction.CallbackContext context)
+    private void updateRotations(Vector2 seeMovement)
     {
-        if (context.performed)
+        seeMovement = smoothMovement(seeMovement);
+
+        rotation += seeMovement * speed * Time.deltaTime;
+
+        if (rotationHorizontalClamps.sqrMagnitude != 0)
         {
-            Debug.Log("Jump ");
+            rotation.x = Mathf.Clamp(rotation.x, rotationHorizontalClamps.x, rotationHorizontalClamps.y);
         }
-    }
 
-    public void onMove(InputAction.CallbackContext context)
-    {
-        //x - horizontal // y-vertical
-        Vector2 movement = context.ReadValue<Vector2>();
-        lastMovement = movement;
-    }
-
-    public void onRotate(InputAction.CallbackContext context)
-    {
-        if (context.performed)
+        if (rotationVerticalClamps.sqrMagnitude != 0)
         {
-            Vector2 seeMovement = context.ReadValue<Vector2>();
-            //Debug.Log(seeMovement);
-
-            seeMovement = smoothMovement(seeMovement);
-
-            rotation += seeMovement * speed * Time.deltaTime;
-
-            if (rotationHorizontalClamps.sqrMagnitude != 0)
-            {
-                rotation.x = Mathf.Clamp(rotation.x, rotationHorizontalClamps.x, rotationHorizontalClamps.y);
-            }
-
-            if (rotationVerticalClamps.sqrMagnitude != 0)
-            {
-                rotation.y = Mathf.Clamp(rotation.y, rotationVerticalClamps.x, rotationVerticalClamps.y);
-            }
-
-            transform.localRotation = Quaternion.Euler(new Vector3(0, rotation.x, 0));
-
-            cameraHolder.localRotation = Quaternion.Euler(new Vector3(-rotation.y, 0, 0));
+            rotation.y = Mathf.Clamp(rotation.y, rotationVerticalClamps.x, rotationVerticalClamps.y);
         }
+
+        transform.localRotation = Quaternion.Euler(new Vector3(0, rotation.x, 0));
+
+        cameraHolder.localRotation = Quaternion.Euler(new Vector3(-rotation.y, 0, 0));
     }
 
-    public void Update()
+    private void updateTranslations(Vector2 requested2DMovement)
     {
-        Vector3 movement3D = new Vector3(lastMovement.x, 0, lastMovement.y) * speed * Time.deltaTime;
+        Vector3 movement3D = new Vector3(requested2DMovement.x, 0, requested2DMovement.y) * speed * Time.deltaTime;
 
         Vector3 worldMovement = transform.localToWorldMatrix * movement3D;
         float worldMovementMagnitude = worldMovement.magnitude;
 
         //checkCollisions
-        if(Physics.Raycast(transform.position, worldMovement, out RaycastHit hit, worldMovementMagnitude * 10, obstaclesLayers))
+        if (Physics.Raycast(transform.position, worldMovement, out RaycastHit hit, worldMovementMagnitude * 10, obstaclesLayers))
         {
             //Hit a wall, start gliding alongside it
             Vector3 wallNormal = hit.normal;
@@ -99,8 +75,8 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position += worldMovement;
-        
-        associatedPlayer.notifyPlayerMovementChange(lastMovement.sqrMagnitude > 0);
+
+        associatedCharacter.notifyPlayerMovementChange(requested2DMovement.sqrMagnitude > 0);
     }
 
     private Vector2 smoothMovement(Vector2 lastSeeMovement)

@@ -24,7 +24,22 @@ public class CharacterStats : NetworkBehaviour
 
     public Transform followingZoneHolder;
 
+    private CharacterController controller; //will have to change this to account for monster movement aswell
+
     public bool moving { get; private set; } = false;
+
+    private void Awake()
+    {
+        life = maxLife;
+    }
+
+    private void Start()
+    {
+        //forcing an update
+        updateLifeDisplayHook(-1, life);
+
+        controller = GetComponent<CharacterController>();
+    }
 
     public void notifyPlayerMovementChange(bool isMoving)
     {
@@ -76,17 +91,6 @@ public class CharacterStats : NetworkBehaviour
         {
             effects.Add(effect);
         }
-    }
-
-    private void Awake()
-    {
-        life = maxLife;
-    }
-
-    private void Start()
-    {
-        //forcing an update
-        updateLifeDisplayHook(-1, life);
     }
 
     public void setupCastBarAnimation(float animationDuration, string text, CastBarDisplayController.FillMode fillMode)
