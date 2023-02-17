@@ -6,7 +6,7 @@ public class MovementController : MonoBehaviour
 {
     public LayerMask obstaclesLayers;
     public float speed;
-    public float rotateSpeed = 5;
+    public float rotateSpeed;
 
     public float maxRotationMagnitude = 100;
     public int frameToSmooth = 5;
@@ -30,17 +30,17 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void updateMovements(Vector2 local2DRotation, Vector2 local2DTranslation)
+    public void updateMovements(MovementInputs inputs)
     {
-        updateRotations(local2DRotation);
-        updateTranslations(local2DTranslation);
+        updateRotations(inputs.local2DRotation);
+        updateTranslations(inputs.local2DTranslation);
     }
 
     private void updateRotations(Vector2 seeMovement)
     {
         seeMovement = smoothMovement(seeMovement);
 
-        rotation += seeMovement * speed * Time.deltaTime;
+        rotation += seeMovement * rotateSpeed * Time.deltaTime;
 
         if (rotationHorizontalClamps.sqrMagnitude != 0)
         {
@@ -100,4 +100,11 @@ public class MovementController : MonoBehaviour
 
         return smoothedMovement;
     }
+
+    public struct MovementInputs
+    {
+        public Vector2 local2DRotation;
+        public Vector2 local2DTranslation;
+    }
 }
+

@@ -24,7 +24,10 @@ public class CharacterStats : NetworkBehaviour
 
     public Transform followingZoneHolder;
 
-    private CharacterController controller; //will have to change this to account for monster movement aswell
+    private MovementController controller; //will have to change this to account for monster movement aswell
+    private PlayerInputHandler playerInputs; //will stay null on a mosnter
+
+    private MovementEffector currentEffector;
 
     public bool moving { get; private set; } = false;
 
@@ -38,7 +41,8 @@ public class CharacterStats : NetworkBehaviour
         //forcing an update
         updateLifeDisplayHook(-1, life);
 
-        controller = GetComponent<CharacterController>();
+        controller = GetComponent<MovementController>();
+        playerInputs = GetComponent<PlayerInputHandler>();
     }
 
     public void notifyPlayerMovementChange(bool isMoving)
@@ -122,7 +126,37 @@ public class CharacterStats : NetworkBehaviour
             if (abilityManager != null) //will only be true on players, not monsters (yet ?)
             {
                 abilityManager.updateAbilities(clientOnly);
+                updateMovement(); //ugly debug call right here, will refactor later
             }
+        }
+    }
+
+    public void registerNewMovementEffector(MovementEffector effector)
+    {
+        currentEffector = effector;
+        effector.setupMovement(this);
+    }
+
+    public void updateMovement()
+    {
+        if(playerInputs != null)
+        {
+            bool moveLock = false;
+
+            if(currentEffector != null)
+            {
+                moveLock = currentEffector.locksInputs;
+            }
+
+            if(!moveLock)
+            {
+                controller.updateMovements(playerInputs.getInputs());
+            }
+        }
+
+        if(currentEffector != null)
+        {
+            currentEffector.updateMovement();
         }
     }
 

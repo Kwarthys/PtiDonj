@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class MovementEffector : MonoBehaviour
 {
+    public bool locksInputs = true;
+
     /// <summary>
     /// 
     /// </summary>
@@ -11,4 +13,5 @@ public abstract class MovementEffector : MonoBehaviour
     public abstract bool updateMovement();
 
     public abstract void setupMovement(CharacterStats ownerStats);
+
 }

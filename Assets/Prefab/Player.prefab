@@ -74,6 +74,7 @@ MonoBehaviour:
   groundEffects:
   - {fileID: 765458642222239677}
   associatedWidget: {fileID: 0}
+  abilityIndex: 0
   castTime: 2
 --- !u!114 &9126553349831644882
 MonoBehaviour:
@@ -209,6 +210,7 @@ MonoBehaviour:
   selfEffects: []
   groundEffects: []
   associatedWidget: {fileID: 0}
+  abilityIndex: 0
 --- !u!114 &7248267949421903636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,8 +479,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3852378758719500948}
-  - component: {fileID: 3852378758719500946}
   - component: {fileID: 3852378758719500947}
+  - component: {fileID: 3852378758719500946}
+  - component: {fileID: 5797489494969528697}
   - component: {fileID: 1620960983934713654}
   - component: {fileID: 4395670705419160430}
   - component: {fileID: 8292359608230592641}
@@ -513,29 +516,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3852378758719500946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3852378758719500949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52eaedc50e122104eb639a276c85d033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  rotateSpeed: 3
-  maxRotationMagnitude: 100
-  frameToSmooth: 5
-  rotationVerticalClamps: {x: -45, y: 45}
-  rotationHorizontalClamps: {x: 0, y: 0}
-  obstaclesLayers:
-    serializedVersion: 2
-    m_Bits: 704
-  cameraHolder: {fileID: 3852378757287495124}
-  associatedPlayer: {fileID: 1620960983934713654}
 --- !u!114 &3852378758719500947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +627,41 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3852378758719500946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3852378758719500949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52eaedc50e122104eb639a276c85d033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5797489494969528697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3852378758719500949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4561bb71b90274987839df0b727dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclesLayers:
+    serializedVersion: 2
+    m_Bits: 704
+  speed: 15
+  rotateSpeed: 10
+  maxRotationMagnitude: 100
+  frameToSmooth: 5
+  rotationVerticalClamps: {x: -75, y: 75}
+  rotationHorizontalClamps: {x: 0, y: 0}
+  cameraHolder: {fileID: 3852378757287495124}
+  associatedCharacter: {fileID: 1620960983934713654}
 --- !u!114 &1620960983934713654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,7 +683,6 @@ MonoBehaviour:
   networkIdentity: {fileID: 3454651033889386043}
   abilityManager: {fileID: 4395670705419160430}
   followingZoneHolder: {fileID: 856408263834835707}
-  moving: 0
 --- !u!114 &4395670705419160430
 MonoBehaviour:
   m_ObjectHideFlags: 0
