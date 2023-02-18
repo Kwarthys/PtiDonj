@@ -42,6 +42,7 @@ public class Ability : MonoBehaviour
         ownerStats = GetComponentInParent<CharacterStats>();
 
         movementEffector = GetComponent<MovementEffector>();
+        if(movementEffector!=null) movementEffector.setupEffector(ownerStats);
     }
 
     public virtual void onAbilityUpdate(bool animationOnly)
@@ -92,6 +93,8 @@ public class Ability : MonoBehaviour
         {
             applyAbility(targets[i]);
         }
+
+        if (movementEffector != null && targets.Length > 0) ownerStats.registerNewMovementEffector(movementEffector, targets[0]);
     }
 
     protected void applyAbility(AbilityTargetingData target)
@@ -116,7 +119,7 @@ public class Ability : MonoBehaviour
         {
             if(target.groundDidHit)
             {
-                applyAbilityGround(target.pointHit, groundEffects);
+                applyAbilityGround(target.groundHit, groundEffects);
             }
         }
     }

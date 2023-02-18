@@ -6,7 +6,7 @@ public class AbilityTargetingData
 {
     public CharacterStats characterHit = null;
     public bool charDidHit;
-    public Vector3 pointHit;
+    public Vector3 groundHit;
     public bool groundDidHit;
 
     public void registerGroundUnderCharacter()
@@ -20,7 +20,7 @@ public class AbilityTargetingData
         groundDidHit = false;
         if(tryFindGroundUnder(characterHit.transform.position, out Vector3 floorHit))
         {
-            pointHit = floorHit;
+            groundHit = floorHit;
             groundDidHit = true;
         }
     }

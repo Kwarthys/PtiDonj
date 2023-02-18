@@ -5,11 +5,8 @@ using UnityEngine;
 public class DashMovement : MovementEffector
 {
     public float lenght = 1;
-    public Vector3 localDirection;
+    public Vector3 localDirection = new Vector3(0,0,1);
     public float speed = 1;
-
-    [HideInInspector]
-    public CharacterStats ownerStats;
 
     private float movementDuration = -1;
     private float deltaTimeCounter = 0;
@@ -30,11 +27,15 @@ public class DashMovement : MovementEffector
         return deltaTimeCounter < movementDuration;
     }
 
-    public override void setupMovement(CharacterStats ownerStats)
+    public override void setupEffector(CharacterStats ownerStats)
     {
         this.ownerStats = ownerStats;
+    }
 
+    public override void startMovement(AbilityTargetingData targeting)
+    {
+        //targeting not used by this simple dash
+        movementDuration = lenght / speed; //advanced maths right here (yet i managed to mess this up)
         deltaTimeCounter = 0;
-        movementDuration = speed / lenght; //advanced maths right here
     }
 }

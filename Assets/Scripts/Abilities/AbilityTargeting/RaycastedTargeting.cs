@@ -22,12 +22,12 @@ public class RaycastedTargeting : AbilityTargeting
         {
             result.characterHit = hit.transform.GetComponent<CharacterStats>();
             result.charDidHit = result.characterHit != null;
-            result.pointHit = new Vector3(0, 0, 0); //this should always be updated, if groundDidHit is true
+            result.groundHit = new Vector3(0, 0, 0); //this should always be updated, if groundDidHit is true
             result.groundDidHit = false;
 
             if(AbilityTargetingData.tryFindGroundUnder(hit.point, out Vector3 point))
             {
-                result.pointHit = point;
+                result.groundHit = point;
                 result.groundDidHit = true;
             }
         }

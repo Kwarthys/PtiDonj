@@ -131,10 +131,10 @@ public class CharacterStats : NetworkBehaviour
         }
     }
 
-    public void registerNewMovementEffector(MovementEffector effector)
+    public void registerNewMovementEffector(MovementEffector effector, AbilityTargetingData targeting)
     {
         currentEffector = effector;
-        effector.setupMovement(this);
+        effector.startMovement(targeting);
     }
 
     public void updateMovement()
@@ -156,7 +156,12 @@ public class CharacterStats : NetworkBehaviour
 
         if(currentEffector != null)
         {
-            currentEffector.updateMovement();
+            bool keepEffector = currentEffector.updateMovement();
+
+            if(!keepEffector)
+            {
+                currentEffector = null;
+            }
         }
     }
 

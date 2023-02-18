@@ -45,7 +45,7 @@ public class DelayedAbility : Ability
             {
                 if(!animationOnly)
                 {
-                    //this should not be called on clients
+                    //this will not be called on clients
                     computeTargetingAndApplyAbility();
                 }
                 casting = false;
