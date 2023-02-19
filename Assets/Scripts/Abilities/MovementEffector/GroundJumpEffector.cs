@@ -27,6 +27,9 @@ public class GroundJumpEffector : MovementEffector
         }
         
         groundTarget = targeting.groundHit;
+
+        groundTarget += ownerStats.getFootBodyOffset();
+
         groundStart = ownerStats.transform.position;
 
         movementDuration = Vector3.Distance(groundStart, groundTarget) / jumpSpeed;

@@ -23,6 +23,7 @@ public class CharacterStats : NetworkBehaviour
     public AbilityManager abilityManager;
 
     public Transform followingZoneHolder;
+    public Transform foot;
 
     private MovementController controller; //will have to change this to account for monster movement aswell
     private PlayerInputHandler playerInputs; //will stay null on a mosnter
@@ -163,6 +164,11 @@ public class CharacterStats : NetworkBehaviour
                 currentEffector = null;
             }
         }
+    }
+
+    public Vector3 getFootBodyOffset()
+    {
+        return transform.position - foot.position;
     }
 
     public void updateDisplay()

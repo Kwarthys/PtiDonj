@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &311025049081953075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8350920448133213474}
+  m_Layer: 7
+  m_Name: Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8350920448133213474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311025049081953075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5825245318181456643}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393418461102549224
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +60,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5825245318181456643}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2571033677096063429
 GameObject:
@@ -118,6 +149,7 @@ MonoBehaviour:
   selfEffects: []
   groundEffects: []
   associatedWidget: {fileID: 0}
+  abilityIndex: 0
 --- !u!114 &8221336453366479883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +316,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2279805227325647766}
+  - {fileID: 8350920448133213474}
   - {fileID: 5528280568063857269}
   - {fileID: 5176795224767429317}
   - {fileID: 1059271038735645744}
@@ -311,7 +344,7 @@ MonoBehaviour:
   networkIdentity: {fileID: 5825245318181456640}
   abilityManager: {fileID: 0}
   followingZoneHolder: {fileID: 1059271038735645744}
-  moving: 0
+  foot: {fileID: 8350920448133213474}
 --- !u!114 &5825245318181456655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,7 +480,7 @@ Transform:
   - {fileID: 4228139189438976786}
   - {fileID: 117217810546446325}
   m_Father: {fileID: 5825245318181456643}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8014872664323117481
 GameObject:
@@ -570,6 +603,7 @@ MonoBehaviour:
   groundEffects:
   - {fileID: 2171184308860402613}
   associatedWidget: {fileID: 0}
+  abilityIndex: 0
 --- !u!114 &2171184308860402613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,7 +634,7 @@ PrefabInstance:
     - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
         type: 3}

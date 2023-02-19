@@ -119,7 +119,38 @@ Transform:
   - {fileID: 1005315451}
   - {fileID: 5480432696447524988}
   m_Father: {fileID: 3852378758719500948}
-  m_RootOrder: 2
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &615103652838359647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3461001796844806105}
+  m_Layer: 6
+  m_Name: Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3461001796844806105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615103652838359647}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3852378758719500948}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1073555622785391330
 GameObject:
@@ -238,7 +269,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3852378758719500948}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3852378756998237364
 GameObject:
@@ -353,7 +384,7 @@ Transform:
   m_Children:
   - {fileID: 3852378756998237363}
   m_Father: {fileID: 3852378758719500948}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3852378757823153887
 GameObject:
@@ -492,6 +523,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3852378757823153886}
+  - {fileID: 3461001796844806105}
   - {fileID: 3852378757287495124}
   - {fileID: 1049237760}
   - {fileID: 3059222052978885123}
@@ -666,6 +698,7 @@ MonoBehaviour:
   networkIdentity: {fileID: 3454651033889386043}
   abilityManager: {fileID: 4395670705419160430}
   followingZoneHolder: {fileID: 856408263834835707}
+  foot: {fileID: 3461001796844806105}
 --- !u!114 &4395670705419160430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,7 +853,7 @@ PrefabInstance:
     - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3119953167971495254, guid: df697810ff61691439b11925a95b831d,
         type: 3}
