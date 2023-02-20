@@ -86,8 +86,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locksInputs: 1
-  jumpSpeed: 10
   jumpHeigth: 10
+  jumpSpeed: 1
+  speedIsJumpDuration: 1
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,9 +238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locksInputs: 1
-  lenght: 1
-  localDirection: {x: 0, y: 0, z: 1}
-  speed: 5
+  lenght: 500
+  speed: 50
 --- !u!1 &2332677170952800006
 GameObject:
   m_ObjectHideFlags: 0

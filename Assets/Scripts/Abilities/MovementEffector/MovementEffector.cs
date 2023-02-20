@@ -17,4 +17,12 @@ public abstract class MovementEffector : MonoBehaviour
 
     public abstract void startMovement(AbilityTargetingData targeting);
 
+ 
+    public bool outputsMoveCommands { get; protected set; } = false;
+    public virtual MovementController.MovementInputs getMoveCommands()
+    {
+        Debug.LogWarning("GetMoveCommands not implemented, returning empty commands");
+        return new MovementController.MovementInputs();
+    }
+
 }

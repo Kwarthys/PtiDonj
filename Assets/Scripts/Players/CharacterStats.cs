@@ -124,10 +124,11 @@ public class CharacterStats : NetworkBehaviour
     {
         if(!isServer || !clientOnly)
         {
+            updateMovement(); //ugly debug call right here, will refactor later
+
             if (abilityManager != null) //will only be true on players, not monsters (yet ?)
             {
                 abilityManager.updateAbilities(clientOnly);
-                updateMovement(); //ugly debug call right here, will refactor later
             }
         }
     }
@@ -158,6 +159,11 @@ public class CharacterStats : NetworkBehaviour
         if(currentEffector != null)
         {
             bool keepEffector = currentEffector.updateMovement();
+
+            if(currentEffector.outputsMoveCommands)
+            {
+                controller.updateMovements(currentEffector.getMoveCommands());
+            }
 
             if(!keepEffector)
             {

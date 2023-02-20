@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashMovement : MovementEffector
+public class ForwardDashMovement : MovementEffector
 {
     public float lenght = 1;
-    public Vector3 localDirection = new Vector3(0,0,1);
     public float speed = 1;
 
     private float movementDuration = -1;
     private float deltaTimeCounter = 0;
+
+    private MovementController.MovementInputs nextInputs;
 
     public override bool updateMovement()
     {
@@ -22,7 +23,10 @@ public class DashMovement : MovementEffector
         deltaTimeCounter += Time.deltaTime;
 
         float moveMagnitude = speed * Time.deltaTime;
-        ownerStats.transform.Translate(localDirection * moveMagnitude);
+
+        nextInputs = new MovementController.MovementInputs();
+        nextInputs.local2DRotation = Vector2.zero;
+        nextInputs.local2DTranslation = new Vector2(0, moveMagnitude);
 
         return deltaTimeCounter < movementDuration;
     }
@@ -30,6 +34,7 @@ public class DashMovement : MovementEffector
     public override void setupEffector(CharacterStats ownerStats)
     {
         this.ownerStats = ownerStats;
+        this.outputsMoveCommands = true;
     }
 
     public override void startMovement(AbilityTargetingData targeting)
@@ -37,5 +42,10 @@ public class DashMovement : MovementEffector
         //targeting not used by this simple dash
         movementDuration = lenght / speed; //advanced maths right here (yet i managed to mess this up)
         deltaTimeCounter = 0;
+    }
+
+    public override MovementController.MovementInputs getMoveCommands()
+    {
+        return nextInputs;
     }
 }

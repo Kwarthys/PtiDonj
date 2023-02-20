@@ -7,8 +7,9 @@ public class GroundJumpEffector : MovementEffector
     private Vector3 groundTarget;
     private Vector3 groundStart;
 
-    public float jumpSpeed = 1;
     public float jumpHeigth = 1;
+    public float jumpSpeed = 1;
+    public bool speedIsJumpDuration = false;
     private float movementDuration;
 
     private float deltaTimeCounter = 0;
@@ -32,7 +33,14 @@ public class GroundJumpEffector : MovementEffector
 
         groundStart = ownerStats.transform.position;
 
-        movementDuration = Vector3.Distance(groundStart, groundTarget) / jumpSpeed;
+        if(speedIsJumpDuration)
+        {
+            movementDuration = jumpSpeed;
+        }
+        else
+        {
+            movementDuration = Vector3.Distance(groundStart, groundTarget) / jumpSpeed;
+        }
 
         deltaTimeCounter = 0;
     }
