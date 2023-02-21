@@ -277,9 +277,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.48
   m_Direction: 1
-  m_Center: {x: -0.00000047683716, y: -0.00000011920929, z: 0}
+  m_Center: {x: -0.00000047683716, y: -0.23, z: 0}
 --- !u!1 &5825245318181456646
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,6 +345,8 @@ MonoBehaviour:
   abilityManager: {fileID: 0}
   followingZoneHolder: {fileID: 1059271038735645744}
   foot: {fileID: 8350920448133213474}
+  moveSpeed: 15
+  rotateSpeed: 10
 --- !u!114 &5825245318181456655
 MonoBehaviour:
   m_ObjectHideFlags: 0

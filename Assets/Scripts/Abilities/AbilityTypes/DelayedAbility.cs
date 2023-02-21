@@ -26,7 +26,8 @@ public class DelayedAbility : Ability
 
     public override void notifyAbilityFired()
     {
-        base.notifyAbilityFired();
+        canCast = false;
+        cooldownDeltaTimeCounter = 0;
         casting = true;
     }
 
@@ -48,6 +49,9 @@ public class DelayedAbility : Ability
                     //this will not be called on clients
                     computeTargetingAndApplyAbility();
                 }
+
+                applyMovementEffector();//effector applied client-side
+
                 casting = false;
             }
 

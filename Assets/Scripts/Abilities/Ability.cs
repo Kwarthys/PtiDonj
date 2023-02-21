@@ -61,6 +61,21 @@ public class Ability : MonoBehaviour
     {
         canCast = false;
         cooldownDeltaTimeCounter = 0;
+
+        applyMovementEffector();
+    }
+
+    protected void applyMovementEffector()
+    {
+        //MovementEffected Added client-side
+        if (movementEffector != null && !ownerStats.movementLocked())
+        {
+            AbilityTargetingData[] targets = abilityTargeting.findTargets(targetLayer);
+            if (targets.Length > 0)
+            {
+                ownerStats.registerNewMovementEffector(movementEffector, targets[0]);
+            }
+        }
     }
 
     public virtual bool needsUpdate()
@@ -93,8 +108,6 @@ public class Ability : MonoBehaviour
         {
             applyAbility(targets[i]);
         }
-
-        if (movementEffector != null && targets.Length > 0) ownerStats.registerNewMovementEffector(movementEffector, targets[0]);
     }
 
     protected void applyAbility(AbilityTargetingData target)

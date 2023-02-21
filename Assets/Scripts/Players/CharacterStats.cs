@@ -142,6 +142,12 @@ public class CharacterStats : NetworkBehaviour
         effector.startMovement(targeting);
     }
 
+    public bool movementLocked()
+    {
+        if (currentEffector == null) return false;
+        return currentEffector.locksInputs;
+    }
+
     public void updateMovement()
     {
         if(playerInputs != null)

@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14fb3274c0bfd34bad360ed933c4be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locksInputs: 1
+  locksInputs: 0
   length: 20
   speed: 50
 --- !u!1 &2332677170952800006
