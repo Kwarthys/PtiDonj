@@ -5,8 +5,6 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public LayerMask obstaclesLayers;
-    public float speed;
-    public float rotateSpeed;
 
     public float maxRotationMagnitude = 100;
     public int frameToSmooth = 5;
@@ -40,7 +38,7 @@ public class MovementController : MonoBehaviour
     {
         seeMovement = smoothMovement(seeMovement);
 
-        rotation += seeMovement * rotateSpeed * Time.deltaTime;
+        rotation += seeMovement;
 
         if (rotationHorizontalClamps.sqrMagnitude != 0)
         {
@@ -59,7 +57,7 @@ public class MovementController : MonoBehaviour
 
     private void updateTranslations(Vector2 requested2DMovement)
     {
-        Vector3 movement3D = new Vector3(requested2DMovement.x, 0, requested2DMovement.y) * speed * Time.deltaTime;
+        Vector3 movement3D = new Vector3(requested2DMovement.x, 0, requested2DMovement.y);
 
         Vector3 worldMovement = transform.localToWorldMatrix * movement3D;
         float worldMovementMagnitude = worldMovement.magnitude;

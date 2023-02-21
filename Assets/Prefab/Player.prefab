@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locksInputs: 1
-  lenght: 500
+  length: 20
   speed: 50
 --- !u!1 &2332677170952800006
 GameObject:
@@ -669,8 +669,6 @@ MonoBehaviour:
   obstaclesLayers:
     serializedVersion: 2
     m_Bits: 704
-  speed: 15
-  rotateSpeed: 10
   maxRotationMagnitude: 100
   frameToSmooth: 5
   rotationVerticalClamps: {x: -75, y: 75}
@@ -699,6 +697,8 @@ MonoBehaviour:
   abilityManager: {fileID: 4395670705419160430}
   followingZoneHolder: {fileID: 856408263834835707}
   foot: {fileID: 3461001796844806105}
+  moveSpeed: 15
+  rotateSpeed: 10
 --- !u!114 &4395670705419160430
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ForwardDashMovement : MovementEffector
 {
-    public float lenght = 1;
+    public float length = 1;
     public float speed = 1;
 
     private float movementDuration = -1;
@@ -40,7 +40,7 @@ public class ForwardDashMovement : MovementEffector
     public override void startMovement(AbilityTargetingData targeting)
     {
         //targeting not used by this simple dash
-        movementDuration = lenght / speed; //advanced maths right here (yet i managed to mess this up)
+        movementDuration = length / speed; //advanced maths right here (yet i managed to mess it up)
         deltaTimeCounter = 0;
     }
 

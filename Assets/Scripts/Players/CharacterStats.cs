@@ -30,6 +30,9 @@ public class CharacterStats : NetworkBehaviour
 
     private MovementEffector currentEffector;
 
+    public float moveSpeed = 15;
+    public float rotateSpeed = 10;
+
     public bool moving { get; private set; } = false;
 
     private void Awake()
@@ -152,7 +155,10 @@ public class CharacterStats : NetworkBehaviour
 
             if(!moveLock)
             {
-                controller.updateMovements(playerInputs.getInputs());
+                MovementController.MovementInputs inputs = playerInputs.getInputs();
+                inputs.local2DRotation *= rotateSpeed * Time.deltaTime;
+                inputs.local2DTranslation *= moveSpeed * Time.deltaTime;
+                controller.updateMovements(inputs);
             }
         }
 
