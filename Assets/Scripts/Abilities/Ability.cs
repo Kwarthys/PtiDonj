@@ -61,12 +61,13 @@ public class Ability : MonoBehaviour
     {
         canCast = false;
         cooldownDeltaTimeCounter = 0;
-
+        Debug.Log("ApplyingMovemnt");
         applyMovementEffector();
     }
 
     protected void applyMovementEffector()
     {
+        Debug.Log("Applying effector");
         //MovementEffected Added client-side
         if (movementEffector != null && !ownerStats.movementLocked())
         {

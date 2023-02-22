@@ -19,13 +19,20 @@ public class MonsterAbilityManager : MonoBehaviour
         }
     }
 
-    public void updateMonsterTriggers()
+    public void updateMonsterAbilities()
     {
         for (int i = 0; i < abilityTriggers.Count; i++)
         {
-            if(abilityTriggers[i].isTriggerValid())
+            Ability a = abilityTriggers[i].linkedAbility;
+
+            if(a.needsUpdate())
             {
-                abilityTriggers[i].linkedAbility.tryCastAbility();
+                a.onAbilityUpdate(false);
+            }
+
+            if (abilityTriggers[i].isTriggerValid())
+            {
+                a.tryCastAbility();
             }
         }
     }

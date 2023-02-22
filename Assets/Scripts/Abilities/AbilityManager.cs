@@ -57,11 +57,11 @@ public class AbilityManager : NetworkBehaviour
     [Command]
     public void CmdCastBasicAbility(NetworkIdentity caster)
     {
-        if(basicAbility.canCastAbility())
+        if (basicAbility.canCastAbility())
         {
             bool fired = basicAbility.tryCastAbility();
 
-            if(fired)
+            if (fired)
             {
                 TargetRpcNotifyAbilityFired(caster.connectionToClient, 0);
             }
@@ -79,23 +79,22 @@ public class AbilityManager : NetworkBehaviour
     [Command]
     public void CmdCastSecondBasicAbility(NetworkIdentity caster)
     {
-        if(secondBasicAbility.canCastAbility())
+        if (secondBasicAbility.canCastAbility())
         {
             bool fired = secondBasicAbility.tryCastAbility();
 
-            if(fired)
+            if (fired)
             {
-                TargetRpcNotifyAbilityFired(caster.connectionToClient, 1);
+                TargetRpcNotifyAbilityFired(caster.connectionToClient, 1); //Client abilities
             }
         }
     }
 
-    [TargetRpc]
-    public void TargetRpcNotifyAbilityFired(NetworkConnection target, int abilityIndex)
+    public void notifyAbilityFired(int abilityIndex)
     {
         Ability fired;
 
-        if(abilityIndex == 0)
+        if (abilityIndex == 0)
         {
             fired = basicAbility;
         }
@@ -106,6 +105,12 @@ public class AbilityManager : NetworkBehaviour
 
         fired.associatedWidget.abilityFired();
         fired.notifyAbilityFired();
+    }
+
+    [TargetRpc]
+    public void TargetRpcNotifyAbilityFired(NetworkConnection target, int abilityIndex)
+    {
+        notifyAbilityFired(abilityIndex);
     }
 
     [Command(requiresAuthority = false)] //dunno why this is suddenly needed

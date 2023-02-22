@@ -53,7 +53,6 @@ MonoBehaviour:
   syncInterval: 0.1
   markerType: 1
   mainEffect: {fileID: 6666765595785659222}
-  gameManagerAutoRemove: 0
 --- !u!114 &6666765595785659222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +72,7 @@ MonoBehaviour:
   colliderTriggers: {fileID: 0}
   effectsToApplyOnCharacters:
   - {fileID: -6239600518456634276}
-  effectDuration: 2
+  effectDuration: 3
   size: 4
 --- !u!114 &-6239600518456634276
 MonoBehaviour:

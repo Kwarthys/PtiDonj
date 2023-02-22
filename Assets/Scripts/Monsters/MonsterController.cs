@@ -44,7 +44,7 @@ public class MonsterController : MonoBehaviour
 
         if (castAbilitiesDebug)
         {
-            abilityManager.updateMonsterTriggers();
+            abilityManager.updateMonsterAbilities();
         }
     }
 
