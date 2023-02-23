@@ -18,7 +18,7 @@ public class DelayedAbility : Ability
             delayDeltaTimeCounter = 0;
             cooldownDeltaTimeCounter = 0;
 
-            manager.CmdSetupCastBar(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
+            castBarManager.setupCastBarAnimation(castTime, abilityName, CastBarDisplayController.FillMode.FillUp, !ownerStats.isPlayer);
         }
 
         return casting;
@@ -79,8 +79,8 @@ public class DelayedAbility : Ability
 
     public void interruptAbility()
     {
-        ErrorMessageController.instance.showText("Cast interrupted, stay still !");
-        manager.CmdInterruptCastBarAnimation();
+        ErrorMessageController.instance.showText("Cast interrupted");
+        castBarManager.interruptCastBarAnimation(!ownerStats.isPlayer);
     }
 
     public override AbilityCooldownData getCooldownData()

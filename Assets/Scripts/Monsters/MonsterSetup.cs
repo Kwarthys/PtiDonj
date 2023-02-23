@@ -10,6 +10,8 @@ public class MonsterSetup : NetworkBehaviour
         base.OnStartClient();
 
         PlayerManager.instance.registerMonster(GetComponent<NetworkIdentity>().netId, GetComponent<MonsterController>());
+
+        GetComponent<CharacterStats>().isPlayer = false;
     }
 
     public override void OnStopClient()

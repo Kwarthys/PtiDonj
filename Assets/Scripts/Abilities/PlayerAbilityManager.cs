@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Mirror;
 
-public class AbilityManager : NetworkBehaviour
+public class PlayerAbilityManager : NetworkBehaviour
 {
     public Ability basicAbility;
     public Ability secondBasicAbility;
@@ -111,31 +111,6 @@ public class AbilityManager : NetworkBehaviour
     public void TargetRpcNotifyAbilityFired(NetworkConnection target, int abilityIndex)
     {
         notifyAbilityFired(abilityIndex);
-    }
-
-    [Command(requiresAuthority = false)] //dunno why this is suddenly needed
-    //[Command]
-    public void CmdSetupCastBar(float castTime, string abilityName, CastBarDisplayController.FillMode fillMode)
-    {
-        RpcSetupCastBar(castTime, abilityName, fillMode);
-    }
-
-    [ClientRpc]
-    public void RpcSetupCastBar(float castTime, string abilityName, CastBarDisplayController.FillMode fillMode)
-    {
-        selfStats.setupCastBarAnimation(castTime, abilityName, CastBarDisplayController.FillMode.FillUp);
-    }
-
-    [Command]
-    public void CmdInterruptCastBarAnimation()
-    {
-        RpcInterruptCastBarAnimation();
-    }
-
-    [ClientRpc]
-    public void RpcInterruptCastBarAnimation()
-    {
-        selfStats.interruptCastBarAnimation();
     }
 
     [Command]

@@ -30,7 +30,8 @@ public class Ability : MonoBehaviour
     public AbilityWidgetController associatedWidget;
 
     public short abilityIndex;
-    protected AbilityManager manager;
+    protected PlayerAbilityManager manager;
+    protected CastBarManager castBarManager;
     public CharacterStats ownerStats { get; protected set; }
 
     protected MovementEffector movementEffector;
@@ -38,8 +39,9 @@ public class Ability : MonoBehaviour
 
     private void Start()
     {
-        manager = GetComponentInParent<AbilityManager>();
+        manager = GetComponentInParent<PlayerAbilityManager>();
         ownerStats = GetComponentInParent<CharacterStats>();
+        castBarManager = GetComponentInParent<CastBarManager>();
 
         movementEffector = GetComponent<MovementEffector>();
         if(movementEffector!=null) movementEffector.setupEffector(ownerStats);

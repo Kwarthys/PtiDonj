@@ -20,7 +20,7 @@ public class CharacterStats : NetworkBehaviour
 
     public NetworkIdentity networkIdentity;
 
-    public AbilityManager abilityManager;
+    public PlayerAbilityManager abilityManager;
 
     public Transform followingZoneHolder;
     public Transform foot;
@@ -32,6 +32,9 @@ public class CharacterStats : NetworkBehaviour
 
     public float moveSpeed = 15;
     public float rotateSpeed = 10;
+
+    [HideInInspector]
+    public bool isPlayer;
 
     public bool moving { get; private set; } = false;
 

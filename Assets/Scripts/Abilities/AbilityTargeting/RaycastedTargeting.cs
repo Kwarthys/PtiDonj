@@ -7,7 +7,7 @@ public class RaycastedTargeting : AbilityTargeting
     protected Transform visor;
     private void Start()
     {
-        visor = GetComponentInParent<AbilityManager>().visor;
+        visor = GetComponentInParent<PlayerAbilityManager>().visor;
     }
 
     public override AbilityTargetingData[] findTargets(LayerMask targetsLayerMask)

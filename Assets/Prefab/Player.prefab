@@ -497,7 +497,8 @@ GameObject:
   - component: {fileID: 3852378758719500946}
   - component: {fileID: 5797489494969528697}
   - component: {fileID: 1620960983934713654}
-  - component: {fileID: 4395670705419160430}
+  - component: {fileID: 1675681540281980694}
+  - component: {fileID: 3475080708306706859}
   - component: {fileID: 8292359608230592641}
   - component: {fileID: 3454651033889386043}
   - component: {fileID: 8302433708162250045}
@@ -607,8 +608,8 @@ MonoBehaviour:
     m_ActionName: Player/See[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4395670705419160430}
-        m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
+      - m_Target: {fileID: 1675681540281980694}
+        m_TargetAssemblyTypeName: PlayerAbilityManager, Assembly-CSharp
         m_MethodName: castBasicAttack
         m_Mode: 0
         m_Arguments:
@@ -623,8 +624,8 @@ MonoBehaviour:
     m_ActionName: Player/BasicAttack[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4395670705419160430}
-        m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
+      - m_Target: {fileID: 1675681540281980694}
+        m_TargetAssemblyTypeName: PlayerAbilityManager, Assembly-CSharp
         m_MethodName: castSecondBasicAttack
         m_Mode: 0
         m_Arguments:
@@ -694,12 +695,35 @@ MonoBehaviour:
   maxLife: 100
   displayManager: {fileID: 88038857143686158}
   networkIdentity: {fileID: 3454651033889386043}
-  abilityManager: {fileID: 4395670705419160430}
+  abilityManager: {fileID: 1675681540281980694}
   followingZoneHolder: {fileID: 856408263834835707}
   foot: {fileID: 3461001796844806105}
   moveSpeed: 15
   rotateSpeed: 10
---- !u!114 &4395670705419160430
+  isPlayer: 0
+--- !u!114 &1675681540281980694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3852378758719500949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5df034b5aa505304181052c268cca318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
+  basicAbility: {fileID: 8851823824815168547}
+  secondBasicAbility: {fileID: 9020783451331779710}
+  visor: {fileID: 3852378757287495124}
+  selfStats: {fileID: 1620960983934713654}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &3475080708306706859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -714,13 +738,6 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  basicAbility: {fileID: 8851823824815168547}
-  secondBasicAbility: {fileID: 9020783451331779710}
-  visor: {fileID: 3852378757287495124}
-  selfStats: {fileID: 1620960983934713654}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &8292359608230592641
 MonoBehaviour:
   m_ObjectHideFlags: 0

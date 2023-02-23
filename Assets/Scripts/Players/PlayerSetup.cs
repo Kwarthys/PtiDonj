@@ -42,6 +42,8 @@ public class PlayerSetup : NetworkBehaviour
             playerStats.registerNewDisplayManager(PlayerManager.instance.localPlayerHealthBar);
 
             playerStats.abilityManager.setupLocalPlayerAbilityDisplay();
+
+            playerStats.isPlayer = true;
         }
     }
 
