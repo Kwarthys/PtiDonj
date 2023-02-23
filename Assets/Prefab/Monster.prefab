@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4228139189438976786}
   - component: {fileID: 8409871384677358400}
   - component: {fileID: 4480132167116935851}
-  - component: {fileID: 2454414071042366972}
+  - component: {fileID: 6092876082729386945}
   - component: {fileID: 5890983644481211820}
   - component: {fileID: 1544337501545624760}
   m_Layer: 7
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfTargets: 1
---- !u!114 &2454414071042366972
+--- !u!114 &6092876082729386945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2571033677096063429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f95bebb02396c643b94af8bcb4f4880, type: 3}
+  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   abilityTargeting: {fileID: 4480132167116935851}
@@ -150,7 +150,6 @@ MonoBehaviour:
   - {fileID: 1544337501545624760}
   associatedWidget: {fileID: 0}
   abilityIndex: 0
-  castTime: 1
 --- !u!114 &5890983644481211820
 MonoBehaviour:
   m_ObjectHideFlags: 0

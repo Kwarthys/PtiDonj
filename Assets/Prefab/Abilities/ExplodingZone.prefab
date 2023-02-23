@@ -68,7 +68,7 @@ MonoBehaviour:
   effectName: Effect
   targetsLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   colliderTriggers: {fileID: 0}
   effectsToApplyOnCharacters:
   - {fileID: -6239600518456634276}

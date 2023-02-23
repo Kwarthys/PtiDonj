@@ -49,6 +49,12 @@ public class Ability : MonoBehaviour
     {
         if (canCast) return;
 
+        if(cooldownDeltaTimeCounter == 0)
+        {
+            //first update after cast, allowing us to apply it on server for monsters, and on clients for players
+            applyMovementEffector();
+        }
+
         cooldownDeltaTimeCounter += Time.deltaTime;
         if(cooldownDeltaTimeCounter > cooldown)
         {
@@ -62,12 +68,10 @@ public class Ability : MonoBehaviour
         canCast = false;
         cooldownDeltaTimeCounter = 0;
         Debug.Log("ApplyingMovemnt");
-        applyMovementEffector();
     }
 
     protected void applyMovementEffector()
     {
-        Debug.Log("Applying effector");
         //MovementEffected Added client-side
         if (movementEffector != null && !ownerStats.movementLocked())
         {
