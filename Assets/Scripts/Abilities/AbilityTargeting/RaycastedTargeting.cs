@@ -20,8 +20,9 @@ public class RaycastedTargeting : AbilityTargeting
 
         if (Physics.Raycast(visor.position, visor.forward, out RaycastHit hit, 250, targetsLayerMask | LocalReferencer.instance.groundLayer))
         {
-            result.characterHit = hit.transform.GetComponent<CharacterStats>();
-            result.charDidHit = result.characterHit != null;
+            CharacterStats characterHit = hit.transform.GetComponent<CharacterStats>();
+            if(characterHit != null) result.characterHitID = characterHit.netId;
+            result.charDidHit = characterHit != null;
             result.groundHit = new Vector3(0, 0, 0); //this should always be updated, if groundDidHit is true
             result.groundDidHit = false;
 

@@ -50,7 +50,7 @@ public class DelayedAbility : Ability
                     computeTargetingAndApplyAbility();
                 }
 
-                applyMovementEffector();//effector applied client-side
+                applyMovementEffector();//effector applied client-side for players, and server-side for monsters
 
                 casting = false;
             }

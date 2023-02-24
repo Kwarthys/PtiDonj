@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4228139189438976786}
   - component: {fileID: 8409871384677358400}
   - component: {fileID: 4480132167116935851}
-  - component: {fileID: 6078582210986250402}
+  - component: {fileID: 2577786433815315746}
   - component: {fileID: 1544337501545624760}
   - component: {fileID: 5890983644481211820}
   m_Layer: 7
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfTargets: 1
---- !u!114 &6078582210986250402
+--- !u!114 &2577786433815315746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,17 +132,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2571033677096063429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f95bebb02396c643b94af8bcb4f4880, type: 3}
+  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   abilityTargeting: {fileID: 4480132167116935851}
   image: {fileID: 0}
-  cooldown: 5
-  abilityName: Ability
+  cooldown: 3.5
+  abilityName: Jump
   type: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   selfOnlyIfTarget: 0
   targetEffects: []
   selfEffects: []
@@ -150,7 +150,6 @@ MonoBehaviour:
   - {fileID: 1544337501545624760}
   associatedWidget: {fileID: 0}
   abilityIndex: 0
-  castTime: 2
 --- !u!114 &1544337501545624760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locksInputs: 1
   jumpHeigth: 10
-  jumpSpeed: 3
+  jumpSpeed: 1.5
   speedIsJumpDuration: 1
 --- !u!1 &3738697409307059959
 GameObject:

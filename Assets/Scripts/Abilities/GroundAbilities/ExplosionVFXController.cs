@@ -5,7 +5,7 @@ using UnityEngine.VFX;
 
 public class ExplosionVFXController : VFXController
 {
-    public float delay = 3f;
+    public float suppressionDelay = 3f;
     private bool playedExplosion = false;
 
     public override void initialize(float size, float duration)
@@ -23,12 +23,12 @@ public class ExplosionVFXController : VFXController
     {
         deltaTimeCounter += Time.deltaTime;
 
-        if(deltaTimeCounter > delay && !playedExplosion)
+        if(deltaTimeCounter > duration && !playedExplosion)
         {
             vfx.Play();
             playedExplosion = true;
         }
 
-        return deltaTimeCounter < duration + delay;
+        return deltaTimeCounter < duration + suppressionDelay;
     }
 }

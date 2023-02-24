@@ -72,7 +72,7 @@ MonoBehaviour:
   colliderTriggers: {fileID: 0}
   effectsToApplyOnCharacters:
   - {fileID: -6239600518456634276}
-  effectDuration: 3
+  effectDuration: 1.5
   size: 4
 --- !u!114 &-6239600518456634276
 MonoBehaviour:

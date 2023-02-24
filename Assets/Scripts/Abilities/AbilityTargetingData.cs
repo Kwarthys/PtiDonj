@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class AbilityTargetingData
 {
-    public CharacterStats characterHit = null;
+    public uint characterHitID;
     public bool charDidHit;
     public Vector3 groundHit;
     public bool groundDidHit;
 
     public void registerGroundUnderCharacter()
     {
-        if (characterHit == null)
+        if (!charDidHit)
         {
             Debug.LogError("Trying to register ground under null character.");
             return;
         }
 
+        CharacterStats character = PlayerManager.instance.getCharacter(characterHitID);
         groundDidHit = false;
-        if(tryFindGroundUnder(characterHit.transform.position, out Vector3 floorHit))
+        if(tryFindGroundUnder(character.transform.position, out Vector3 floorHit))
         {
             groundHit = floorHit;
             groundDidHit = true;

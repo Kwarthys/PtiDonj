@@ -29,13 +29,16 @@ public class Ability : MonoBehaviour
     [HideInInspector]
     public AbilityWidgetController associatedWidget;
 
+    [HideInInspector]
     public short abilityIndex;
+
     protected PlayerAbilityManager manager;
     protected CastBarManager castBarManager;
     public CharacterStats ownerStats { get; protected set; }
 
     protected MovementEffector movementEffector;
 
+    protected AbilityTargetingData[] lastTargeting = null;
 
     private void Start()
     {
@@ -74,10 +77,16 @@ public class Ability : MonoBehaviour
 
     protected void applyMovementEffector()
     {
+        AbilityTargetingData[] targets = lastTargeting;
+
+        if(targets == null) //will be null on clients, so we recompute the targeting. Clients should not have random targeting movement effector, so it should be consistent
+        {
+            targets = abilityTargeting.findTargets(targetLayer);
+        }
+
         //MovementEffected Added client-side
         if (movementEffector != null && !ownerStats.movementLocked())
         {
-            AbilityTargetingData[] targets = abilityTargeting.findTargets(targetLayer);
             if (targets.Length > 0)
             {
                 ownerStats.registerNewMovementEffector(movementEffector, targets[0]);
@@ -115,10 +124,14 @@ public class Ability : MonoBehaviour
         {
             applyAbility(targets[i]);
         }
+
+        lastTargeting = targets;
     }
 
     protected void applyAbility(AbilityTargetingData target)
     {
+        CharacterStats characterHit = PlayerManager.instance.getCharacter(target.characterHitID);
+
         if(selfEffects.Length > 0)
         {
             if (!selfOnlyIfTarget || target.charDidHit) //only apply if we don't need a target to do so, or if we do have a target
@@ -131,7 +144,7 @@ public class Ability : MonoBehaviour
         {
             if (target.charDidHit)
             {
-                applyAbilityTarget(target.characterHit, targetEffects);
+                applyAbilityTarget(characterHit, targetEffects);
             }
         }
 
@@ -144,6 +157,7 @@ public class Ability : MonoBehaviour
         }
     }
 
+    
     private void applyAbilityTarget(CharacterStats target, EffectDescriptor[] targetEffects)
     {
         for (int i = 0; i < targetEffects.Length; ++i)
