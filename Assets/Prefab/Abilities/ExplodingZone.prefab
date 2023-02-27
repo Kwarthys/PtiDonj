@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -6239600518456634276}
   - component: {fileID: -4486798718517486965}
   - component: {fileID: -1617530395928393125}
+  - component: {fileID: 2580019360694304712}
   m_Layer: 0
   m_Name: ExplodingZone
   m_TagString: Untagged
@@ -133,3 +134,18 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &2580019360694304712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8262432769108347627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38e09832c228234a818f10bdf428117, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: Effect
+  jumpLength: 30
+  jumpHeigth: 20
