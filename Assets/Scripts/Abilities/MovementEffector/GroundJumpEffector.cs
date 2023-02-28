@@ -7,7 +7,7 @@ public class GroundJumpEffector : MovementEffector
     private Vector3 groundTarget;
     private Vector3 groundStart;
 
-    public float jumpHeigth = 1;
+    public float jumpHeight = 1;
     public float jumpSpeed = 1;
     public bool speedIsJumpDuration = false;
     private float movementDuration;
@@ -17,6 +17,8 @@ public class GroundJumpEffector : MovementEffector
     public override void setupEffector(CharacterStats ownerStats)
     {
         this.ownerStats = ownerStats;
+
+        locksRotation = false;
     }
 
     public override void startMovement(AbilityTargetingData targeting)
@@ -74,7 +76,7 @@ public class GroundJumpEffector : MovementEffector
     private float parametricHeight(float t)
     {
         //f(t) = -4 jumpHeigth t + 4 jumpHeigth t
-        return -4 * jumpHeigth * t * t + 4 * jumpHeigth * t;
+        return -4 * jumpHeight * t * t + 4 * jumpHeight * t;
     }
 
 

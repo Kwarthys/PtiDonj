@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class MovementEffector : MonoBehaviour
 {
     protected CharacterStats ownerStats;
-    public bool locksInputs = true;
+    public bool locksTranslation = true;
+    public bool locksRotation = true;
 
     /// <summary>
     /// 

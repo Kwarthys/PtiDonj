@@ -30,6 +30,8 @@ public class CharacterStats : NetworkBehaviour
 
     private MovementEffector currentEffector;
 
+    private GroundJumpEffector explosionEffector;
+
     public float moveSpeed = 15;
     public float rotateSpeed = 10;
 
@@ -50,6 +52,11 @@ public class CharacterStats : NetworkBehaviour
 
         controller = GetComponent<MovementController>();
         playerInputs = GetComponent<PlayerInputHandler>();
+
+
+        GameObject effectorHolder = new GameObject("ExternalEffectorsHolder");
+        explosionEffector = effectorHolder.AddComponent<GroundJumpEffector>();
+        explosionEffector.setupEffector(this);
     }
 
     public void notifyPlayerMovementChange(bool isMoving)
@@ -145,30 +152,75 @@ public class CharacterStats : NetworkBehaviour
         effector.startMovement(targeting);
     }
 
+    [TargetRpc]
+    public void TargetRPCSetupExplosionEffector(NetworkConnection target, bool speedIsDuration, float jumpSpeed, float jumpHeight, Vector3 explosionCenter, float jumpLength)
+    {
+        setupExplosionEffector(speedIsDuration, jumpSpeed, jumpHeight, explosionCenter, jumpLength);
+    }
+
+    //this will be moved in a dedicated manager/referencer when wind push effect will be added
+    public void setupExplosionEffector(bool speedIsDuration, float jumpSpeed, float jumpHeight, Vector3 explosionCenter, float jumpLength)
+    {
+        explosionEffector.speedIsJumpDuration = speedIsDuration;
+        explosionEffector.jumpSpeed = jumpSpeed;
+        explosionEffector.jumpHeight = jumpHeight;
+
+        Vector3 pushDirection;
+        if ((foot.position - explosionCenter).sqrMagnitude <= 0.2)
+        {
+            pushDirection = new Vector3(Random.value, 0, Random.value);
+        }
+        else
+        {
+            pushDirection = (foot.position - explosionCenter);
+        }
+
+        pushDirection.Normalize();
+
+        if (AbilityTargetingData.tryFindGroundUnder(transform.position + pushDirection * jumpLength, out Vector3 groundHit))
+        {
+            AbilityTargetingData targeting = new AbilityTargetingData();
+            targeting.charDidHit = false;
+            targeting.groundDidHit = true;
+            targeting.groundHit = groundHit;
+
+            registerNewMovementEffector(explosionEffector, targeting);
+        }
+    }
+
     public bool movementLocked()
     {
         if (currentEffector == null) return false;
-        return currentEffector.locksInputs;
+        return currentEffector.locksTranslation;
     }
 
     public void updateMovement()
     {
         if(playerInputs != null)
         {
-            bool moveLock = false;
+            bool lockRotations = false;
+            bool lockTranslations = false;
 
-            if(currentEffector != null)
+            if (currentEffector != null)
             {
-                moveLock = currentEffector.locksInputs;
+                lockTranslations = currentEffector.locksTranslation;
+                lockRotations = currentEffector.locksRotation;
             }
 
-            if(!moveLock)
+            MovementController.MovementInputs inputs = playerInputs.getInputs();
+            inputs.local2DRotation *= rotateSpeed * Time.deltaTime;
+            inputs.local2DTranslation *= moveSpeed * Time.deltaTime;
+
+            if(lockTranslations)
             {
-                MovementController.MovementInputs inputs = playerInputs.getInputs();
-                inputs.local2DRotation *= rotateSpeed * Time.deltaTime;
-                inputs.local2DTranslation *= moveSpeed * Time.deltaTime;
-                controller.updateMovements(inputs);
+                inputs.local2DTranslation = Vector2.zero;
             }
+            if(lockRotations)
+            {
+                inputs.local2DRotation = Vector2.zero;
+            }
+
+            controller.updateMovements(inputs);
         }
 
         if(currentEffector != null)
