@@ -51,7 +51,7 @@ public class FootIKAnimator : MonoBehaviour
             {
                 if (Vector3.Distance(newPos, hit.point) > stepDistance * stepDistanceCoef)
                 {
-                    newPos = transform.position + 1.4f*(hit.point - transform.position);
+                    newPos = transform.position + 1.8f * stepDistance * stepDistanceCoef * (hit.point - transform.position).normalized;
                     lastPos = transform.position;
                     lerp = 0;
                     stepDistanceCoef = 1; //back to full steps
