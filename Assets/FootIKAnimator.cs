@@ -10,6 +10,8 @@ public class FootIKAnimator : MonoBehaviour
     public float stepDistance = 5;
     private float stepDistanceCoef = 1;
 
+    public float lengthBeforeRest = 5;
+
     public float legsSpeed = 5;
     public float stepHeight = 1;
 
@@ -19,6 +21,9 @@ public class FootIKAnimator : MonoBehaviour
     private Vector3 newPos;
     private Vector3 lastPos;
     private bool lastPosInitialized = false;
+
+    public Transform restPos;
+    private bool footInRestPos = true;
 
     public void halfNextStep()
     {
@@ -37,8 +42,9 @@ public class FootIKAnimator : MonoBehaviour
 
         Ray ray = new Ray(body.position + offset, Vector3.down);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 50, LocalReferencer.instance.groundLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, lengthBeforeRest, LocalReferencer.instance.groundLayer))
         {
+
             if(!lastPosInitialized)
             {
                 transform.position = hit.point;
@@ -49,9 +55,19 @@ public class FootIKAnimator : MonoBehaviour
             }
             else
             {
-                if (Vector3.Distance(newPos, hit.point) > stepDistance * stepDistanceCoef)
+                if (Vector3.Distance(newPos, hit.point) > stepDistance * stepDistanceCoef || footInRestPos)
                 {
-                    newPos = transform.position + 1.8f * stepDistance * stepDistanceCoef * (hit.point - transform.position).normalized;
+                    newPos = hit.point;
+                    Vector3 overShootStepPos = transform.position + 1.8f * stepDistance * stepDistanceCoef * (hit.point - transform.position).normalized;
+                    Vector3 overshootDirection = overShootStepPos - (body.position + offset);
+
+                    Debug.DrawRay(body.position + offset, overshootDirection, Color.red, .5f);
+                    if(Physics.Raycast(body.position + offset, overshootDirection, out RaycastHit overHit, 50, LocalReferencer.instance.groundLayer))
+                    {
+                        newPos = overHit.point;
+                    }
+
+                    //newPos = transform.position + 1.8f * stepDistance * stepDistanceCoef * (hit.point - transform.position).normalized;
                     lastPos = transform.position;
                     lerp = 0;
                     stepDistanceCoef = 1; //back to full steps
@@ -60,7 +76,18 @@ public class FootIKAnimator : MonoBehaviour
                 {
                     transform.position = lastPos;
                 }
-            }            
+            }
+
+            footInRestPos = false;
+        }
+        else
+        {
+            //No ground -> RestMode
+            newPos = restPos.position;
+            lastPos = restPos.position;
+
+            lerp = .999f;
+            footInRestPos = true;
         }
 
         if(lerp < 1)
