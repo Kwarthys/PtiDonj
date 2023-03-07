@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveToward : FollowTarget
+public class MoveToward : FollowTarget, IMyRigAnimator
 {
     public Transform toMove;
 
@@ -10,7 +10,7 @@ public class MoveToward : FollowTarget
     public float rotSpeed = 5;
 
     // Update is called once per frame
-    void Update()
+    public void updateAnimator()
     {
         float step = speed * Time.deltaTime;
 

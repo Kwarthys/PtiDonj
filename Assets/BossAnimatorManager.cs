@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkingManager : MonoBehaviour
+public class BossAnimatorManager : MonoBehaviour
 {
     private FootIKAnimator[] feet;
 
     private FollowTarget[] followers;
+
+    private IMyRigAnimator[] animators;
 
     public Transform target;
 
@@ -24,6 +26,8 @@ public class WalkingManager : MonoBehaviour
     {
         followers = gameObject.GetComponentsInChildren<FollowTarget>();
 
+        animators = gameObject.GetComponentsInChildren<IMyRigAnimator>();
+
         feet = gameObject.GetComponentsInChildren<FootIKAnimator>();
 
         for (int i = 0; i < feet.Length; i++)
@@ -35,5 +39,13 @@ public class WalkingManager : MonoBehaviour
         }
 
         setTarget(target);
+    }
+
+    public void updateAnimator()
+    {
+        for (int i = 0; i < animators.Length; i++)
+        {
+            animators[i].updateAnimator();
+        }
     }
 }

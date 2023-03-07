@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    public float speed = 2f;
+    private BossAnimatorManager animator;
 
     private Transform target;
 
@@ -14,6 +14,11 @@ public class MonsterController : MonoBehaviour
 
     public bool castAbilitiesDebug = true;
 
+    private void Start()
+    {
+        animator = gameObject.GetComponentInChildren<BossAnimatorManager>();
+    }
+
     public void updateMonster()
     {
         monsterStats.updateStats();
@@ -21,19 +26,6 @@ public class MonsterController : MonoBehaviour
         if(target == null)
         {
             target = choseNewTarget();
-        }
-
-        if(target != null) //if chose new target failed
-        {
-            //move towards target
-            float distanceToTarget = Vector3.Distance(transform.position, target.position);
-            float step = speed * Time.deltaTime; //delta time may have to change, as it's computed only on the server
-
-            if (step < distanceToTarget)
-            {
-                // please stop moving for debug
-                //transform.position += (target.position - transform.position).normalized * step;
-            }
         }
         
 
@@ -46,6 +38,11 @@ public class MonsterController : MonoBehaviour
         {
             abilityManager.updateMonsterAbilities();
         }
+    }
+
+    public void updateAnimator()
+    {
+        animator?.updateAnimator();
     }
 
     private Transform choseNewTarget()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FootIKAnimator : MonoBehaviour
+public class FootIKAnimator : MonoBehaviour, IMyRigAnimator
 {
     public Transform body;
     public float length;
@@ -35,7 +35,7 @@ public class FootIKAnimator : MonoBehaviour
         return lerp >= 1;
     }
 
-    private void Update()
+    public void updateAnimator()
     {
         Vector3 offset = Quaternion.Euler(0, angle, 0) * body.forward;
         offset = offset.normalized * length;

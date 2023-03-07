@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MyLookAtConstraint : FollowTarget
+public class MyLookAtConstraint : FollowTarget, IMyRigAnimator
 {
     public Transform toRotate;
 
@@ -10,7 +10,7 @@ public class MyLookAtConstraint : FollowTarget
     public bool lockY = false;
     public bool lockZ = false;
 
-    private void Update()
+    public void updateAnimator()
     {
         Quaternion lookAt = Quaternion.LookRotation(toRotate.position - target.position, Vector3.up);
 

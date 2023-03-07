@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodyHeightHandler : MonoBehaviour
+public class BodyHeightHandler : MonoBehaviour, IMyRigAnimator
 {
     public Transform toMove;
     public Transform[] anchors;
@@ -12,7 +12,7 @@ public class BodyHeightHandler : MonoBehaviour
 
     public bool running = true;
 
-    public void Update()
+    public void updateAnimator()
     {
         if (!running) return; //this will be tested pre-update when centralized
 
