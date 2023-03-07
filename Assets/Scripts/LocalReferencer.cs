@@ -17,10 +17,16 @@ public class LocalReferencer : MonoBehaviour
     public Transform groundZoneMarkersHolder;
 
     public LayerMask groundLayer;
+    public LayerMask obstaclesLayer;
 
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
+    }
+
+    public LayerMask groundAndObstaclesLayers()
+    {
+        return groundLayer | obstaclesLayer;
     }
 }

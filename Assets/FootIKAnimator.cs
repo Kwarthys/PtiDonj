@@ -39,10 +39,11 @@ public class FootIKAnimator : MonoBehaviour
     {
         Vector3 offset = Quaternion.Euler(0, angle, 0) * body.forward;
         offset = offset.normalized * length;
+        offset += Vector3.up * 1;
 
         Ray ray = new Ray(body.position + offset, Vector3.down);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, lengthBeforeRest, LocalReferencer.instance.groundLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, lengthBeforeRest, LocalReferencer.instance.groundAndObstaclesLayers()))
         {
 
             if(!lastPosInitialized)
@@ -62,7 +63,7 @@ public class FootIKAnimator : MonoBehaviour
                     Vector3 overshootDirection = overShootStepPos - (body.position + offset);
 
                     Debug.DrawRay(body.position + offset, overshootDirection, Color.red, .5f);
-                    if(Physics.Raycast(body.position + offset, overshootDirection, out RaycastHit overHit, 50, LocalReferencer.instance.groundLayer))
+                    if(Physics.Raycast(body.position + offset, overshootDirection, out RaycastHit overHit, 50, LocalReferencer.instance.groundAndObstaclesLayers()))
                     {
                         newPos = overHit.point;
                     }
