@@ -39,6 +39,7 @@ public class CastBarDisplayController : MonoBehaviour
             }
 
             image.material.SetFloat("_LifePercent", t);
+            image.material.SetFloat("_MidSegment", t);
             if (fillMode == FillMode.FillUp)
             {
                 ended = t > 1;

@@ -33,6 +33,7 @@ public class LifeDisplayController : MonoBehaviour
             prepareAnimation(lifePercent, lifeReal);
         }
 
+        image.material.SetFloat("_LifePercent", lifePercent);
         currentLifePercent = lifePercent;
         currentLifeReal = lifeReal;
     }
@@ -72,7 +73,7 @@ public class LifeDisplayController : MonoBehaviour
     private void setDisplay(float relative, float absolute)
     {
         relative = Mathf.Clamp(relative, 0f, 1f);
-        image.material.SetFloat("_LifePercent", relative);
+        image.material.SetFloat("_MidSegment", relative);
 
         healthText.text = Mathf.RoundToInt(absolute).ToString();
     }

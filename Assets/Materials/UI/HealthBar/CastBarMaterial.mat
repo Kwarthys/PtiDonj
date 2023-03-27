@@ -55,6 +55,7 @@ Material:
     - _CellDensity: 50
     - _LifePercent: 0.5
     - _LowToMidPercent: 0.2
+    - _MidSegment: 0.875
     - _MidToHighPercent: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0

@@ -52,8 +52,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _LifePercent: 0.89065826
+    - _CellDensity: 50
+    - _LifePercent: 0.8
     - _LowToMidPercent: 0.3
+    - _MidSegment: 0.869
     - _MidToHighPercent: 0.7
     - _QueueControl: 0
     - _QueueOffset: 0
