@@ -2756,6 +2756,11 @@ PrefabInstance:
       propertyPath: sceneId
       value: 2830859244
       objectReference: {fileID: 0}
+    - target: {fileID: 7935578075620422357, guid: 53c415a5183fe5842a81aa4f4813f098,
+        type: 3}
+      propertyPath: stopDistance
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53c415a5183fe5842a81aa4f4813f098, type: 3}
 --- !u!114 &429253799210717512

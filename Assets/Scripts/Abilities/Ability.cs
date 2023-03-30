@@ -72,7 +72,7 @@ public class Ability : MonoBehaviour
     {
         canCast = false;
         cooldownDeltaTimeCounter = 0;
-        Debug.Log("ApplyingMovemnt");
+        //Debug.Log("ApplyingMovemnt");
     }
 
     protected void applyMovementEffector()
@@ -120,9 +120,24 @@ public class Ability : MonoBehaviour
     protected void computeTargetingAndApplyAbility()
     {
         AbilityTargetingData[] targets = abilityTargeting.findTargets(targetLayer);
-        for (int i = 0; i < targets.Length; i++)
+
+        bool targetHit = false;
+        if(targets != null)
         {
-            applyAbility(targets[i]);
+            targetHit = targets.Length > 0;
+            for (int i = 0; i < targets.Length; i++)
+            {
+                applyAbility(targets[i]);
+            }
+        }
+
+
+        if (selfEffects.Length > 0)
+        {
+            if (!selfOnlyIfTarget || targetHit) //only apply if we don't need a target to do so, or if we do have a target
+            {
+                applyAbilitySelf(selfEffects);
+            }
         }
 
         lastTargeting = targets;
@@ -131,14 +146,6 @@ public class Ability : MonoBehaviour
     protected void applyAbility(AbilityTargetingData target)
     {
         CharacterStats characterHit = PlayerManager.instance.getCharacter(target.characterHitID);
-
-        if(selfEffects.Length > 0)
-        {
-            if (!selfOnlyIfTarget || target.charDidHit) //only apply if we don't need a target to do so, or if we do have a target
-            {
-                applyAbilitySelf(selfEffects);
-            }
-        }
 
         if(targetEffects.Length > 0)
         {

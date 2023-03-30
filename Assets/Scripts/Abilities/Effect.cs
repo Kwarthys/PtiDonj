@@ -77,6 +77,11 @@ public abstract class Effect
         owner.takeDamage(amount, caster.networkIdentity, owner.networkIdentity);
     }
 
+    protected void sendHealing(float amount)
+    {
+        owner.receiveHealing(amount, caster.networkIdentity, owner.networkIdentity);
+    }
+
     protected void applyEffectTo(CharacterStats target, EffectDescriptor toApply)
     {
         Effect e = toApply.getNewEffect();

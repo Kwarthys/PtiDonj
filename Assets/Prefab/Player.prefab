@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1005315451}
-  - component: {fileID: 3076829481270543313}
-  - component: {fileID: 8851823824815168547}
-  - component: {fileID: 4800145800734034780}
+  - component: {fileID: 3374407115772463500}
+  - component: {fileID: 3987395409005512438}
+  - component: {fileID: 4965018175610211324}
   m_Layer: 6
   m_Name: BasicAttack
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_Father: {fileID: 1049237760}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3076829481270543313
+--- !u!114 &3374407115772463500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,10 +43,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005315448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ca273659bcfc4543bdad4de2461ac95, type: 3}
+  m_Script: {fileID: 11500000, guid: 47a4bc59190d66146ae09fa79c877635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8851823824815168547
+--- !u!114 &3987395409005512438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,25 +55,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005315448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f95bebb02396c643b94af8bcb4f4880, type: 3}
+  m_Script: {fileID: 11500000, guid: 16524183bf6c2e44991be71dbd33fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityTargeting: {fileID: 3076829481270543313}
-  image: {fileID: 21300000, guid: 14eaa0cbb3f46404a8d5ed3c7bf87e05, type: 3}
-  cooldown: 3
-  abilityName: SuperSpell
+  abilityTargeting: {fileID: 3374407115772463500}
+  image: {fileID: 21300000, guid: a238b267c895f6c44aa6bc50d2ba6b3b, type: 3}
+  cooldown: 1
+  abilityName: Ability
   type: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   selfOnlyIfTarget: 0
   targetEffects: []
-  selfEffects: []
+  selfEffects:
+  - {fileID: 4965018175610211324}
   groundEffects: []
   associatedWidget: {fileID: 0}
   abilityIndex: 0
-  castTime: 2
---- !u!114 &4800145800734034780
+--- !u!114 &4965018175610211324
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,13 +82,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005315448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f29db1b11c5d2434b8ff53a0435d0370, type: 3}
+  m_Script: {fileID: 11500000, guid: 38fe366a0c5d71e42a148bda7291cfef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locksInputs: 1
-  jumpHeigth: 10
-  jumpSpeed: 1
-  speedIsJumpDuration: 1
+  effectName: Effect
+  heal: 30
 --- !u!1 &1049237758
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d14fb3274c0bfd34bad360ed933c4be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locksInputs: 0
+  locksTranslation: 1
+  locksRotation: 1
   length: 20
   speed: 50
 --- !u!1 &2332677170952800006
@@ -716,7 +715,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  basicAbility: {fileID: 8851823824815168547}
+  basicAbility: {fileID: 3987395409005512438}
   secondBasicAbility: {fileID: 9020783451331779710}
   visor: {fileID: 3852378757287495124}
   selfStats: {fileID: 1620960983934713654}

@@ -9,6 +9,8 @@ public class MoveToward : FollowTarget, IMyRigAnimator
     public float speed = 5;
     public float rotSpeed = 5;
 
+    public float stopDistance = 3;
+
     // Update is called once per frame
     public void updateAnimator()
     {
@@ -22,7 +24,7 @@ public class MoveToward : FollowTarget, IMyRigAnimator
         Vector3 cleanedPos = toMove.position;
         cleanedPos.y = 0;
 
-        if(distance > step)
+        if(distance > step && distance > stopDistance)
         {
             toMove.position += step * (cleanedTargetPos - cleanedPos).normalized;
 

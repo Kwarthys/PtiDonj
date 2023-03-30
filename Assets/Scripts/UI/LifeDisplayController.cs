@@ -20,6 +20,8 @@ public class LifeDisplayController : MonoBehaviour
     private float currentLifePercent = 0;
     private float currentLifeReal = 0;
 
+    private bool downward = false;
+
     public bool needsUpdate { get; private set; } = false;
 
     public void updateLifeDisplay(float lifePercent, float lifeReal, bool bypassAnimation = false)
@@ -33,7 +35,9 @@ public class LifeDisplayController : MonoBehaviour
             prepareAnimation(lifePercent, lifeReal);
         }
 
-        image.material.SetFloat("_LifePercent", lifePercent);
+        downward = currentLifePercent > lifePercent;
+
+        image.material.SetFloat(getMovingProperty(!downward), lifePercent);
         currentLifePercent = lifePercent;
         currentLifeReal = lifeReal;
     }
@@ -73,7 +77,7 @@ public class LifeDisplayController : MonoBehaviour
     private void setDisplay(float relative, float absolute)
     {
         relative = Mathf.Clamp(relative, 0f, 1f);
-        image.material.SetFloat("_MidSegment", relative);
+        image.material.SetFloat(getMovingProperty(downward), relative);
 
         healthText.text = Mathf.RoundToInt(absolute).ToString();
     }
@@ -81,6 +85,18 @@ public class LifeDisplayController : MonoBehaviour
     private void Awake()
     {
         image.material = new Material(image.material);
+    }
+
+    private string getMovingProperty(bool downward)
+    {
+        if(downward)
+        {
+            return "_MidSegment";
+        }
+        else
+        {
+            return "_LifePercent";
+        }
     }
 }
     

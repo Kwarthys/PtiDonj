@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityTargeting: {fileID: 4480132167116935851}
   image: {fileID: 0}
-  cooldown: 3.5
+  cooldown: 10
   abilityName: Jump
   type: 0
   targetLayer:
@@ -177,8 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29db1b11c5d2434b8ff53a0435d0370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locksInputs: 1
-  jumpHeigth: 10
+  locksTranslation: 1
+  locksRotation: 1
+  jumpHeight: 1
   jumpSpeed: 1.5
   speedIsJumpDuration: 1
 --- !u!1 &3738697409307059959
@@ -360,7 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78e688a7bf3fb7498840af82c82ee75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   monsterStats: {fileID: 5825245318181456642}
   abilityManager: {fileID: 5082397933859539144}
   castAbilitiesDebug: 0

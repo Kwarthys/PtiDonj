@@ -88,6 +88,21 @@ public class CharacterStats : NetworkBehaviour
         GameManager.instance.spawnFloatingTextFor(transform.position, Mathf.RoundToInt(amount).ToString(), attacker, damaged);
     }
 
+    public void receiveHealing(float amount, NetworkIdentity attacker, NetworkIdentity healed)
+    {
+        float missingLife = maxLife - life;
+        float heal = amount;
+        if(missingLife < amount)
+        {
+            heal = missingLife;
+        }
+
+        life += heal;
+
+        //TODO floating text
+        //GameManager.instance.spawnFloatingTextFor(transform.position, Mathf.RoundToInt(amount).ToString(), attacker, damaged);
+    }
+
     private void updateLifeDisplayHook(float oldLife, float newLife)
     {
         life = newLife;
