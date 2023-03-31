@@ -91,20 +91,20 @@ public class GameManager : NetworkBehaviour
         return go;
     }
 
-    public void spawnFloatingTextFor(Vector3 pos, string text, NetworkIdentity attacker, NetworkIdentity damaged)
+    public void spawnFloatingTextFor(Vector3 pos, string text, NetworkIdentity initiator, NetworkIdentity receiver)
     {
-        if(attacker != null && attacker != damaged) //self injuries displayed as damage taken, not dealt
+        if(initiator != null && initiator != receiver) //self injuries displayed as damage taken, not dealt
         {
-            if(PlayerManager.instance.isPlayerRegistered(attacker.netId))
+            if(PlayerManager.instance.isPlayerRegistered(initiator.netId))
             {
                 //Attacker is a player, we need to show him his damages
-                TargetRpcSpawnFloatingText(attacker.connectionToClient, pos, text);
+                TargetRpcSpawnFloatingText(initiator.connectionToClient, pos, text);
             }
         }
 
-        if(damaged != null)
+        if(receiver != null)
         {
-            if(PlayerManager.instance.isPlayerRegistered(damaged.netId))
+            if(PlayerManager.instance.isPlayerRegistered(receiver.netId))
             {
                 //Damaged character is a player, we need to show him the damage taken
                 //still unsure on how to display that, if if needs to be displayed at all

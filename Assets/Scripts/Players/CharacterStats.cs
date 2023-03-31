@@ -98,9 +98,8 @@ public class CharacterStats : NetworkBehaviour
         }
 
         life += heal;
-
-        //TODO floating text
-        //GameManager.instance.spawnFloatingTextFor(transform.position, Mathf.RoundToInt(amount).ToString(), attacker, damaged);
+                
+        GameManager.instance.spawnFloatingTextFor(transform.position, "+" + Mathf.RoundToInt(heal).ToString(), attacker, healed);
     }
 
     private void updateLifeDisplayHook(float oldLife, float newLife)

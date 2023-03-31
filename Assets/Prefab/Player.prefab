@@ -162,7 +162,8 @@ GameObject:
   - component: {fileID: 5480432696447524988}
   - component: {fileID: 9189768077676925487}
   - component: {fileID: 9020783451331779710}
-  - component: {fileID: 7568428491539922177}
+  - component: {fileID: 2033451816277385427}
+  - component: {fileID: 7052119418350302253}
   m_Layer: 6
   m_Name: BasicSecondAttack
   m_TagString: Untagged
@@ -218,12 +219,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 384
   selfOnlyIfTarget: 0
-  targetEffects: []
+  targetEffects:
+  - {fileID: 2033451816277385427}
+  - {fileID: 7052119418350302253}
   selfEffects: []
   groundEffects: []
   associatedWidget: {fileID: 0}
   abilityIndex: 0
---- !u!114 &7568428491539922177
+--- !u!114 &2033451816277385427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,13 +235,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073555622785391330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14fb3274c0bfd34bad360ed933c4be3, type: 3}
+  m_Script: {fileID: 11500000, guid: f8ed0fff51d1ff145b4ae7f4b3c6072b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locksTranslation: 1
-  locksRotation: 1
-  length: 20
-  speed: 50
+  effectName: Effect
+  damage: 20
+--- !u!114 &7052119418350302253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073555622785391330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11cede626f92d046a6b89f23fd188a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectName: Effect
+  tickDamage: 5
+  effectDuration: 10
+  effectTickCooldown: 0.5
+  tickOnStart: 1
 --- !u!1 &2332677170952800006
 GameObject:
   m_ObjectHideFlags: 0

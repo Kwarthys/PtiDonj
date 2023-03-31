@@ -771,7 +771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78e688a7bf3fb7498840af82c82ee75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   monsterStats: {fileID: 4214907695583710785}
   abilityManager: {fileID: 2680183283722620766}
   castAbilitiesDebug: 0
@@ -2388,6 +2387,7 @@ MonoBehaviour:
   toMove: {fileID: 80916002213443306}
   speed: 7
   rotSpeed: 0.5
+  stopDistance: 8
 --- !u!114 &6835727466313862759
 MonoBehaviour:
   m_ObjectHideFlags: 0

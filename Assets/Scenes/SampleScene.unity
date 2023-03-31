@@ -1945,16 +1945,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1913069039474699442, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: sceneId
-      value: 272968378
-      objectReference: {fileID: 0}
-    - target: {fileID: 2114468126683001177, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: sceneId
-      value: 2724796891
-      objectReference: {fileID: 0}
     - target: {fileID: 5825245318181456640, guid: 88cd870e6712b024e8c3fe877377054a,
         type: 3}
       propertyPath: sceneId
@@ -2019,11 +2009,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 5825245318181456655, guid: 88cd870e6712b024e8c3fe877377054a,
-        type: 3}
-      propertyPath: castAbilitiesDebug
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88cd870e6712b024e8c3fe877377054a, type: 3}
@@ -2755,11 +2740,6 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneId
       value: 2830859244
-      objectReference: {fileID: 0}
-    - target: {fileID: 7935578075620422357, guid: 53c415a5183fe5842a81aa4f4813f098,
-        type: 3}
-      propertyPath: stopDistance
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53c415a5183fe5842a81aa4f4813f098, type: 3}
